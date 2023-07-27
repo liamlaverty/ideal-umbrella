@@ -7,13 +7,15 @@ on:
   pull_request:
     branches: [ "main", "dev" ]
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '7 0 * * *'
 
 
 jobs:
   build-app-ubuntu:
     runs-on: ubuntu-latest
-
+    env: 
+      working-directory: 'IdealUmbrella.site'
+      
     steps:
       - name: Start Eco CI Energy Estimation
         uses: green-coding-berlin/eco-ci-energy-estimation@v2.1
