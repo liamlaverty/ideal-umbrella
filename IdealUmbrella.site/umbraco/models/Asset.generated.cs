@@ -20,7 +20,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>Asset Single</summary>
 	[PublishedModel("asset")]
-	public partial class Asset : PublishedContentModel
+	public partial class Asset : PublishedContentModel, IPageMetadata
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -48,5 +48,29 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		}
 
 		// properties
+
+		///<summary>
+		/// Page Title: the title of the page as displayed on the front-end
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("pageTitle")]
+		public virtual string PageTitle => global::Umbraco.Cms.Web.Common.PublishedModels.PageMetadata.GetPageTitle(this, _publishedValueFallback);
+
+		///<summary>
+		/// SEO Description: The meta SEO description tag
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("sEODescription")]
+		public virtual string SEodescription => global::Umbraco.Cms.Web.Common.PublishedModels.PageMetadata.GetSEodescription(this, _publishedValueFallback);
+
+		///<summary>
+		/// SEO Title: The SEO title of the page (uses the Page Title property if unset)
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("sEOTitle")]
+		public virtual string SEotitle => global::Umbraco.Cms.Web.Common.PublishedModels.PageMetadata.GetSEotitle(this, _publishedValueFallback);
 	}
 }
