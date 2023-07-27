@@ -1,5 +1,9 @@
 name: Daily Tests with Energy Measurement
 run-name: Scheduled - Main Branch
+
+on:
+  push:
+    branches: [ "main", "dev" ]
 # on:
 #   schedule:
 #     - cron: '0 0 * * *'
