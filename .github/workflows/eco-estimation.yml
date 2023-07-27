@@ -2,12 +2,10 @@ name: Daily Tests with Energy Measurement
 run-name: Scheduled - Main Branch
 
 on:
-  push:
-    branches: [ "main", "dev" ]
   pull_request:
     branches: [ "main", "dev" ]
   schedule:
-    - cron: '7 0 * * *'
+    - cron: '7 0 * * 5'
 
 
 jobs:
