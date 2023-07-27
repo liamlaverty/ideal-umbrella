@@ -1,0 +1,74 @@
+name: Daily Tests with Energy Measurement
+run-name: Scheduled - Main Branch
+
+on:
+  push:
+    branches: [ "main", "dev" ]
+# on:
+#   schedule:
+#     - cron: '0 0 * * *'
+
+jobs:
+  build-app-ubuntu:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Start Eco CI Energy Estimation
+        uses: green-coding-berlin/eco-ci-energy-estimation@v2.1
+        with:
+          task: start-measurement
+
+      - name: checkout source
+        uses: actions/checkout@v3
+
+      - name: Checkout Repo Measurement
+        uses: green-coding-berlin/eco-ci-energy-estimation@v2
+        with:
+          task: get-measurement
+          label: 'repo checkout'
+      
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6.0.x
+
+      - name: Setup .net measurement
+        uses: green-coding-berlin/eco-ci-energy-estimation@v2
+        with:
+          task: get-measurement
+          label: 'Setup .net'          
+      
+      - name: Restore dependencies
+        working-directory: ${{env.working-directory}}
+        run: dotnet restore
+      
+      - name: Restore deps measurement
+        uses: green-coding-berlin/eco-ci-energy-estimation@v2
+        with:
+          task: get-measurement
+          label: 'Restore deps'     
+
+      - name: Build
+        working-directory: ${{env.working-directory}}
+        run: dotnet build --no-restore
+      
+      - name: Build measurement
+        uses: green-coding-berlin/eco-ci-energy-estimation@v2
+        with:
+          task: get-measurement
+          label: 'Build'     
+
+      - name: Test
+        working-directory: ${{env.working-directory}}
+        run: dotnet test --no-build --verbosity normal
+
+      - name: Test measurement
+        uses: green-coding-berlin/eco-ci-energy-estimation@v2
+        with:
+          task: get-measurement
+          label: 'Test'     
+
+      - name: Show Ubuntu Energy Results
+        uses: green-coding-berlin/eco-ci-energy-estimation@v2
+        with:
+          task: display-results
