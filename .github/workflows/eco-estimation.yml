@@ -1,8 +1,8 @@
 name: Daily Tests with Energy Measurement
-run-name: Scheduled - DEV Branch
-on:
-  schedule:
-    - cron: '0 0 * * *'
+run-name: Scheduled - Main Branch
+# on:
+#   schedule:
+#     - cron: '0 0 * * *'
 
 jobs:
   build-app-ubuntu:
