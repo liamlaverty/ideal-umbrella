@@ -65,6 +65,6 @@ jobs:
           label: 'Test'     
 
       - name: Show Ubuntu Energy Results
-          uses: green-coding-berlin/eco-ci-energy-estimation@v2
-          with:
-            task: display-results
+        uses: green-coding-berlin/eco-ci-energy-estimation@v2
+        with:
+          task: display-results
