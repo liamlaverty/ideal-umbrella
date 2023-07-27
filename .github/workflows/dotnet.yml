@@ -15,14 +15,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - name: checkout source
+      uses: actions/checkout@v3
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 6.0.x
     - name: Restore dependencies
+      working-directory: 'IdealUmbrella.site'
       run: dotnet restore
     - name: Build
+      working-directory: 'IdealUmbrella.site'
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
