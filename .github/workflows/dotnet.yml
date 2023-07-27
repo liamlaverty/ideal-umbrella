@@ -13,6 +13,8 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    env: 
+      working-directory: 'IdealUmbrella.site'
 
     steps:
     - name: checkout source
@@ -22,10 +24,8 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Restore dependencies
-      working-directory: 'IdealUmbrella.site'
       run: dotnet restore
     - name: Build
-      working-directory: 'IdealUmbrella.site'
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
