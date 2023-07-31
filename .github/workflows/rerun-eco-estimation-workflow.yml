@@ -1,0 +1,24 @@
+name: Rerun eco-estimation workflow
+# Adapted from https://github.com/stebje/jord
+
+on:
+  workflow_run:
+    workflows: [Daily Tests with Energy Measurement]
+    types: [completed]
+
+jobs:
+  re-run-job:
+    name: Rerun a delayed workflow
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.run_attempt == 1 }}
+    steps:
+      - uses: actions/github-script@v6
+        id: rerun-wf
+        with:
+          github-token: ${{ secrets.UMBRACO_ACTION_ECO_ESTIMATION_TOKEN }}
+          script: |
+            github.rest.actions.reRunWorkflow({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: context.payload.workflow_run.id
+            })
