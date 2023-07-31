@@ -2,16 +2,19 @@ name: Daily Tests with Energy Measurement
 run-name: Scheduled - Main Branch
 
 on:
-  push:
+  pull_request:
     branches: [ "main", "dev" ]
-# on:
-#   schedule:
-#     - cron: '0 0 * * *'
+  schedule:
+    - cron: '7 7 * * *'
+
 
 jobs:
   build-app-ubuntu:
+    name: build app on ubuntu
     runs-on: ubuntu-latest
-
+    env: 
+      working-directory: 'IdealUmbrella.site'
+      
     steps:
       - name: Start Eco CI Energy Estimation
         uses: green-coding-berlin/eco-ci-energy-estimation@v2.1
