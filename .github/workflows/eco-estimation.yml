@@ -5,7 +5,7 @@ on:
   pull_request:
     branches: [ "main", "dev" ]
   schedule:
-    - cron: '7 0 * * 5'
+    - cron: '7 7 * * *'
 
 
 jobs:
@@ -23,7 +23,7 @@ jobs:
         uses: stebje/jord@v0.1.0
         with: 
           token: ${{ secrets.UMBRACO_ACTION_ECO_ESTIMATION_TOKEN }}
-          delay-tolerance: 100
+          delay-tolerance: 5
           base-url-carbon-aware-api: 'https://carbon-aware-api.azurewebsites.net'
           environment-name: 'green-delay' 
       - run: echo 'This step, and subsequent ones, will not run if the job is delayed'
