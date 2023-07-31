@@ -14,20 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     env: 
       working-directory: 'IdealUmbrella.site'
-    environment:
-      name: green-delay
       
     steps:
-      - name: build app on ubuntu
-        continue-on-error: false
-        uses: stebje/jord@v0.1.0
-        with: 
-          token: ${{ secrets.UMBRACO_ACTION_ECO_ESTIMATION_TOKEN }}
-          delay-tolerance: 60 
-          base-url-carbon-aware-api: 'https://carbon-aware-api.azurewebsites.net'
-          environment-name: 'green-delay' 
-      - run: echo 'This step, and subsequent ones, will not run if the job is delayed'
-      
       - name: Start Eco CI Energy Estimation
         uses: green-coding-berlin/eco-ci-energy-estimation@v2.1
         with:
