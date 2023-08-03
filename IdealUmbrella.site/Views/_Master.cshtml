@@ -2,12 +2,35 @@
 @{
 	Layout = null;
 }
+<!DOCTYPE html>
+<html lang="@Model.GetCultureFromDomains()">
+	<head>
+		<title>
+			@{
+				if (Model.HasValue("sEOTitle"))
+				{
+					@("seo title ")
+					@Model.Value("sEOTitle");
+				}
+				else 
+				{
+					@Model.Value("pageTitle");
+				}
+			}
+		</title>
+		<meta name="description" content="@Model.Value("sEODescription")">
+
+	</head>
+
+	<body>
+
+		@Html.Partial("Partials/Widgets/SiteStructure/Header.cshtml")
 
 
-@Html.Partial("Partials/Widgets/SiteStructure/Header.cshtml")
+		@RenderBody()
 
 
-@RenderBody()
+		@Html.Partial("Partials/Widgets/SiteStructure/Footer.cshtml")
+	</body>
 
-
-@Html.Partial("Partials/Widgets/SiteStructure/Footer.cshtml")
+</html>
