@@ -8,7 +8,7 @@
 
 
 <h2>National Emissions</h2>
-@foreach (var child in Model.Ancestor<Site>().Children<CountryCollection>().FirstOrDefault().Children<Country>()) 
+@foreach (var child in Model.Ancestor<Site>().Children<RegionCollection>().FirstOrDefault().Children<RegionSingle>()) 
 	{
 	<p>
 		<a href="@child.Url()">@child.PageTitle</a>
@@ -20,7 +20,7 @@
 
 <h2>Corporate Emissions</h2>
 
-@foreach (var child in Model.Ancestor<Site>().Children<CompanyCollection>().FirstOrDefault().Children<Company>()) 
+@foreach (var child in Model.Ancestor<Site>().Children<CompanyCollection>().FirstOrDefault().Children<CompanySingle>()) 
 	{
 	<p>
 		<a href="@child.Url()">
@@ -34,7 +34,7 @@
 
 <h2>Asset Emissions</h2>
 
-@foreach (var child in Model.Ancestor<Site>().Children<AssetCollection>().FirstOrDefault().Children<Asset>()) 
+@foreach (var child in Model.Ancestor<Site>().Children<AssetCollection>().FirstOrDefault().Children<AssetSingle>()) 
 	{
 	<p>
 		<a href="@child.Url()">@child.PageTitle</a>

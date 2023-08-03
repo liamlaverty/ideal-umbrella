@@ -7,3 +7,13 @@
 
 
 <p>Asset Collection cshtml</p>
+
+
+<h2>Asset Emissions</h2>
+
+@foreach (var child in Model.Children<AssetSingle>()) 
+	{
+	<p>
+		<a href="@child.Url()">@child.PageTitle</a>
+	</p>
+	}
