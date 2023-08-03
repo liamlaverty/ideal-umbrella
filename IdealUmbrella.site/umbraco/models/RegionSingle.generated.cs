@@ -50,6 +50,46 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
+		/// Country Alpha 2: The *alpha-2* value for the country (eg. "GB"), as described in ISO-3166-2  https://www.iso.org/obp/ui/#search/code/
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("countryAlpha2")]
+		public virtual string CountryAlpha2 => this.Value<string>(_publishedValueFallback, "countryAlpha2");
+
+		///<summary>
+		/// Country Alpha 3: The *alpha-3* value for the country (eg. "GBR"), as described in ISO-3166-2  https://www.iso.org/obp/ui/#search/code/
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("countryAlpha3")]
+		public virtual string CountryAlpha3 => this.Value<string>(_publishedValueFallback, "countryAlpha3");
+
+		///<summary>
+		/// Country Code: The *Numeric* value for the country (eg. 826) a defined in ISO-3166-2  https://www.iso.org/obp/ui/#search/code/
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("countryCode")]
+		public virtual string CountryCode => this.Value<string>(_publishedValueFallback, "countryCode");
+
+		///<summary>
+		/// Country Name: The name of the country as described in ISO-3166-2 standard
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("countryName")]
+		public virtual string CountryName => this.Value<string>(_publishedValueFallback, "countryName");
+
+		///<summary>
+		/// Regions: A csv list of regions this nation is commonly associated with (for example "Europe, European Union, Northern Europe")
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("regions")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> Regions => this.Value<global::System.Collections.Generic.IEnumerable<string>>(_publishedValueFallback, "regions");
+
+		///<summary>
 		/// Main Navigation Display Text: Text to appear in the main navigation. If unset, the page's main title will be used by default
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
