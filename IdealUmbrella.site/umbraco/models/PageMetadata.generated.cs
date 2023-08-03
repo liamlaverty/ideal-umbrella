@@ -19,9 +19,14 @@ using Umbraco.Extensions;
 namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	// Mixin Content Type with alias "pageMetadata"
-	/// <summary>Page metadata</summary>
+	/// <summary>Page metadata and settings</summary>
 	public partial interface IPageMetadata : IPublishedElement
 	{
+		/// <summary>Main Navigation Display Text</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		string MainNavigationDisplayText { get; }
+
 		/// <summary>Page Title</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
@@ -36,9 +41,13 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		string SEotitle { get; }
+
+		/// <summary>Show In Main Navigation</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		bool ShowInMainNavigation { get; }
 	}
 
-	/// <summary>Page metadata</summary>
+	/// <summary>Page metadata and settings</summary>
 	[PublishedModel("pageMetadata")]
 	public partial class PageMetadata : PublishedElementModel, IPageMetadata
 	{
@@ -68,6 +77,19 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		}
 
 		// properties
+
+		///<summary>
+		/// Main Navigation Display Text: Text to appear in the main navigation. If unset, the page's main title will be used by default
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("mainNavigationDisplayText")]
+		public virtual string MainNavigationDisplayText => GetMainNavigationDisplayText(this, _publishedValueFallback);
+
+		/// <summary>Static getter for Main Navigation Display Text</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		public static string GetMainNavigationDisplayText(IPageMetadata that, IPublishedValueFallback publishedValueFallback) => that.Value<string>(publishedValueFallback, "mainNavigationDisplayText");
 
 		///<summary>
 		/// Page Title: the title of the page as displayed on the front-end
@@ -107,5 +129,16 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		public static string GetSEotitle(IPageMetadata that, IPublishedValueFallback publishedValueFallback) => that.Value<string>(publishedValueFallback, "sEOTitle");
+
+		///<summary>
+		/// Show In Main Navigation: If set to true, the page will appear in the main navigation for the site
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[ImplementPropertyType("showInMainNavigation")]
+		public virtual bool ShowInMainNavigation => GetShowInMainNavigation(this, _publishedValueFallback);
+
+		/// <summary>Static getter for Show In Main Navigation</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		public static bool GetShowInMainNavigation(IPageMetadata that, IPublishedValueFallback publishedValueFallback) => that.Value<bool>(publishedValueFallback, "showInMainNavigation");
 	}
 }
