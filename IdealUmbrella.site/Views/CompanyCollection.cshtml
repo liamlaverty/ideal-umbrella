@@ -5,5 +5,14 @@
 	Layout = "_Master.cshtml";
 }
 
-
 <p>Company Collection cshtml</p>
+
+
+<h2>Company Emissions</h2>
+
+@foreach (var child in Model.Children<CompanySingle>()) 
+{
+	<p>
+		<a href="@child.Url()">@child.PageTitle</a>
+	</p>
+}

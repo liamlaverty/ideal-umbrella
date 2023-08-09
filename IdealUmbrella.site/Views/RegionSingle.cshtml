@@ -1,0 +1,55 @@
+﻿@using IdealUmbrella.site.ViewComponents;
+@using IdealUmbrella.site.ViewComponents.MapboxComponents;
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.RegionSingle>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    Layout = "_Master.cshtml";
+
+    var summaryStats = new List<KeyValuePair<string, string>>()
+    {
+        new(key: "Emissions", value: "0.48GT"),
+        new(key: "Percent of global emissions", value: "0.85%"),
+        new(key: "GPD", value: "$2.2tn"),
+        new(key: "CO2e per $ GDP", value: "0.00T"),
+        new(key: "Population", value: "67.5mn"),
+        new(key: "CO2e per person", value: "0.00T"),
+        new(key: "Global Rank", value: "19"),
+        new(key: "Assets in database", value: "1,900"),
+    };
+    var mapId = Guid.NewGuid();
+    var mapId2 = Guid.NewGuid();
+
+}
+
+
+<div class="row">
+    <div class="col-12 col-md-5">
+        <h2>Map</h2>
+        @(
+            await Component.InvokeAsync("Mapbox",
+            new MapboxViewModelParams { section = MapboxViewSection.BodyMap, MapId = mapId2 })
+        )
+    </div>
+    <div class="col-12 col-md-7">
+        <h2>Stats</h2>
+        <div class="row">
+            @foreach (var stat in summaryStats)
+            {
+                <div class="col-6 col-md-6">
+
+                    <p class="fw-bold mb-0">
+                        @stat.Key
+                    </p>
+                    <p>@stat.Value</p>
+                </div>
+
+            }
+        </div>
+    </div>
+</div>
+
+@(
+    await Component.InvokeAsync("Mapbox",
+        new MapboxViewModelParams { section = MapboxViewSection.FooterScripts, MapId = mapId })
+)

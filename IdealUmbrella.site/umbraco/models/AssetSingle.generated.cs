@@ -18,14 +18,14 @@ using Umbraco.Extensions;
 
 namespace Umbraco.Cms.Web.Common.PublishedModels
 {
-	/// <summary>Company</summary>
-	[PublishedModel("company")]
-	public partial class Company : PublishedContentModel, IPageMetadata
+	/// <summary>Asset Single</summary>
+	[PublishedModel("assetSingle")]
+	public partial class AssetSingle : PublishedContentModel, IPageMetadata
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
-		public new const string ModelTypeAlias = "company";
+		public new const string ModelTypeAlias = "assetSingle";
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
 		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
@@ -34,20 +34,28 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 			=> PublishedModelUtility.GetModelContentType(publishedSnapshotAccessor, ModelItemType, ModelTypeAlias);
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<Company, TValue>> selector)
+		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<AssetSingle, TValue>> selector)
 			=> PublishedModelUtility.GetModelPropertyType(GetModelContentType(publishedSnapshotAccessor), selector);
 #pragma warning restore 0109
 
 		private IPublishedValueFallback _publishedValueFallback;
 
 		// ctor
-		public Company(IPublishedContent content, IPublishedValueFallback publishedValueFallback)
+		public AssetSingle(IPublishedContent content, IPublishedValueFallback publishedValueFallback)
 			: base(content, publishedValueFallback)
 		{
 			_publishedValueFallback = publishedValueFallback;
 		}
 
 		// properties
+
+		///<summary>
+		/// Main Navigation Display Text: Text to appear in the main navigation. If unset, the page's main title will be used by default
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("mainNavigationDisplayText")]
+		public virtual string MainNavigationDisplayText => global::Umbraco.Cms.Web.Common.PublishedModels.PageMetadata.GetMainNavigationDisplayText(this, _publishedValueFallback);
 
 		///<summary>
 		/// Page Title: the title of the page as displayed on the front-end
@@ -72,5 +80,12 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("sEOTitle")]
 		public virtual string SEotitle => global::Umbraco.Cms.Web.Common.PublishedModels.PageMetadata.GetSEotitle(this, _publishedValueFallback);
+
+		///<summary>
+		/// Show In Main Navigation: If set to true, the page will appear in the main navigation for the site
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[ImplementPropertyType("showInMainNavigation")]
+		public virtual bool ShowInMainNavigation => global::Umbraco.Cms.Web.Common.PublishedModels.PageMetadata.GetShowInMainNavigation(this, _publishedValueFallback);
 	}
 }
