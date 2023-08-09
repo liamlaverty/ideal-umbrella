@@ -1,0 +1,10 @@
+﻿@model IdealUmbrella.site.ViewComponents.MapboxComponents.MapboxViewModel
+
+<script>
+    mapboxgl.accessToken = '@Model.FrontendKey'
+    var map = new mapboxgl.Map({
+        container: 'map-@Model.Id',
+        style: 'mapbox://styles/mapbox/streets-v11'
+    });
+
+</script>
