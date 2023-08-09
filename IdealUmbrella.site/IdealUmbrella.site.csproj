@@ -1,8 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <UserSecretsId>4de10ed0-209a-4f5d-a84e-ee0db7e6e3c3</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="wwwroot\scripts\mapbox.js" />
