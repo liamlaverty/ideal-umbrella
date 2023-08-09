@@ -20,7 +20,7 @@ namespace IdealUmbrella.site.ViewComponents.MapboxComponents
         /// <exception cref="ArgumentOutOfRangeException">
         /// Thrown if an invalid <see cref="MapboxViewSection"/> is passed
         /// </exception>
-        public IViewComponentResult Invoke(MapboxViewModelParams modelParams)
+        public IViewComponentResult Invoke(MapboxViewModel modelParams)
         {
             MapboxViewModel mapConfig = modelParams;
             return View("MapboxView_BodyMap", mapConfig);

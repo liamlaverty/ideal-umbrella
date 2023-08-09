@@ -23,12 +23,10 @@
 
 <div class="row">
     <div class="col-12 col-md-12">
-        <h2>Map</h2>
         @(
             await Component.InvokeAsync("MapboxBody",
         new MapboxViewModelParams
         {
-            Section = MapboxViewSection.FooterScripts,
             MapId = Guid.NewGuid(),
             LatLong = new IdealUmbrella.site.Models.Shared.Geo.LatLong
             {
