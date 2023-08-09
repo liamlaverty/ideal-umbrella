@@ -1,3 +1,5 @@
+using IdealUmbrella.site.Models.Config;
+
 namespace IdealUmbrella.site
 {
     public class Startup
@@ -36,7 +38,7 @@ namespace IdealUmbrella.site
                 .AddComposers()
                 .Build();
 
-            services.Configure<MapboxSettings>(configuration.GetSection("MapboxConfig"))
+            services.Configure<MapboxConfig>(_config.GetSection(MapboxConfig.ConfigName));
         }
 
         /// <summary>
