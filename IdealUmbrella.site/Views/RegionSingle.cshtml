@@ -17,18 +17,27 @@
         new(key: "Global Rank", value: "19"),
         new(key: "Assets in database", value: "1,900"),
     };
-    var mapId = Guid.NewGuid();
 
 }
 
 
 <div class="row">
-    <div class="col-12 col-md-5">
+    <div class="col-12 col-md-12">
         <h2>Map</h2>
         @(
-            await Component.InvokeAsync("Mapbox",
-            new MapboxViewModelParams { Section = MapboxViewSection.BodyMap, MapId = mapId })
-        )
+            await Component.InvokeAsync("MapboxBody",
+        new MapboxViewModelParams
+        {
+            Section = MapboxViewSection.FooterScripts,
+            MapId = Guid.NewGuid(),
+            LatLong = new IdealUmbrella.site.Models.Shared.Geo.LatLong
+            {
+                Lat = 55.15,
+                Lon = -3.60
+            },
+            MapZoom = 5
+        })
+            )
     </div>
     <div class="col-12 col-md-7">
         <h2>Stats</h2>
@@ -47,12 +56,3 @@
         </div>
     </div>
 </div>
-
-@(
-    await Component.InvokeAsync("Mapbox",
-        new MapboxViewModelParams { 
-            Section = MapboxViewSection.FooterScripts, 
-            MapId = mapId,
-
-        })
-)
