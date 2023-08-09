@@ -35,6 +35,8 @@ namespace IdealUmbrella.site
                 .AddDeliveryApi()
                 .AddComposers()
                 .Build();
+
+            services.Configure<MapboxSettings>(configuration.GetSection("MapboxConfig"))
         }
 
         /// <summary>
