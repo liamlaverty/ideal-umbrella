@@ -25,39 +25,24 @@ namespace IdealUmbrella.site.ViewComponents.MapboxComponents
         /// </exception>
         public IViewComponentResult Invoke(MapboxViewModelParams modelParams)
         {
-            switch (modelParams.section)
+            switch (modelParams.Section)
             {
                 case MapboxViewSection.FooterScripts:
                     return View("MapboxView_HeaderScripts",
-                    new MapboxViewModel
-                    {
-                        FrontendKey = _mapboxSettings.Value.Settings.FrontEndKey,
-                        Id = modelParams.MapId
-                    });
+                        new MapboxViewModel
+                        {
+                            FrontendKey = _mapboxSettings.Value.Settings.FrontEndKey,
+                            MapId = modelParams.MapId,
+                        });
                 case MapboxViewSection.BodyMap:
                     return View("MapboxView_BodyMap",
                         new MapboxViewModel
                         {
-                            Id = modelParams.MapId
+                            MapId = modelParams.MapId
                         });
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(modelParams.section), $"Unsupported section type {modelParams.section}");
-            }
-            
+                    throw new ArgumentOutOfRangeException(nameof(modelParams.Section), $"Unsupported section type {modelParams.Section}");
+            }   
         }
-    }
-
-    public class MapboxViewModelParams
-    {
-        public MapboxViewSection section { get; set; }
-        public Guid MapId { get; set; }
-    }
-
-
-    public enum MapboxViewSection
-    {
-        BodyMap,
-
-        FooterScripts,
     }
 }

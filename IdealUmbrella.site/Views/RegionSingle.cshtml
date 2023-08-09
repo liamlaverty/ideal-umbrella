@@ -18,7 +18,6 @@
         new(key: "Assets in database", value: "1,900"),
     };
     var mapId = Guid.NewGuid();
-    var mapId2 = Guid.NewGuid();
 
 }
 
@@ -28,7 +27,7 @@
         <h2>Map</h2>
         @(
             await Component.InvokeAsync("Mapbox",
-            new MapboxViewModelParams { section = MapboxViewSection.BodyMap, MapId = mapId2 })
+            new MapboxViewModelParams { Section = MapboxViewSection.BodyMap, MapId = mapId })
         )
     </div>
     <div class="col-12 col-md-7">
@@ -51,5 +50,9 @@
 
 @(
     await Component.InvokeAsync("Mapbox",
-        new MapboxViewModelParams { section = MapboxViewSection.FooterScripts, MapId = mapId })
+        new MapboxViewModelParams { 
+            Section = MapboxViewSection.FooterScripts, 
+            MapId = mapId,
+
+        })
 )
