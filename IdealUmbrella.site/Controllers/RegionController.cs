@@ -44,7 +44,7 @@ namespace IdealUmbrella.site.Controllers
 
             var allCountries = _countryDataCsv.GetCountries();
     
-            return "OK";
+            return "OK" + allCountries.Count();
         }
     }
 

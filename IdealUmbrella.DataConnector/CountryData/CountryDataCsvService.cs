@@ -1,4 +1,6 @@
-﻿using IdealUmbrella.DataConnector.Models.CsvModels;
+﻿using CsvHelper;
+using IdealUmbrella.DataConnector.Models.CsvModels;
+using System.Globalization;
 
 namespace IdealUmbrella.DataConnector.CountryData
 {
@@ -18,15 +20,14 @@ namespace IdealUmbrella.DataConnector.CountryData
 
         public IEnumerable<CsvCountryDto> GetCountries() 
         {
-            return new
-                List<CsvCountryDto>
+            var countryCsvFilePath = Path.Combine(Directory.GetCurrentDirectory(), "Assets/CsvData/all-iso-3166-countries.csv");
+
+            using (var reader = new StreamReader(countryCsvFilePath))
+            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
-                new CsvCountryDto
-                {
-                    Name = "Test"
-                }
-            };
-        
+                var records = csv.GetRecords<CsvCountryDto>().ToList();
+                return records;
+            }        
         }
 
     }
