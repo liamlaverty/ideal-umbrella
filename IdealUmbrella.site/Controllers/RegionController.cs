@@ -3,35 +3,28 @@ using IdealUmbrella.DataConnector.Models.CsvModels;
 using IdealUmbrella.site.Helpers.PropertyTypeHelpers;
 using IdealUmbrella.site.Models.Config;
 using IdealUmbrella.site.Models.Exceptions;
-using J2N.Text;
-using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
-using System.Drawing;
-using System.Text;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Services;
-using Umbraco.Cms.Infrastructure.Persistence.Querying;
+using Umbraco.Cms.Web.Common.Authorization;
 using Umbraco.Cms.Web.Common.Controllers;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace IdealUmbrella.site.Controllers
 {
+
     public class RegionController : UmbracoApiController
     {
         private IContentService _contentService;
-        private readonly IOptions<SiteContentIdConfig> _siteContentIdConfig;
         private readonly ICountryDataCsvService _countryDataCsv;
 
 
         public RegionController(IContentService contentService,
-            IOptions<SiteContentIdConfig> siteContentIdConfig,
             ICountryDataCsvService countryDataCsv)
         {
             _contentService = contentService;
-            _siteContentIdConfig = siteContentIdConfig;
             _countryDataCsv = countryDataCsv;
         }
 
@@ -43,6 +36,7 @@ namespace IdealUmbrella.site.Controllers
         }
 
 
+        [Authorize(Policy = AuthorizationPolicies.BackOfficeAccess)]
         [HttpPost]
         public string UpdateRegions()
         {
