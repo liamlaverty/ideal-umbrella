@@ -1,6 +1,9 @@
-﻿using IdealUmbrella.site.Models.Config;
+﻿using IdealUmbrella.DataConnector.CountryData;
+using IdealUmbrella.DataConnector.Models.CsvModels;
+using IdealUmbrella.site.Models.Config;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using System.Drawing;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Services;
 using Umbraco.Cms.Web.Common.Controllers;
@@ -12,13 +15,16 @@ namespace IdealUmbrella.site.Controllers
     {
         private IContentService _contentService;
         private readonly IOptions<SiteContentIdConfig> _siteContentIdConfig;
+        private readonly ICountryDataCsvService _countryDataCsv;
 
 
         public RegionController(IContentService contentService,
-            IOptions<SiteContentIdConfig> siteContentIdConfig)
+            IOptions<SiteContentIdConfig> siteContentIdConfig,
+            ICountryDataCsvService countryDataCsv)
         {
             _contentService = contentService;
             _siteContentIdConfig = siteContentIdConfig;
+            _countryDataCsv = countryDataCsv;
         }
 
 
@@ -36,21 +42,13 @@ namespace IdealUmbrella.site.Controllers
             IEnumerable<IContent> rootChildren = _contentService.GetPagedChildren(rootContent.Id, pageIndex: 0, pageSize: 10, out _);
             var regionCollectionDoc = rootChildren.First(c => c.ContentType.Alias == RegionCollection.ModelTypeAlias);
 
-            var allCountries = GetCountryCsv();
+            var allCountries = _countryDataCsv.GetCountries();
     
             return "OK";
         }
-
-        private IEnumerable<CsvCountryDto> GetCountryCsv()
-        {
-            throw new NotImplementedException();
-        }
     }
 
-    public class CsvCountryDto
-    {
 
-    }
 
     public class RegionDto
     {

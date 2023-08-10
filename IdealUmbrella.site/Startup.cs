@@ -1,3 +1,4 @@
+using IdealUmbrella.DataConnector.CountryData;
 using IdealUmbrella.site.Models.Config;
 
 namespace IdealUmbrella.site
@@ -38,8 +39,14 @@ namespace IdealUmbrella.site
                 .AddComposers()
                 .Build();
 
+
+            // Add configs
             services.Configure<MapboxConfig>(_config.GetSection(MapboxConfig.ConfigName));
             services.Configure<SiteContentIdConfig>(_config.GetSection(SiteContentIdConfig.ConfigName));
+
+
+            // add other services
+            services.AddTransient<ICountryDataCsvService, CountryDataCsvService>();
         }
 
         /// <summary>
