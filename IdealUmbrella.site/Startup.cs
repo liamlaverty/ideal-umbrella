@@ -39,6 +39,7 @@ namespace IdealUmbrella.site
                 .Build();
 
             services.Configure<MapboxConfig>(_config.GetSection(MapboxConfig.ConfigName));
+            services.Configure<SiteContentIdConfig>(_config.GetSection(SiteContentIdConfig.ConfigName));
         }
 
         /// <summary>
