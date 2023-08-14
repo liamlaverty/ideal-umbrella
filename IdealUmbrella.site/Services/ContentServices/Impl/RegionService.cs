@@ -1,44 +1,60 @@
 ﻿using IdealUmbrella.DataConnector.CountryData;
 using IdealUmbrella.DataConnector.Models.CsvModels;
 using IdealUmbrella.site.Helpers.PropertyTypeHelpers;
-using IdealUmbrella.site.Models.Config;
 using IdealUmbrella.site.Models.Exceptions;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
+using System.Drawing.Printing;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Services;
-using Umbraco.Cms.Web.Common.Authorization;
-using Umbraco.Cms.Web.Common.Controllers;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
-namespace IdealUmbrella.site.Controllers
+namespace IdealUmbrella.site.Services.ContentServices.Impl
 {
 
-    public class RegionController : UmbracoApiController
+    public interface IRegionContentService
     {
-        private IContentService _contentService;
+        bool UpdateRegionsFromCsvFile();
+
+        bool DeleteAllRegions();
+    }
+
+
+
+    public class RegionContentService : IRegionContentService
+    {
+        private readonly IContentService _contentService;
         private readonly ICountryDataCsvService _countryDataCsv;
 
 
-        public RegionController(IContentService contentService,
+        public RegionContentService(IContentService contentService,
             ICountryDataCsvService countryDataCsv)
         {
             _contentService = contentService;
             _countryDataCsv = countryDataCsv;
         }
 
-
-        [HttpGet] 
-        public List<RegionDto> GetRegionCollection()
+        public bool DeleteAllRegions()
         {
-            return new List<RegionDto> { new RegionDto() };
+            IContent rootContent = _contentService.GetRootContent().First();
+            IEnumerable<IContent> rootChildren = _contentService.GetPagedChildren(rootContent.Id, pageIndex: 0, pageSize: 10, out _);
+            var regionCollectionDoc = rootChildren.First(c => c.ContentType.Alias == RegionCollection.ModelTypeAlias);
+
+            var pages = _contentService.GetPagedChildren(regionCollectionDoc.Id, 0, 1000, out _);
+            foreach (var page in pages)
+            {
+                _contentService.Delete(page);
+            }
+            _contentService.EmptyRecycleBin();
+
+            return true;
         }
 
-
-        [Authorize(Policy = AuthorizationPolicies.BackOfficeAccess)]
-        [HttpPost]
-        public string UpdateRegions()
+        /// <summary>
+        /// Opens the countries csv file, and upserts the countries inside into the 
+        /// child nodes beneath the Region collection
+        /// </summary>
+        /// <returns></returns>
+        public bool UpdateRegionsFromCsvFile()
         {
             IContent rootContent = _contentService.GetRootContent().First();
             IEnumerable<IContent> rootChildren = _contentService.GetPagedChildren(rootContent.Id, pageIndex: 0, pageSize: 10, out _);
@@ -49,9 +65,9 @@ namespace IdealUmbrella.site.Controllers
             {
                 AddOrUpdateCountry(regionCollectionDoc, country);
             }
-    
-            return "OK" + allCountries.Count();
+            return true;
         }
+
 
 
         /// <summary>
@@ -130,12 +146,17 @@ namespace IdealUmbrella.site.Controllers
                 country.SubRegion
             }));
 
-            _contentService.SaveAndPublish(regionToUpsertAsContent);
+            regionToUpsertAsContent.SetValue("placeName", country.Name);
+            regionToUpsertAsContent.SetValue("latitude", country.LatitudeAvg);
+            regionToUpsertAsContent.SetValue("longitude", country.LongitudeAvg);
+            regionToUpsertAsContent.SetValue("mapZoom", 5);
+
+
+            var publishResult = _contentService.SaveAndPublish(regionToUpsertAsContent);
+            if (!publishResult.Success)
+            {
+                throw new Exception("publish result was not success");
+            }
         }
-    }
-
-    public class RegionDto
-    {
-
     }
 }

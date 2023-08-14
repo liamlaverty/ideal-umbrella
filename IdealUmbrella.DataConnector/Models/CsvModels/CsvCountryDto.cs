@@ -37,5 +37,36 @@ namespace IdealUmbrella.DataConnector.Models.CsvModels
 
         [Name("intermediate-region-code")]
         public string IntermediateRegionCode { get; set; }
+
+        [Ignore]
+        public string LatitudeAvg { get; set; }
+
+        [Ignore]
+        public string LongitudeAvg { get; set; }
+
+        [Ignore]
+        public string LatitudeCapital { get; set; }
+
+        [Ignore]
+        public string LongitudeCapital { get; set; }
+
+        [Ignore]
+        public string DefaultMapzoom { get; set; }
+
+    }
+
+    public class CsvCountryGeolocationDto
+    {
+        [Name("country")]
+        public string Country { get; set; }
+
+        [Name("latitude")]
+        public string Latitude { get; set; }
+
+        [Name("longitude")]
+        public string Longitude { get; set; }
+
+        [Name("name")]
+        public string Name { get; set; }
     }
 }

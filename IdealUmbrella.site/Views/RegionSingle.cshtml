@@ -30,10 +30,10 @@
             MapId = Guid.NewGuid(),
             LatLong = new IdealUmbrella.site.Models.Shared.Geo.LatLong
             {
-                Lat = 55.15,
-                Lon = -3.60
+                Lat = @Convert.ToDouble(Model.Latitude),
+                Lon = @Convert.ToDouble(Model.Longitude)
             },
-            MapZoom = 5
+            MapZoom = Model.MapZoom
         })
             )
     </div>

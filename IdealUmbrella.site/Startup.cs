@@ -1,6 +1,7 @@
 using IdealUmbrella.DataConnector.CountryData;
 using IdealUmbrella.site.Models.Config;
 using IdealUmbrella.site.ScheduledTasks;
+using IdealUmbrella.site.Services.ContentServices.Impl;
 
 namespace IdealUmbrella.site
 {
@@ -46,9 +47,10 @@ namespace IdealUmbrella.site
 
             // add other services
             services.AddTransient<ICountryDataCsvService, CountryDataCsvService>();
+            services.AddTransient<IRegionContentService, RegionContentService>();
 
             // Add recurring hosted services
-            services.AddHostedService<UpdateRegionsRecurringTask>();
+            // services.AddHostedService<UpdateRegionsRecurringTask>();
         }
 
         /// <summary>
