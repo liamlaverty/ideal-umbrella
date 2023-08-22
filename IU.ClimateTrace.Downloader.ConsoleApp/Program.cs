@@ -11,7 +11,8 @@ namespace IU.ClimateTrace.Downloader
             var startup = new Startup();
 
             Console.WriteLine($"Starting downloader. Result:");
-            Console.WriteLine(startup.downloader.DownloadData());
+            
+            var result = startup.downloader.DownloadData();
 
 
             Console.WriteLine("Complete, press any key to exit");

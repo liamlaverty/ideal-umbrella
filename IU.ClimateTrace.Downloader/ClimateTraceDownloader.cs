@@ -6,33 +6,45 @@ namespace IU.ClimateTrace.Downloader
 
     public interface IClimateTraceDownloader
     {
-        string DownloadData();
+        DownloaderResult DownloadData();
+    }
+
+    public class DownloaderResult
+    {
+        public bool DownloadedCountryData { get; set; } = false;
+        public bool DownloadedForestData { get; set; } = false;
+        public bool DownloadedNonForestData { get; set; } = false;
+        public bool UnzippedData { get; set; } = false;
     }
 
 
     public class ClimateTraceDownloader : IClimateTraceDownloader
     {
         private ClimateTraceDownloaderSettings _settings;
+        private DownloaderResult downloaderResult;
+        List<string> CountryThreeChar = new List<string> { "GBR", "NOR" };
+        private string nonForestDataPath;
+        private string forestDataPath;
+        private string countriesDataPath;
 
         public ClimateTraceDownloader(IOptions<ClimateTraceDownloaderSettings> climateTraceDownloaderConfig)
         {
             _settings = climateTraceDownloaderConfig.Value;
 
-            Console.WriteLine("Configuring download paths");
+            downloaderResult = new DownloaderResult();
 
-            var nonForestDataPath = Path.Combine(_settings.Configurations.DownloadDataPath, "data_packages", "climate_trace", "sector_packages", "non_forest_sectors_data");
+            nonForestDataPath = Path.Combine(_settings.Configurations.DownloadDataPath, "data_packages", "climate_trace", "sector_packages", "non_forest_sectors_data");
             Console.WriteLine($"nonForestDataPath: {nonForestDataPath}");
 
-            var forestDataPath = Path.Combine(_settings.Configurations.DownloadDataPath, "data_packages", "climate_trace", "sector_packages", "forest_sectors_data");
+            forestDataPath = Path.Combine(_settings.Configurations.DownloadDataPath, "data_packages", "climate_trace", "sector_packages", "forest_sectors_data");
             Console.WriteLine($"forestDataPath: {forestDataPath}");
 
-            var countriesDataPath = Path.Combine(_settings.Configurations.DownloadDataPath, "data_packages", "climate_trace", "country_packages", "country_sector_data");
+            countriesDataPath = Path.Combine(_settings.Configurations.DownloadDataPath, "data_packages", "climate_trace", "country_packages", "country_sector_data");
             Console.WriteLine($"countriesDataPath: {countriesDataPath}");
         }
 
-        List<string> CountryThreeChar = new List<string> { "GBR", "NOR" };
 
-        public string DownloadData()
+        public DownloaderResult DownloadData()
         {
             if (_settings.Configurations.EnableDownloadCountryData)
             {
@@ -40,6 +52,7 @@ namespace IU.ClimateTrace.Downloader
                 {
                     DownloadSingleCountryData(country);
                 }
+                downloaderResult.DownloadedCountryData = true;
             }
             else
             {
@@ -52,11 +65,14 @@ namespace IU.ClimateTrace.Downloader
                 {
                     DownloadSingleCountryForestSectorData(country);
                 }
+                downloaderResult.DownloadedForestData = true;
+
             }
             else
             {
                 Console.WriteLine($"EnableDownloadForestryData was set to {_settings.Configurations.EnableDownloadForestryData}, skipping download");
             }
+
 
             if (_settings.Configurations.EnableDownloadNonForestryData)
             {
@@ -64,6 +80,8 @@ namespace IU.ClimateTrace.Downloader
                 {
                     DownloadSingleCountryNonForestSectorData(country);
                 }
+                downloaderResult.DownloadedNonForestData = true;
+
             }
             else
             {
@@ -73,13 +91,15 @@ namespace IU.ClimateTrace.Downloader
             if (_settings.Configurations.EnableUnzipAfterDownload)
             {
                 UnzipFiles();
+                downloaderResult.UnzippedData = true;
+
             }
             else
             {
                 Console.WriteLine($"EnableUnzipAfterDownload was set to {_settings.Configurations.EnableUnzipAfterDownload}, skipping unzip");
             }
 
-            return "complete";
+            return downloaderResult;
         }
 
         private void DownloadSingleCountryNonForestSectorData(string countryThreeCharName)
