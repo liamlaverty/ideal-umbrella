@@ -30,9 +30,6 @@ jobs:
     - name: Build
       working-directory: ${{env.working-directory}}
       run: dotnet build --no-restore
-    - name: Build Tests
-      working-directory: ${{env.test-working-directory}}
-      run: dotnet build --no-restore
     - name: Test
       working-directory: ${{env.test-working-directory}}
       run: dotnet test --verbosity normal
