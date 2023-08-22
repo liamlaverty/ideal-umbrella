@@ -2,8 +2,6 @@
 using IdealUmbrella.DataConnector.Models.CsvModels;
 using IdealUmbrella.site.Helpers.PropertyTypeHelpers;
 using IdealUmbrella.site.Models.Exceptions;
-using Microsoft.AspNetCore.Mvc;
-using System.Drawing.Printing;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Services;
 using Umbraco.Cms.Web.Common.PublishedModels;
@@ -151,7 +149,7 @@ namespace IdealUmbrella.site.Services.ContentServices.Impl
             regionToUpsertAsContent.SetValue("longitude", country.LongitudeAvg);
             regionToUpsertAsContent.SetValue("mapZoom", 5);
 
-
+            
             var publishResult = _contentService.SaveAndPublish(regionToUpsertAsContent);
             if (!publishResult.Success)
             {

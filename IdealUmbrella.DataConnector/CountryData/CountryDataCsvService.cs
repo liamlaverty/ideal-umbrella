@@ -1,7 +1,5 @@
 ﻿using CsvHelper;
-using CsvHelper.Configuration.Attributes;
 using IdealUmbrella.DataConnector.Models.CsvModels;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 
 namespace IdealUmbrella.DataConnector.CountryData
