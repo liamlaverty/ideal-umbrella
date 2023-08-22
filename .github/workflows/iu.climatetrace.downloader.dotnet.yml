@@ -37,5 +37,5 @@ jobs:
     - name: Validate JSON Schemas
       uses: walbo/validate-json@v1.1.0
       with:
-        files:  ${{console-app-working-directory}}/**/*.json
+        files:  ${{env.console-app-working-directory}}/**/*.json
             
