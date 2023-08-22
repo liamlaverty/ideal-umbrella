@@ -1,3 +1,6 @@
+using IU.ClimateTrace.Downloader.Models.Config;
+using Microsoft.Extensions.Options;
+
 namespace IU.ClimateTrace.Downloader.Tests
 {
     [TestClass]
@@ -6,7 +9,25 @@ namespace IU.ClimateTrace.Downloader.Tests
 
         private ClimateTraceDownloader CreateClimateTraceDownloader()
         {
-            return new ClimateTraceDownloader();
+            IOptions<ClimateTraceDownloaderSettings> sampleOptions =
+                Options.Create(new ClimateTraceDownloaderSettings
+                {
+                    Configurations = new()
+                    {
+                        EnableUnzipAfterDownload = true,
+                        DownloadDataPath = "",
+                        EnableDownloadCountryData = true,
+                        EnableDownloadForestryData = true,
+                        EnableDownloadNonForestryData = true,
+                    },
+                    DownloadUrls = new()
+                    {
+                        CountryDataUrl = "",
+                        ForestDataUrl = "",
+                        NonForestDataUrl = ""
+                    }
+                }) ;
+            return new ClimateTraceDownloader(sampleOptions);
         }
 
         [TestMethod]
