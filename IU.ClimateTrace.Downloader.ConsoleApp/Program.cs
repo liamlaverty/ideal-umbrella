@@ -4,7 +4,6 @@ namespace IU.ClimateTrace.Downloader
 {
     class Program
     {
-
         static void Main(string[] args)
         {
             var serviceProvider = new ServiceCollection()
