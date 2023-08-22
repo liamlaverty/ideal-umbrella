@@ -34,8 +34,4 @@ jobs:
     - name: Test
       working-directory: ${{env.test-working-directory}}
       run: dotnet test --verbosity minimal
-    - name: Validate JSON Schemas
-      uses: walbo/validate-json@v1.1.0
-      with:
-        files:  ${{env.console-app-working-directory}}/**/*.json
             

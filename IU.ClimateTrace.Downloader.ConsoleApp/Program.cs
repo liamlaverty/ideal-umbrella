@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using IU.ClimateTrace.Downloader.Models.Config;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace IU.ClimateTrace.Downloader
 {
@@ -6,18 +8,36 @@ namespace IU.ClimateTrace.Downloader
     {
         static void Main(string[] args)
         {
-            var serviceProvider = new ServiceCollection()
-                .AddScoped<IClimateTraceDownloader, ClimateTraceDownloader>()
-                .BuildServiceProvider();
-
-            var dataDownloader = serviceProvider.GetRequiredService<IClimateTraceDownloader>();
+            var startup = new Startup();
 
             Console.WriteLine($"Starting downloader. Result:");
-            Console.WriteLine(dataDownloader.DownloadData());
+            Console.WriteLine(startup.downloader.DownloadData());
 
 
             Console.WriteLine("Complete, press any key to exit");
             Console.Read();
+        }
+    }
+
+    public class Startup
+    {
+        public IClimateTraceDownloader downloader { get; private set; }
+
+        public Startup()
+        {
+            var configBuilder = new ConfigurationBuilder()
+                          .SetBasePath(Directory.GetCurrentDirectory())
+                          .AddJsonFile("appsettings.json", optional: false);
+            IConfiguration _config = configBuilder.Build();
+
+            var serviceProvider = new ServiceCollection()
+                .Configure<ClimateTraceDownloaderSettings>(
+                    _config.GetSection(ClimateTraceDownloaderSettings.ConfigName)
+                    )
+                .AddScoped<IClimateTraceDownloader, ClimateTraceDownloader>()
+                .BuildServiceProvider();
+
+            downloader = serviceProvider.GetRequiredService<IClimateTraceDownloader>();
         }
     }
 }

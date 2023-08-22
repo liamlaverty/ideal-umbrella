@@ -1,8 +1,8 @@
-﻿namespace IU.ClimateTrace.Downloader
+﻿using IU.ClimateTrace.Downloader.Models.Config;
+using Microsoft.Extensions.Options;
+
+namespace IU.ClimateTrace.Downloader
 {
-
-
-
 
     public interface IClimateTraceDownloader
     {
@@ -12,35 +12,21 @@
 
     public class ClimateTraceDownloader : IClimateTraceDownloader
     {
+        private ClimateTraceDownloaderSettings _settings;
 
-        private string CTDownloadUrl_ForestData = "https://downloads.climatetrace.org/country_packages/forest/";
-        private string CTDownloadUrl_NonForestData = "https://downloads.climatetrace.org/country_packages/non_forest_sectors/";
-        private string CTDownloadUrl_CountryData = "https://downloads.climatetrace.org/";
-        
-        
-        private string DestinationBasePath = "C:\\Users\\liaml\\Documents\\GitHub\\CTDataDownloads";
-
-        private bool DownloadCountryData= true;
-        private bool DownloadForestSectorData = true;
-        private bool DownloadNonForestSectorData = true;
-        private bool UnzipFilesAfterDownload = true;
-
-        private string nonForestDataPath;
-        private string forestDataPath;
-        private string countriesDataPath;
-
-        public ClimateTraceDownloader()
+        public ClimateTraceDownloader(IOptions<ClimateTraceDownloaderSettings> climateTraceDownloaderConfig)
         {
+            _settings = climateTraceDownloaderConfig.Value;
 
             Console.WriteLine("Configuring download paths");
 
-            var nonForestDataPath = Path.Combine(DestinationBasePath, "data_packages", "climate_trace", "sector_packages", "non_forest_sectors_data");
+            var nonForestDataPath = Path.Combine(_settings.Configurations.DownloadDataPath, "data_packages", "climate_trace", "sector_packages", "non_forest_sectors_data");
             Console.WriteLine($"nonForestDataPath: {nonForestDataPath}");
 
-            var forestDataPath = Path.Combine(DestinationBasePath, "data_packages", "climate_trace", "sector_packages", "forest_sectors_data");
+            var forestDataPath = Path.Combine(_settings.Configurations.DownloadDataPath, "data_packages", "climate_trace", "sector_packages", "forest_sectors_data");
             Console.WriteLine($"forestDataPath: {forestDataPath}");
 
-            var countriesDataPath = Path.Combine(DestinationBasePath, "data_packages", "climate_trace", "country_packages", "country_sector_data");
+            var countriesDataPath = Path.Combine(_settings.Configurations.DownloadDataPath, "data_packages", "climate_trace", "country_packages", "country_sector_data");
             Console.WriteLine($"countriesDataPath: {countriesDataPath}");
         }
 
@@ -48,33 +34,49 @@
 
         public string DownloadData()
         {
-            if (DownloadCountryData)
+            if (_settings.Configurations.EnableDownloadCountryData)
             {
                 foreach (var country in CountryThreeChar)
                 {
                     DownloadSingleCountryData(country);
                 }
             }
+            else
+            {
+                Console.WriteLine($"EnableDownloadCountryData was set to {_settings.Configurations.EnableDownloadCountryData}, skipping download");
+            }
 
-            if (DownloadForestSectorData)
+            if (_settings.Configurations.EnableDownloadForestryData)
             {
                 foreach (var country in CountryThreeChar)
                 {
                     DownloadSingleCountryForestSectorData(country);
                 }
             }
+            else
+            {
+                Console.WriteLine($"EnableDownloadForestryData was set to {_settings.Configurations.EnableDownloadForestryData}, skipping download");
+            }
 
-            if (DownloadNonForestSectorData)
+            if (_settings.Configurations.EnableDownloadNonForestryData)
             {
                 foreach (var country in CountryThreeChar)
                 {
                     DownloadSingleCountryNonForestSectorData(country);
                 }
             }
+            else
+            {
+                Console.WriteLine($"EnableDownloadNonForestryData was set to {_settings.Configurations.EnableDownloadNonForestryData}, skipping download");
+            }
 
-            if (UnzipFilesAfterDownload)
+            if (_settings.Configurations.EnableUnzipAfterDownload)
             {
                 UnzipFiles();
+            }
+            else
+            {
+                Console.WriteLine($"EnableUnzipAfterDownload was set to {_settings.Configurations.EnableUnzipAfterDownload}, skipping unzip");
             }
 
             return "complete";
