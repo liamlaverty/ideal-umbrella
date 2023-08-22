@@ -31,6 +31,7 @@
 
         public ClimateTraceDownloader()
         {
+
             Console.WriteLine("Configuring download paths");
 
             var nonForestDataPath = Path.Combine(DestinationBasePath, "data_packages", "climate_trace", "sector_packages", "non_forest_sectors_data");
