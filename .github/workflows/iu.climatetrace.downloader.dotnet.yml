@@ -32,4 +32,4 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       working-directory: ${{env.test-working-directory}}
-      run: dotnet test --verbosity normal
+      run: dotnet test --verbosity minimal
