@@ -16,6 +16,7 @@ jobs:
     env: 
       working-directory: 'IU.ClimateTrace.Downloader'
       test-working-directory: 'IU.ClimateTrace.Downloader.Tests'
+      console-app-working-directory: 'IU.ClimateTrace.Downloader.ConsoleApp'
       
     steps:
     - name: checkout source
@@ -33,3 +34,8 @@ jobs:
     - name: Test
       working-directory: ${{env.test-working-directory}}
       run: dotnet test --verbosity minimal
+    - name: Validate JSON Schemas
+      uses: walbo/validate-json@v1.1.0
+      with:
+        files:  ${{console-app-working-directory}}/**/*.json
+            
