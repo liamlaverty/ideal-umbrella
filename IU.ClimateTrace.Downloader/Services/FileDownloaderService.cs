@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace IU.ClimateTrace.Downloader.Services
+﻿namespace IU.ClimateTrace.Downloader.Services
 {
     public class FileDownloaderService : IFileDownloaderService
     {
@@ -17,6 +11,11 @@ namespace IU.ClimateTrace.Downloader.Services
             _httpClient.Timeout = TimeSpan.FromMinutes(10);
         }
 
+
+        /// <summary>
+        /// Checks if a directory exists, and creates it if not
+        /// </summary>
+        /// <param name="path"></param>
         private void CreateDirectoryIfNotExists(string path)
         {
             if (!Directory.Exists(path))
@@ -25,6 +24,18 @@ namespace IU.ClimateTrace.Downloader.Services
             }
         }
 
+
+        /// <summary>
+        /// Downloads a file from a remote server to a local destination
+        /// If the destPath doesn't exist, it will be created
+        /// </summary>
+        /// <param name="srcUrl">the URL of the asset to be downloaded</param>
+        /// <param name="destPath">the path of the file to be saved (not including the file)</param>
+        /// <param name="destFileName">the filename of the file to be saved</param>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException">
+        /// Thrown if the srcUrl is an invalid URI
+        /// </exception>
         public async Task DownloadFileAsync(string srcUrl, string destPath, string destFileName)
         {
             if (!Uri.TryCreate(srcUrl, UriKind.Absolute, out var uri))

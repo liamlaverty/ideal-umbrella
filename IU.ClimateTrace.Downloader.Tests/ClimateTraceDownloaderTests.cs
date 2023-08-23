@@ -25,11 +25,12 @@ namespace IU.ClimateTrace.Downloader.Tests
                         EnableDownloadForestryData = true,
                         EnableDownloadNonForestryData = true,
                     },
-                    DownloadUrls = new()
+                    DownloadConfiguration = new()
                     {
                         CountryDataUrl = "",
                         ForestDataUrl = "",
-                        NonForestDataUrl = ""
+                        NonForestDataUrl = "",
+                        CountryDataDownloadFileSets = new()
                     }
                 }) ;
             return new ClimateTraceDownloader(

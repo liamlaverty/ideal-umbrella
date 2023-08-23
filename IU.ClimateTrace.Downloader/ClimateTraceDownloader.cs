@@ -5,11 +5,6 @@ using Microsoft.Extensions.Options;
 namespace IU.ClimateTrace.Downloader
 {
 
-    public interface IClimateTraceDownloader
-    {
-        Task<DownloaderResult> DownloadData();
-    }
-
     public class DownloaderResult
     {
         public bool DownloadedCountryData { get; set; } = false;
@@ -33,21 +28,9 @@ namespace IU.ClimateTrace.Downloader
         private List<string> CountryThreeChar = 
             new List<string> 
             { 
+                "AFG",
                 "GBR", 
                 "NOR" 
-            };
-
-        private List<string> remoteFileNames =
-            new List<string>()
-            {
-                            "buildings",
-                            "fossil_fuel_operations",
-                            "manufacturing",
-                            "power",
-                            "waste",
-                            // "agriculture", 
-                            // "transportation",
-                            // "forestry_and_land_use",
             };
 
         public ClimateTraceDownloader(
@@ -62,14 +45,9 @@ namespace IU.ClimateTrace.Downloader
 
             downloaderResult = new DownloaderResult();
 
-            nonForestDataPath = Path.Combine(_settings.Configurations.DownloadDataPath, "data_packages", "climate_trace", "sector_packages", "non_forest_sectors_data");
-            Console.WriteLine($"nonForestDataPath: {nonForestDataPath}");
-
-            forestDataPath = Path.Combine(_settings.Configurations.DownloadDataPath, "data_packages", "climate_trace", "sector_packages", "forest_sectors_data");
-            Console.WriteLine($"forestDataPath: {forestDataPath}");
-
-            countriesDataPath = Path.Combine(_settings.Configurations.DownloadDataPath, "data_packages", "climate_trace", "country_packages", "country_sector_data");
-            Console.WriteLine($"countriesDataPath: {countriesDataPath}");
+            nonForestDataPath = Path.Combine(_settings.Configurations.DownloadDataPath, "non_forest_sectors_data");
+            forestDataPath = Path.Combine(_settings.Configurations.DownloadDataPath, "forest_sectors_data");
+            countriesDataPath = Path.Combine(_settings.Configurations.DownloadDataPath, "country_sector_data");
         }
 
 
@@ -80,61 +58,84 @@ namespace IU.ClimateTrace.Downloader
                 await DownloadCountryData();
                 downloaderResult.DownloadedCountryData = true;
             }
-            else
-            {
-                Console.WriteLine($"EnableDownloadCountryData was set to {_settings.Configurations.EnableDownloadCountryData}, skipping download");
-            }
 
             if (_settings.Configurations.EnableDownloadForestryData)
             {
                 foreach (var country in CountryThreeChar)
                 {
-                    DownloadSingleCountryForestSectorData(country);
+                    await DownloadSingleCountryForestSectorData(country);
                 }
                 downloaderResult.DownloadedForestData = true;
-
             }
-            else
-            {
-                Console.WriteLine($"EnableDownloadForestryData was set to {_settings.Configurations.EnableDownloadForestryData}, skipping download");
-            }
-
 
             if (_settings.Configurations.EnableDownloadNonForestryData)
             {
                 foreach (var country in CountryThreeChar)
                 {
-                    DownloadSingleCountryNonForestSectorData(country);
+                    await DownloadSingleCountryNonForestSectorData(country);
                 }
                 downloaderResult.DownloadedNonForestData = true;
-
-            }
-            else
-            {
-                Console.WriteLine($"EnableDownloadNonForestryData was set to {_settings.Configurations.EnableDownloadNonForestryData}, skipping download");
             }
 
             return downloaderResult;
         }
 
-        private void DownloadSingleCountryNonForestSectorData(string countryThreeCharName)
+        
+
+        private async Task DownloadSingleCountryForestSectorData(string countryThreeCharName)
         {
-            Console.WriteLine($"Downloading non-forest data for country {countryThreeCharName}");
+            // downloads a file from https://downloads.climatetrace.org/country_packages/forest_sectors/AFG.zip
+            // where AFG.zip is {countryThreeCharName}.zip
+            Console.WriteLine($"Downloading forest data for country {countryThreeCharName}");
+            string remoteUrl = $"{_settings.DownloadConfiguration.NonForestDataUrl}{countryThreeCharName}.zip";
+            await _fileDownloader.DownloadFileAsync(
+                remoteUrl,
+                Path.Combine(forestDataPath),
+                $"{countryThreeCharName}.zip"
+                );
+            if (_settings.Configurations.EnableUnzipAfterDownload)
+            {
+                _fileUnzipper.UnzipFile(
+                    Path.Combine(
+                        forestDataPath,
+                        $"{countryThreeCharName}.zip"),
+                    Path.Combine(
+                        forestDataPath,
+                        $"{countryThreeCharName}")
+                    );
+            }
         }
 
-        private void DownloadSingleCountryForestSectorData(string countryThreeCharName)
+        private async Task DownloadSingleCountryNonForestSectorData(string countryThreeCharName)
         {
-            Console.WriteLine($"Downloading forest data for country {countryThreeCharName}");
+            // downloads a file from https://downloads.climatetrace.org/country_packages/non_forest_sectors/AFG.zip
+            // where AFG.zip is {countryThreeCharName}.zip
+            Console.WriteLine($"Downloading non-forest data for country {countryThreeCharName}");
+            string remoteUrl = $"{_settings.DownloadConfiguration.NonForestDataUrl}{countryThreeCharName}.zip";
+            await _fileDownloader.DownloadFileAsync(
+                remoteUrl,
+                Path.Combine(nonForestDataPath),
+                $"{countryThreeCharName}.zip"
+                );
+            if (_settings.Configurations.EnableUnzipAfterDownload)
+            {
+                _fileUnzipper.UnzipFile(
+                    Path.Combine(
+                        nonForestDataPath,
+                        $"{countryThreeCharName}.zip"),
+                    Path.Combine(
+                        nonForestDataPath,
+                        $"{countryThreeCharName}")
+                    );
+            }
         }
 
         private async Task DownloadCountryData()
         {
-
-
-            foreach (var fileName in remoteFileNames)
+            foreach (var fileName in _settings.DownloadConfiguration.CountryDataDownloadFileSets)
             {
                 await _fileDownloader.DownloadFileAsync(
-                    $"{_settings.DownloadUrls.CountryDataUrl}sector_packages/{fileName}.zip",
+                    $"{_settings.DownloadConfiguration.CountryDataUrl}sector_packages/{fileName}.zip",
                     Path.Combine(
                         countriesDataPath, "sector_packages"),
                         $"{fileName}.zip"

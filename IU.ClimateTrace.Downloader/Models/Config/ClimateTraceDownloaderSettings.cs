@@ -4,16 +4,17 @@
     {
         public static readonly string ConfigName = "iuClimateTraceConfig";
 
-        public required ClimateTraceDownloaderSettings_DownloadUrls DownloadUrls { get; set; } 
+        public required ClimateTraceDownloaderSettings_DownloadConfiguration DownloadConfiguration { get; set; } 
         public required ClimateTraceDownloaderSettings_Configurations Configurations { get; set; } 
 
     }
 
-    public class ClimateTraceDownloaderSettings_DownloadUrls
+    public class ClimateTraceDownloaderSettings_DownloadConfiguration
     {
         public required string ForestDataUrl { get; set; }
         public required string NonForestDataUrl { get; set; }
         public required string CountryDataUrl { get; set; }
+        public required List<string> CountryDataDownloadFileSets { get; set; }
     }
     public class ClimateTraceDownloaderSettings_Configurations
     {
