@@ -135,7 +135,7 @@ namespace IU.ClimateTrace.Downloader
             foreach (var fileName in _settings.DownloadConfiguration.CountryDataDownloadFileSets)
             {
                 await _fileDownloader.DownloadFileAsync(
-                    $"{_settings.DownloadConfiguration.CountryDataUrl}sector_packages/{fileName}.zip",
+                    $"{_settings.DownloadConfiguration.ClimateTraceBaseUrl}sector_packages/{fileName}.zip",
                     Path.Combine(
                         countriesDataPath, "sector_packages"),
                         $"{fileName}.zip"

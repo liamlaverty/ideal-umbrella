@@ -27,7 +27,7 @@ namespace IU.ClimateTrace.Downloader.Tests
                     },
                     DownloadConfiguration = new()
                     {
-                        CountryDataUrl = "",
+                        ClimateTraceBaseUrl = "",
                         ForestDataUrl = "",
                         NonForestDataUrl = "",
                         CountryDataDownloadFileSets = new()

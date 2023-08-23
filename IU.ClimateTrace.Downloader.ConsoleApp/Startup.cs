@@ -16,13 +16,20 @@ namespace IU.ClimateTrace.Downloader
                           .SetBasePath(Directory.GetCurrentDirectory())
                           .AddJsonFile("appsettings.json", optional: false);
             IConfiguration _config = configBuilder.Build();
+            var appConfig = _config.GetSection(ClimateTraceDownloaderSettings.ConfigName).Get<ClimateTraceDownloaderSettings>();
+            if (appConfig == null)
+            {
+                throw new InvalidOperationException(
+                    $"{nameof(appConfig)} is null after it should be set. Check appsettings.json contains well formatted settings");
+            }
 
             var builder = new HostBuilder()
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.AddHttpClient("fileDownloaderServiceClient", client =>
                     {
-                        client.Timeout = TimeSpan.FromMinutes(5);
+                        client.Timeout = TimeSpan.FromMinutes(10);
+                        client.BaseAddress = new Uri(appConfig.DownloadConfiguration.ClimateTraceBaseUrl);
                     });
                     services.AddScoped<IClimateTraceDownloader, ClimateTraceDownloader>();
                     services.AddScoped<IFileDownloaderService, FileDownloaderService>();
