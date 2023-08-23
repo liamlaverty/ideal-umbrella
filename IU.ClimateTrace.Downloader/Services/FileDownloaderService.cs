@@ -8,9 +8,34 @@ namespace IU.ClimateTrace.Downloader.Services
 {
     public class FileDownloaderService : IFileDownloaderService
     {
-        public void DownloadFile(string srcUrl, string destPath)
+        private readonly HttpClient _httpClient;
+
+        public FileDownloaderService()
+        { 
+            // TODO: replace with httpclientfactory
+            _httpClient = new HttpClient();
+        }
+
+        private void CreateDirectoryIfNotExists(string path)
         {
-            throw new NotImplementedException();
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+        }
+
+        public async Task DownloadFileAsync(string srcUrl, string destPath, string destFileName)
+        {
+            if (!Uri.TryCreate(srcUrl, UriKind.Absolute, out var uri))
+            {
+                throw new InvalidOperationException($"'{srcUrl}' is an invalid Uri");
+            }
+            
+            string destFile = Path.Combine(destPath, destFileName);
+            CreateDirectoryIfNotExists(destPath);
+
+            byte[] fileBytes = await _httpClient.GetByteArrayAsync(uri);
+            await File.WriteAllBytesAsync(destFile, fileBytes);
         }
     }
 }

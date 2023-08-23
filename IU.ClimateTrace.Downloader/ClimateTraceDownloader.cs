@@ -7,7 +7,7 @@ namespace IU.ClimateTrace.Downloader
 
     public interface IClimateTraceDownloader
     {
-        DownloaderResult DownloadData();
+        Task<DownloaderResult> DownloadData();
     }
 
     public class DownloaderResult
@@ -54,14 +54,11 @@ namespace IU.ClimateTrace.Downloader
         }
 
 
-        public DownloaderResult DownloadData()
+        public async Task<DownloaderResult> DownloadData()
         {
             if (_settings.Configurations.EnableDownloadCountryData)
             {
-                foreach (var country in CountryThreeChar)
-                {
-                    DownloadSingleCountryData(country);
-                }
+                await DownloadCountryData();
                 downloaderResult.DownloadedCountryData = true;
             }
             else
@@ -121,11 +118,31 @@ namespace IU.ClimateTrace.Downloader
             Console.WriteLine($"Downloading forest data for country {countryThreeCharName}");
         }
 
-        private void DownloadSingleCountryData(string countryThreeCharName)
+        private async Task DownloadCountryData()
         {
+            List<string> remoteFileNames =
+                new List<string>()
+                {
+                    "buildings.zip",
+                    "fossil_fuel_operations.zip",
+                    "manufacturing.zip",
+                    "power.zip",
+                    "waste.zip",
+                    "agriculture.zip",
+                    "transportation.zip",
+                    "forestry_and_land_use.zip",
+                };
 
+            foreach (var fileName in remoteFileNames)
+            {
+                await _fileDownloader.DownloadFileAsync(
+                    $"{_settings.DownloadUrls.CountryDataUrl}sector_packages/{fileName}",
+                    Path.Combine(countriesDataPath, "sector_packages"),
+                    fileName
+                    );
+            }
 
-            Console.WriteLine($"Downloading data for country {countryThreeCharName}");
+            Console.WriteLine($"Downloading data for country");
         }
 
         private void UnzipFiles()

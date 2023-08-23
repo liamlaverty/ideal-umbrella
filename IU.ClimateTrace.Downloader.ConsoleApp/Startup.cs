@@ -16,16 +16,25 @@ namespace IU.ClimateTrace.Downloader
                           .AddJsonFile("appsettings.json", optional: false);
             IConfiguration _config = configBuilder.Build();
 
-            var serviceProvider = new ServiceCollection()
+
+            ServiceProvider serviceProvider = new ServiceCollection()
+                //.AddHttpClient<FileDownloaderService>(
+                //    options =>
+                //    {
+                //        options.BaseAddress = new Uri("");
+                //    }
+                //)
                 .Configure<ClimateTraceDownloaderSettings>(
                     _config.GetSection(ClimateTraceDownloaderSettings.ConfigName)
                     )
                 .AddScoped<IClimateTraceDownloader, ClimateTraceDownloader>()
                 .AddScoped<IFileDownloaderService, FileDownloaderService>()
                 .AddScoped<IFileUnzipperService, FileUnzipperService>()
+                
                 .BuildServiceProvider();
 
             downloader = serviceProvider.GetRequiredService<IClimateTraceDownloader>();
+
         }
     }
 }
