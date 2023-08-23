@@ -20,7 +20,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>Region Single</summary>
 	[PublishedModel("regionSingle")]
-	public partial class RegionSingle : PublishedContentModel, IPageMetadata
+	public partial class RegionSingle : PublishedContentModel, IGeolocation, IPageMetadata
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -88,6 +88,37 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("regions")]
 		public virtual global::System.Collections.Generic.IEnumerable<string> Regions => this.Value<global::System.Collections.Generic.IEnumerable<string>>(_publishedValueFallback, "regions");
+
+		///<summary>
+		/// Latitude: The geocoord latitude for the location
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("latitude")]
+		public virtual string Latitude => global::Umbraco.Cms.Web.Common.PublishedModels.Geolocation.GetLatitude(this, _publishedValueFallback);
+
+		///<summary>
+		/// Longitude: The geocoord longitude for the location
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("longitude")]
+		public virtual string Longitude => global::Umbraco.Cms.Web.Common.PublishedModels.Geolocation.GetLongitude(this, _publishedValueFallback);
+
+		///<summary>
+		/// Map Zoom: A mapzoom for this entity, 1 is further away, 15 is very close
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[ImplementPropertyType("mapZoom")]
+		public virtual int MapZoom => global::Umbraco.Cms.Web.Common.PublishedModels.Geolocation.GetMapZoom(this, _publishedValueFallback);
+
+		///<summary>
+		/// Place Name: A descriptive title for this place
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.0.1+20a4e47")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("placeName")]
+		public virtual string PlaceName => global::Umbraco.Cms.Web.Common.PublishedModels.Geolocation.GetPlaceName(this, _publishedValueFallback);
 
 		///<summary>
 		/// Main Navigation Display Text: Text to appear in the main navigation. If unset, the page's main title will be used by default

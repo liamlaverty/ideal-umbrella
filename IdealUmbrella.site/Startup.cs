@@ -1,4 +1,7 @@
+using IdealUmbrella.DataConnector.CountryData;
 using IdealUmbrella.site.Models.Config;
+using IdealUmbrella.site.ScheduledTasks;
+using IdealUmbrella.site.Services.ContentServices.Impl;
 
 namespace IdealUmbrella.site
 {
@@ -38,7 +41,16 @@ namespace IdealUmbrella.site
                 .AddComposers()
                 .Build();
 
+
+            // Add configs
             services.Configure<MapboxConfig>(_config.GetSection(MapboxConfig.ConfigName));
+
+            // add other services
+            services.AddTransient<ICountryDataCsvService, CountryDataCsvService>();
+            services.AddTransient<IRegionContentService, RegionContentService>();
+
+            // Add recurring hosted services
+            // services.AddHostedService<UpdateRegionsRecurringTask>();
         }
 
         /// <summary>
