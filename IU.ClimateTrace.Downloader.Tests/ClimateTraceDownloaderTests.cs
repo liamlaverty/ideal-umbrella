@@ -1,5 +1,7 @@
 using IU.ClimateTrace.Downloader.Models.Config;
+using IU.ClimateTrace.Downloader.Services;
 using Microsoft.Extensions.Options;
+using Moq;
 
 namespace IU.ClimateTrace.Downloader.Tests
 {
@@ -9,6 +11,9 @@ namespace IU.ClimateTrace.Downloader.Tests
 
         private ClimateTraceDownloader CreateClimateTraceDownloader()
         {
+            Mock<IFileDownloaderService> mockFileDownloader = new Mock<IFileDownloaderService>(); 
+            Mock<IFileUnzipperService> mockFileUnzipper = new Mock<IFileUnzipperService>(); 
+
             IOptions<ClimateTraceDownloaderSettings> sampleOptions =
                 Options.Create(new ClimateTraceDownloaderSettings
                 {
@@ -20,34 +25,26 @@ namespace IU.ClimateTrace.Downloader.Tests
                         EnableDownloadForestryData = true,
                         EnableDownloadNonForestryData = true,
                     },
-                    DownloadUrls = new()
+                    DownloadConfiguration = new()
                     {
-                        CountryDataUrl = "",
+                        ClimateTraceBaseUrl = "",
                         ForestDataUrl = "",
-                        NonForestDataUrl = ""
+                        NonForestDataUrl = "",
+                        CountryDataDownloadFileSets = new()
                     }
                 }) ;
-            return new ClimateTraceDownloader(sampleOptions);
+            return new ClimateTraceDownloader(
+                sampleOptions, 
+                mockFileUnzipper.Object, 
+                mockFileDownloader.Object
+                );
         }
 
         [TestMethod]
         public void ClimateTraceDownloader_ForestDataPathSetAfterCreation()
         {
             var _cliamteTraceDownloader = CreateClimateTraceDownloader();
-
-
             Assert.IsNotNull(_cliamteTraceDownloader);
-
         }
-
-        //[TestMethod]
-        //public void ClimateTraceDownloader_ForestDataPathSetAfterCreation()
-        //{
-        //    var _cliamteTraceDownloader = CreateClimateTraceDownloader();
-
-
-        //    Assert.IsNotNull(_cliamteTraceDownloader.)
-
-        //}
     }
 }
