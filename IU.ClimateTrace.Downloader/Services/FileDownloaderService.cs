@@ -1,11 +1,15 @@
-﻿namespace IU.ClimateTrace.Downloader.Services
+﻿using System.Net.Http;
+
+namespace IU.ClimateTrace.Downloader.Services
 {
     public class FileDownloaderService : IFileDownloaderService
     {
         private readonly HttpClient _httpClient;
+        private readonly IHttpClientFactory _clientFactory;
 
-        public FileDownloaderService()
+        public FileDownloaderService(IHttpClientFactory httpClientFactory)
         { 
+            _clientFactory = httpClientFactory;
             // TODO: replace with httpclientfactory
             _httpClient = new HttpClient();
             _httpClient.Timeout = TimeSpan.FromMinutes(10);

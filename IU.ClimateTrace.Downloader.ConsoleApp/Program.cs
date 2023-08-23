@@ -4,10 +4,10 @@
     {
         static async Task Main(string[] args)
         {
+            Console.WriteLine($"Starting downloader");
+
             var startup = new Startup();
 
-            Console.WriteLine($"Starting downloader. Result:");
-            
             var result = await startup.downloader.DownloadData();
 
 
