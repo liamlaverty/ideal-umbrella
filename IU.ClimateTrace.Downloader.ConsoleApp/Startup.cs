@@ -12,9 +12,6 @@ namespace IU.ClimateTrace.Downloader
 
         public Startup()
         {
-
-
-
             var configBuilder = new ConfigurationBuilder()
                           .SetBasePath(Directory.GetCurrentDirectory())
                           .AddJsonFile("appsettings.json", optional: false);
@@ -23,7 +20,10 @@ namespace IU.ClimateTrace.Downloader
             var builder = new HostBuilder()
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services.AddHttpClient();
+                    services.AddHttpClient("fileDownloaderServiceClient", client =>
+                    {
+                        client.Timeout = TimeSpan.FromMinutes(5);
+                    });
                     services.AddScoped<IClimateTraceDownloader, ClimateTraceDownloader>();
                     services.AddScoped<IFileDownloaderService, FileDownloaderService>();
                     services.AddScoped<IFileUnzipperService, FileUnzipperService>();
@@ -34,25 +34,6 @@ namespace IU.ClimateTrace.Downloader
             var host = builder.Build();
 
             downloader = host.Services.GetRequiredService<IClimateTraceDownloader>();
-
-            //ServiceProvider serviceProvider = new ServiceCollection()
-            //    //.AddHttpClient<FileDownloaderService>(
-            //    //    options =>
-            //    //    {
-            //    //        options.BaseAddress = new Uri("");
-            //    //    }
-            //    //)
-            //    .Configure<ClimateTraceDownloaderSettings>(
-            //        _config.GetSection(ClimateTraceDownloaderSettings.ConfigName)
-            //        )
-            //    .AddScoped<IClimateTraceDownloader, ClimateTraceDownloader>()
-            //    .AddScoped<IFileDownloaderService, FileDownloaderService>()
-            //    .AddScoped<IFileUnzipperService, FileUnzipperService>()
-
-            //    .BuildServiceProvider();
-
-            //downloader = serviceProvider.GetRequiredService<IClimateTraceDownloader>();
-
         }
     }
 }
