@@ -4,16 +4,16 @@
     {
         public static readonly string ConfigName = "iuClimateTraceConfig";
 
-        public ClimateTraceDownloaderSettings_DownloadUrls DownloadUrls { get; set; }
-        public ClimateTraceDownloaderSettings_Configurations Configurations { get; set; }
+        public required ClimateTraceDownloaderSettings_DownloadUrls DownloadUrls { get; set; } 
+        public required ClimateTraceDownloaderSettings_Configurations Configurations { get; set; } 
 
     }
 
     public class ClimateTraceDownloaderSettings_DownloadUrls
     {
-        public string ForestDataUrl { get; set; }
-        public string NonForestDataUrl { get; set; }
-        public string CountryDataUrl { get; set; }
+        public required string ForestDataUrl { get; set; }
+        public required string NonForestDataUrl { get; set; }
+        public required string CountryDataUrl { get; set; }
     }
     public class ClimateTraceDownloaderSettings_Configurations
     {
@@ -21,6 +21,6 @@
         public bool EnableDownloadForestryData { get; set; }
         public bool EnableDownloadNonForestryData { get; set; }
         public bool EnableUnzipAfterDownload { get; set; }
-        public string DownloadDataPath { get; set; }
+        public required string DownloadDataPath { get; set; }
     }
 }
