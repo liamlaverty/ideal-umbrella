@@ -10,7 +10,7 @@ namespace IU.ClimateTrace.Downloader.Services
     {
         public void UnzipFile(string srcPath, string destPath)
         {
-            throw new NotImplementedException();
+            System.IO.Compression.ZipFile.ExtractToDirectory(srcPath, destPath);
         }
     }
 }

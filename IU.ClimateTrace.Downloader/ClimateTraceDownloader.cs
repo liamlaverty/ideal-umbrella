@@ -23,13 +23,32 @@ namespace IU.ClimateTrace.Downloader
     {
         private ClimateTraceDownloaderSettings _settings;
         private DownloaderResult downloaderResult;
-        List<string> CountryThreeChar = new List<string> { "GBR", "NOR" };
         private string nonForestDataPath;
         private string forestDataPath;
         private string countriesDataPath;
 
         private readonly IFileDownloaderService _fileDownloader;
         private readonly IFileUnzipperService _fileUnzipper;
+        
+        private List<string> CountryThreeChar = 
+            new List<string> 
+            { 
+                "GBR", 
+                "NOR" 
+            };
+
+        private List<string> remoteFileNames =
+            new List<string>()
+            {
+                            "buildings",
+                            "fossil_fuel_operations",
+                            "manufacturing",
+                            "power",
+                            "waste",
+                            // "agriculture", 
+                            // "transportation",
+                            // "forestry_and_land_use",
+            };
 
         public ClimateTraceDownloader(
             IOptions<ClimateTraceDownloaderSettings> climateTraceDownloaderConfig, 
@@ -95,16 +114,6 @@ namespace IU.ClimateTrace.Downloader
                 Console.WriteLine($"EnableDownloadNonForestryData was set to {_settings.Configurations.EnableDownloadNonForestryData}, skipping download");
             }
 
-            if (_settings.Configurations.EnableUnzipAfterDownload)
-            {
-                UnzipFiles();
-                downloaderResult.UnzippedData = true;
-            }
-            else
-            {
-                Console.WriteLine($"EnableUnzipAfterDownload was set to {_settings.Configurations.EnableUnzipAfterDownload}, skipping unzip");
-            }
-
             return downloaderResult;
         }
 
@@ -120,37 +129,30 @@ namespace IU.ClimateTrace.Downloader
 
         private async Task DownloadCountryData()
         {
-            List<string> remoteFileNames =
-                new List<string>()
-                {
-                    "buildings.zip",
-                    "fossil_fuel_operations.zip",
-                    "manufacturing.zip",
-                    "power.zip",
-                    "waste.zip",
-                    "agriculture.zip",
-                    "transportation.zip",
-                    "forestry_and_land_use.zip",
-                };
+
 
             foreach (var fileName in remoteFileNames)
             {
                 await _fileDownloader.DownloadFileAsync(
-                    $"{_settings.DownloadUrls.CountryDataUrl}sector_packages/{fileName}",
-                    Path.Combine(countriesDataPath, "sector_packages"),
-                    fileName
+                    $"{_settings.DownloadUrls.CountryDataUrl}sector_packages/{fileName}.zip",
+                    Path.Combine(
+                        countriesDataPath, "sector_packages"),
+                        $"{fileName}.zip"
                     );
+                if (_settings.Configurations.EnableUnzipAfterDownload)
+                {
+                    _fileUnzipper.UnzipFile(
+                        Path.Combine(
+                            countriesDataPath, "sector_packages",
+                            $"{fileName}.zip"),
+                        Path.Combine(
+                            countriesDataPath, "sector_packages",
+                            $"{fileName}")
+                        );
+                }
             }
 
             Console.WriteLine($"Downloading data for country");
         }
-
-        private void UnzipFiles()
-        {
-            Console.WriteLine($"Unzipping files");
-        }
-
-       
-
     }
 }
