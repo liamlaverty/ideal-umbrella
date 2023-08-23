@@ -1,4 +1,5 @@
 ﻿using IU.ClimateTrace.Downloader.Models.Config;
+using IU.ClimateTrace.Downloader.Services;
 using Microsoft.Extensions.Options;
 
 namespace IU.ClimateTrace.Downloader
@@ -27,8 +28,17 @@ namespace IU.ClimateTrace.Downloader
         private string forestDataPath;
         private string countriesDataPath;
 
-        public ClimateTraceDownloader(IOptions<ClimateTraceDownloaderSettings> climateTraceDownloaderConfig)
+        private readonly IFileDownloaderService _fileDownloader;
+        private readonly IFileUnzipperService _fileUnzipper;
+
+        public ClimateTraceDownloader(
+            IOptions<ClimateTraceDownloaderSettings> climateTraceDownloaderConfig, 
+            IFileUnzipperService fileUnzipper, 
+            IFileDownloaderService fileDownloader)
         {
+            _fileDownloader = fileDownloader;
+            _fileUnzipper = fileUnzipper;
+
             _settings = climateTraceDownloaderConfig.Value;
 
             downloaderResult = new DownloaderResult();
@@ -92,7 +102,6 @@ namespace IU.ClimateTrace.Downloader
             {
                 UnzipFiles();
                 downloaderResult.UnzippedData = true;
-
             }
             else
             {
@@ -114,6 +123,8 @@ namespace IU.ClimateTrace.Downloader
 
         private void DownloadSingleCountryData(string countryThreeCharName)
         {
+
+
             Console.WriteLine($"Downloading data for country {countryThreeCharName}");
         }
 
