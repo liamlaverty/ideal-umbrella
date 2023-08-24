@@ -110,7 +110,7 @@ namespace IU.ClimateTrace.Downloader.Tests
             Assert.IsTrue(unzippedFileExists);
 
             // clean up the directory after running these tests
-            /// Directory.Delete(Path.Combine(assemblyPath, "TestFiles"), recursive: true);
+            Directory.Delete(Path.Combine(assemblyPath, "TestFiles"), recursive: true);
         }
 
         [TestMethod]
@@ -151,8 +151,10 @@ namespace IU.ClimateTrace.Downloader.Tests
             Assert.IsTrue(unzippedFileExists);
             Assert.IsTrue(secondUnzippedFileExists);
             Assert.AreNotEqual(originalFileCreationTime, secondFileCreationTime, "The created timestamps for the two files should be different");
+            
+            
             // clean up the directory after running these tests
-            // Directory.Delete(Path.Combine(assemblyPath, "TestFiles"), recursive: true);
+            Directory.Delete(Path.Combine(assemblyPath, "TestFiles"), recursive: true);
         }
     }
 }
