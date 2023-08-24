@@ -49,8 +49,10 @@ namespace IdealUmbrella.site
             services.AddTransient<ICountryDataCsvService, CountryDataCsvService>();
             services.AddTransient<IRegionContentService, RegionContentService>();
 
+
             // Add recurring hosted services
             // services.AddHostedService<UpdateRegionsRecurringTask>();
+            services.AddHostedService<DownloadClimateTraceDataRecurringTask>();
         }
 
         /// <summary>

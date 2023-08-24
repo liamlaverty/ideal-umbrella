@@ -1,6 +1,6 @@
 ﻿namespace IU.ClimateTrace.Downloader.Services
 {
-    public class FileDownloaderService : IFileDownloaderService
+    internal class FileDownloaderService : IFileDownloaderService
     {
         private readonly IHttpClientFactory _clientFactory;
 

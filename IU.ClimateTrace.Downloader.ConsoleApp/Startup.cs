@@ -3,6 +3,7 @@ using IU.ClimateTrace.Downloader.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using IU.ClimateTrace.Downloader.Extensions;
 
 namespace IU.ClimateTrace.Downloader
 {
@@ -24,20 +25,8 @@ namespace IU.ClimateTrace.Downloader
             }
 
             var builder = new HostBuilder()
-                .ConfigureServices((hostContext, services) =>
-                {
-                    services.AddHttpClient("fileDownloaderServiceClient", client =>
-                    {
-                        client.Timeout = TimeSpan.FromMinutes(10);
-                        client.BaseAddress = new Uri(appConfig.DownloadConfiguration.ClimateTraceBaseUrl);
-                    });
-                    services.AddScoped<IClimateTraceDownloader, ClimateTraceDownloader>();
-                    services.AddScoped<IFileDownloaderService, FileDownloaderService>();
-                    services.AddScoped<IFileUnzipperService, FileUnzipperService>();
-                    services.Configure<ClimateTraceDownloaderSettings>(
-                        _config.GetSection(ClimateTraceDownloaderSettings.ConfigName)
-                    );
-                });
+                .AddClimateTraceDownloader();
+
             var host = builder.Build();
 
             downloader = host.Services.GetRequiredService<IClimateTraceDownloader>();

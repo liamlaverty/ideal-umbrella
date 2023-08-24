@@ -1,6 +1,6 @@
 ﻿namespace IU.ClimateTrace.Downloader.Services
 {
-    public class FileUnzipperService : IFileUnzipperService
+    internal class FileUnzipperService : IFileUnzipperService
     {
         public void UnzipFile(string srcPath, string destPath)
         {
