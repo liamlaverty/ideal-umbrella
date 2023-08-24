@@ -152,7 +152,6 @@ namespace IU.ClimateTrace.Downloader.Tests
             Assert.IsTrue(secondUnzippedFileExists);
             Assert.AreNotEqual(originalFileCreationTime.ToFileTimeUtc(), secondFileCreationTime.ToFileTimeUtc(), "The created timestamps for the two files should be different");
             
-            
             // clean up the directory after running these tests
             Directory.Delete(Path.Combine(assemblyPath, "TestFiles"), recursive: true);
         }
