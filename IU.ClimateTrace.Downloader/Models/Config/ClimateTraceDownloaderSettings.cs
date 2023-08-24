@@ -14,7 +14,8 @@
         public required string ForestDataUrl { get; set; }
         public required string NonForestDataUrl { get; set; }
         public required string ClimateTraceBaseUrl { get; set; }
-        public required List<string> CountryDataDownloadFileSets { get; set; }
+        public required IEnumerable<string> CountryDataDownloadFileSets { get; set; }
+        public required IEnumerable<string> SpecifyCountries { get; set; }
     }
     public class ClimateTraceDownloaderSettings_Configurations
     {

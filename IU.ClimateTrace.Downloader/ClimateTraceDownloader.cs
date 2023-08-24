@@ -24,14 +24,6 @@ namespace IU.ClimateTrace.Downloader
 
         private readonly IFileDownloaderService _fileDownloader;
         private readonly IFileUnzipperService _fileUnzipper;
-        
-        private List<string> CountryThreeChar = 
-            new List<string> 
-            { 
-                "AFG",
-                "GBR", 
-                "NOR" 
-            };
 
         public ClimateTraceDownloader(
             IOptions<ClimateTraceDownloaderSettings> climateTraceDownloaderConfig, 
@@ -61,7 +53,7 @@ namespace IU.ClimateTrace.Downloader
 
             if (_settings.Configurations.EnableDownloadForestryData)
             {
-                foreach (var country in CountryThreeChar)
+                foreach (var country in _settings.DownloadConfiguration.SpecifyCountries)
                 {
                     await DownloadSingleCountryForestSectorData(country);
                 }
@@ -70,7 +62,7 @@ namespace IU.ClimateTrace.Downloader
 
             if (_settings.Configurations.EnableDownloadNonForestryData)
             {
-                foreach (var country in CountryThreeChar)
+                foreach (var country in _settings.DownloadConfiguration.SpecifyCountries)
                 {
                     await DownloadSingleCountryNonForestSectorData(country);
                 }
