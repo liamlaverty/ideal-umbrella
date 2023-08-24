@@ -30,7 +30,8 @@ namespace IU.ClimateTrace.Downloader.Tests
                         ClimateTraceBaseUrl = "",
                         ForestDataUrl = "",
                         NonForestDataUrl = "",
-                        CountryDataDownloadFileSets = new()
+                        CountryDataDownloadFileSets = new List<string>(),
+                        SpecifyCountries = new List<string>()
                     }
                 }) ;
             return new ClimateTraceDownloader(
