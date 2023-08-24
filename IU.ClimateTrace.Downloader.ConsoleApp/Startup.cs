@@ -1,9 +1,8 @@
-﻿using IU.ClimateTrace.Downloader.Models.Config;
-using IU.ClimateTrace.Downloader.Services;
+﻿using IU.ClimateTrace.Downloader.Extensions;
+using IU.ClimateTrace.Downloader.Models.Config;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using IU.ClimateTrace.Downloader.Extensions;
 
 namespace IU.ClimateTrace.Downloader
 {

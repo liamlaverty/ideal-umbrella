@@ -1,4 +1,5 @@
-﻿using Umbraco.Cms.Core;
+﻿using IU.ClimateTrace.Downloader;
+using Umbraco.Cms.Core;
 using Umbraco.Cms.Core.Scoping;
 using Umbraco.Cms.Core.Services;
 using Umbraco.Cms.Infrastructure.HostedServices;
@@ -11,6 +12,7 @@ namespace IdealUmbrella.site.ScheduledTasks
         private readonly IRuntimeState _runtimeState;
         private readonly ICoreScopeProvider _scopeProvider;
         private readonly ILogger<DownloadClimateTraceDataRecurringTask> _logger;
+        private readonly IClimateTraceDownloader _ctDownloaderService;
 
 
         private static TimeSpan HowOftenToRepeatScheduledTask => TimeSpan.FromHours(6);
@@ -25,12 +27,14 @@ namespace IdealUmbrella.site.ScheduledTasks
         public DownloadClimateTraceDataRecurringTask(
                IRuntimeState runtimeState,
                ILogger<DownloadClimateTraceDataRecurringTask> logger,
-               ICoreScopeProvider scopeProvider)
+               ICoreScopeProvider scopeProvider,
+               IClimateTraceDownloader ctDownloaderService)
        : base(logger, HowOftenToRepeatScheduledTask, DelayBeforeStart)
         {
             _runtimeState = runtimeState;
             _scopeProvider = scopeProvider;
             _logger = logger;
+            _ctDownloaderService = ctDownloaderService;
         }
 
         public override Task PerformExecuteAsync(object? state)
@@ -42,7 +46,7 @@ namespace IdealUmbrella.site.ScheduledTasks
             using ICoreScope scope = _scopeProvider.CreateCoreScope();
             _logger.LogInformation($"The task {nameof(DownloadClimateTraceDataRecurringTask)} has started");
 
-
+            _ctDownloaderService.DownloadData();
 
 
             _logger.LogInformation($"The task {nameof(DownloadClimateTraceDataRecurringTask)} has completed");
