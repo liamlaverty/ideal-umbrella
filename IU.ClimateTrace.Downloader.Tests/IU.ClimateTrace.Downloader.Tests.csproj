@@ -21,4 +21,17 @@
     <ProjectReference Include="..\IU.ClimateTrace.Downloader\IU.ClimateTrace.Downloader.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="TestAssets\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="TestAssets\test.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestAssets\test.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
