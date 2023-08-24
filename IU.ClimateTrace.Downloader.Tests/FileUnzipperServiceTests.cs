@@ -137,6 +137,7 @@ namespace IU.ClimateTrace.Downloader.Tests
             DateTime originalFileCreationTime = File.GetCreationTimeUtc(Path.Combine(assemblyPath, "TestFiles", $"unzipped-{testRunFileIdId}", $"test.txt"));
             bool unzippedFileExists = File.Exists(Path.Combine(assemblyPath, "TestFiles", $"unzipped-{testRunFileIdId}", $"test.txt"));
 
+            Thread.Sleep(2000);
 
             // re-unzip the file
             unzipperService.UnzipFile(
@@ -148,8 +149,10 @@ namespace IU.ClimateTrace.Downloader.Tests
 
 
             Assert.IsTrue(zipFileExistedAfterCopy);
+
             Assert.IsTrue(unzippedFileExists);
             Assert.IsTrue(secondUnzippedFileExists);
+
             Assert.AreNotEqual(originalFileCreationTime.ToFileTimeUtc(), secondFileCreationTime.ToFileTimeUtc(), "The created timestamps for the two files should be different");
             
             // clean up the directory after running these tests
