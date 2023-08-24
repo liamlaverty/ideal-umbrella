@@ -37,8 +37,7 @@ namespace IU.ClimateTrace.Downloader.Extensions
             // Error CS1503 cannot convert from Microsoft.Extensions.Configuration.IConfigurationSection to System.Action<>
             services.Configure<ClimateTraceDownloaderSettings>(
                 _config.GetSection(
-                    "iuClimateTraceConfig"
-                    //ClimateTraceDownloaderSettings.ConfigName
+                    ClimateTraceDownloaderSettings.ConfigName
                     )
             );
         }
