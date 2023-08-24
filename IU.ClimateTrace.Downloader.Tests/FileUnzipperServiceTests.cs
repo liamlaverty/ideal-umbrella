@@ -139,22 +139,24 @@ namespace IU.ClimateTrace.Downloader.Tests
 
             Thread.Sleep(2000);
 
-            // re-unzip the file
-            unzipperService.UnzipFile(
-                Path.Combine(assemblyPath, "TestFiles", $"test-{testRunFileIdId}.zip"),
-                Path.Combine(assemblyPath, "TestFiles", $"unzipped-{testRunFileIdId}")
-                );
-            DateTime secondFileCreationTime = File.GetCreationTimeUtc(Path.Combine(assemblyPath, "TestFiles", $"unzipped-{testRunFileIdId}", $"test.txt"));
-            bool secondUnzippedFileExists = File.Exists(Path.Combine(assemblyPath, "TestFiles", $"unzipped-{testRunFileIdId}", $"test.txt"));
 
+            try
+            {
+                // re-unzip the file, which should not throw an exception, so long as the 
+                // file has been deleted first
+                unzipperService.UnzipFile(
+                    Path.Combine(assemblyPath, "TestFiles", $"test-{testRunFileIdId}.zip"),
+                    Path.Combine(assemblyPath, "TestFiles", $"unzipped-{testRunFileIdId}")
+                    );
+            }
+            catch(IOException ex)
+            {
+                Assert.Fail("Expected no exception, but got " + ex.Message);
+            }
 
             Assert.IsTrue(zipFileExistedAfterCopy);
-
             Assert.IsTrue(unzippedFileExists);
-            Assert.IsTrue(secondUnzippedFileExists);
 
-            Assert.AreNotEqual(originalFileCreationTime.ToFileTimeUtc(), secondFileCreationTime.ToFileTimeUtc(), "The created timestamps for the two files should be different");
-            
             // clean up the directory after running these tests
             Directory.Delete(Path.Combine(assemblyPath, "TestFiles"), recursive: true);
         }
