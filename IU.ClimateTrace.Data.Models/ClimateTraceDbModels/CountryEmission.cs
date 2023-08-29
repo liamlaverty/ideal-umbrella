@@ -1,6 +1,6 @@
 ﻿namespace IU.ClimateTrace.Data.Models.ClimateTraceDbModels
 {
-    public class CountryEmission : TrackedDataEntity
+    public class CountryEmission : TrackedDataEntity, IEntity
     {
 
 //        System.Int32 id,
