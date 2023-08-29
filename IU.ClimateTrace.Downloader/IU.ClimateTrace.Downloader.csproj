@@ -20,4 +20,8 @@
     </AssemblyAttribute>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\IU.ClimateTrace.Common\IU.ClimateTrace.Common.csproj" />
+  </ItemGroup>
+
 </Project>

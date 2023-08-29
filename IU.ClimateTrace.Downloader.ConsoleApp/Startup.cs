@@ -1,5 +1,5 @@
-﻿using IU.ClimateTrace.Downloader.Extensions;
-using IU.ClimateTrace.Downloader.Models.Config;
+﻿using IU.ClimateTrace.Common.Config;
+using IU.ClimateTrace.Downloader.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;

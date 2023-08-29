@@ -1,4 +1,4 @@
-﻿using IU.ClimateTrace.Downloader.Models.Config;
+﻿using IU.ClimateTrace.Common.Config;
 using IU.ClimateTrace.Downloader.Services;
 using Microsoft.Extensions.Options;
 

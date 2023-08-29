@@ -19,6 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IU.ClimateTrace.Importer.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IU.ClimateTrace.Importer.ConsoleApp", "..\IU.ClimateTrace.Importer.ConsoleApp\IU.ClimateTrace.Importer.ConsoleApp.csproj", "{BD98FCBD-70B1-4405-95ED-61C8A2C7C82F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IU.ClimateTrace.Data.Models", "..\IU.ClimateTrace.Data.Models\IU.ClimateTrace.Data.Models.csproj", "{0DAE0AC8-1577-4A32-9B39-DF91C5A0521E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IU.ClimateTrace.Common", "..\IU.ClimateTrace.Common\IU.ClimateTrace.Common.csproj", "{B6AD6A68-00DF-4257-AB48-63CF3AFEDD0D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +61,14 @@ Global
 		{BD98FCBD-70B1-4405-95ED-61C8A2C7C82F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD98FCBD-70B1-4405-95ED-61C8A2C7C82F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD98FCBD-70B1-4405-95ED-61C8A2C7C82F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DAE0AC8-1577-4A32-9B39-DF91C5A0521E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DAE0AC8-1577-4A32-9B39-DF91C5A0521E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DAE0AC8-1577-4A32-9B39-DF91C5A0521E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DAE0AC8-1577-4A32-9B39-DF91C5A0521E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6AD6A68-00DF-4257-AB48-63CF3AFEDD0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6AD6A68-00DF-4257-AB48-63CF3AFEDD0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6AD6A68-00DF-4257-AB48-63CF3AFEDD0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6AD6A68-00DF-4257-AB48-63CF3AFEDD0D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

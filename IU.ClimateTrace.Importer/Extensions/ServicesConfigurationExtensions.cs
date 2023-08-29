@@ -1,18 +1,20 @@
 ﻿using IU.ClimateTrace.Common.Config;
-using IU.ClimateTrace.Downloader.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace IU.ClimateTrace.Downloader.Extensions
+namespace IU.ClimateTrace.Importer.Extensions
 {
     public static class ServicesConfigurationExtensions
     {
-        public static void AddClimateTraceDownloaderServices(
+        public static void AddClimateTraceImporterServices(
             this IServiceCollection services)
         {
+            // next line requires `Microsoft.Extensions.Configuration.FileExtensions`, then `Microsoft.Extensions.Configuration.Json`
+            // to avoid the error: 'IConfiguration' does not contain a definition for 'SetBasePath'
+            // and to avoid the error: 'IConfiguration' does not contain a definition for 'AddJsonFile'
             var configBuilder = new ConfigurationBuilder()
-                         .SetBasePath(Directory.GetCurrentDirectory())
-                         .AddJsonFile("appsettings.json", optional: false);
+               .SetBasePath(Directory.GetCurrentDirectory())
+               .AddJsonFile("appsettings.json", optional: false);
 
             IConfiguration _config = configBuilder.Build();
 
@@ -22,15 +24,7 @@ namespace IU.ClimateTrace.Downloader.Extensions
                     throw new ApplicationException($"appConfig was null, verify appsettings.json contains a section for '{ClimateTraceDownloaderSettings.ConfigName}'");
 
 
-            services.AddHttpClient("fileDownloaderServiceClient", client =>
-            {
-                client.Timeout = TimeSpan.FromMinutes(15);
-                client.BaseAddress = new Uri(appConfig.DownloadConfiguration.ClimateTraceBaseUrl);
-            });
-
-            services.AddScoped<IFileDownloaderService, FileDownloaderService>();
-            services.AddScoped<IFileUnzipperService, FileUnzipperService>();
-            services.AddScoped<IClimateTraceDownloader, ClimateTraceDownloader>();
+            services.AddScoped<IClimateTraceImporter, ClimateTraceImporter>();
 
             // next line requires `Microsoft.Extensions.Options.ConfigurationExtensions`
             // to avoid the error:
@@ -38,8 +32,7 @@ namespace IU.ClimateTrace.Downloader.Extensions
             services.Configure<ClimateTraceDownloaderSettings>(
                 _config.GetSection(
                     ClimateTraceDownloaderSettings.ConfigName
-                    )
-            );
+                    ));
         }
     }
 }
