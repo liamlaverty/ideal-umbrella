@@ -7,11 +7,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdealUmbrella.site", "Ideal
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdealUmbrella.DataConnector", "..\IdealUmbrella.DataConnector\IdealUmbrella.DataConnector.csproj", "{862EEBAA-8824-4072-AF14-4D520EA04135}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IU.ClimateTrace.Downloader", "..\IU.ClimateTrace.Downloader\IU.ClimateTrace.Downloader.csproj", "{1C7D3B42-4D3C-4D1B-8FFD-D5BAFB714500}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IU.ClimateTrace.Downloader", "..\IU.ClimateTrace.Downloader\IU.ClimateTrace.Downloader.csproj", "{1C7D3B42-4D3C-4D1B-8FFD-D5BAFB714500}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IU.ClimateTrace.Downloader.ConsoleApp", "..\IU.ClimateTrace.Downloader.ConsoleApp\IU.ClimateTrace.Downloader.ConsoleApp.csproj", "{695C50F0-A852-40BF-9641-FA27AED5BC4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IU.ClimateTrace.Downloader.ConsoleApp", "..\IU.ClimateTrace.Downloader.ConsoleApp\IU.ClimateTrace.Downloader.ConsoleApp.csproj", "{695C50F0-A852-40BF-9641-FA27AED5BC4F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IU.ClimateTrace.Downloader.Tests", "..\IU.ClimateTrace.Downloader.Tests\IU.ClimateTrace.Downloader.Tests.csproj", "{CE22BD98-EB8B-4BE6-B6A6-06820A61B84B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IU.ClimateTrace.Downloader.Tests", "..\IU.ClimateTrace.Downloader.Tests\IU.ClimateTrace.Downloader.Tests.csproj", "{CE22BD98-EB8B-4BE6-B6A6-06820A61B84B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IU.ClimateTrace.Importer", "..\IU.ClimateTrace.Importer\IU.ClimateTrace.Importer.csproj", "{E2AE3123-9791-46F2-97DF-8B7C5E0989EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IU.ClimateTrace.Importer.Tests", "..\IU.ClimateTrace.Importer.Tests\IU.ClimateTrace.Importer.Tests.csproj", "{3E2010C3-6068-49AE-B4DA-3A6F1B068627}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IU.ClimateTrace.Importer.ConsoleApp", "..\IU.ClimateTrace.Importer.ConsoleApp\IU.ClimateTrace.Importer.ConsoleApp.csproj", "{BD98FCBD-70B1-4405-95ED-61C8A2C7C82F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +45,18 @@ Global
 		{CE22BD98-EB8B-4BE6-B6A6-06820A61B84B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE22BD98-EB8B-4BE6-B6A6-06820A61B84B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE22BD98-EB8B-4BE6-B6A6-06820A61B84B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2AE3123-9791-46F2-97DF-8B7C5E0989EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2AE3123-9791-46F2-97DF-8B7C5E0989EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2AE3123-9791-46F2-97DF-8B7C5E0989EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2AE3123-9791-46F2-97DF-8B7C5E0989EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E2010C3-6068-49AE-B4DA-3A6F1B068627}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E2010C3-6068-49AE-B4DA-3A6F1B068627}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E2010C3-6068-49AE-B4DA-3A6F1B068627}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E2010C3-6068-49AE-B4DA-3A6F1B068627}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD98FCBD-70B1-4405-95ED-61C8A2C7C82F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD98FCBD-70B1-4405-95ED-61C8A2C7C82F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD98FCBD-70B1-4405-95ED-61C8A2C7C82F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD98FCBD-70B1-4405-95ED-61C8A2C7C82F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
