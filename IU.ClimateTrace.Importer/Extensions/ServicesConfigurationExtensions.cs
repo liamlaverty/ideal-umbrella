@@ -14,7 +14,8 @@ namespace IU.ClimateTrace.Importer.Extensions
             // and to avoid the error: 'IConfiguration' does not contain a definition for 'AddJsonFile'
             var configBuilder = new ConfigurationBuilder()
                .SetBasePath(Directory.GetCurrentDirectory())
-               .AddJsonFile("appsettings.json", optional: false);
+               .AddJsonFile("appsettings.json", optional: false)
+               .AddJsonFile("appsettings.development.json", optional: true);
 
             IConfiguration _config = configBuilder.Build();
 

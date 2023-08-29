@@ -293,3 +293,4 @@ __pycache__/
 !**/[Uu]mbraco/[Dd]eveloper/[Pp]ackages
 
 IdealUmbrella.site/uSync/v9/Content/*
+IU.ClimateTrace.Importer.ConsoleApp/appsettings.development.json

@@ -10,6 +10,7 @@ namespace IU.ClimateTrace.Importer.Extensions
             builder.ConfigureServices((hostContext, services) =>
             {
                 services.AddClimateTraceImporterServices();
+                
             });
             return builder;
         }

@@ -3,6 +3,7 @@ using IU.ClimateTrace.Importer.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Hosting.Internal;
 
 namespace IU.ClimateTrace.Importer.ConsoleApp
 {
@@ -26,19 +27,9 @@ namespace IU.ClimateTrace.Importer.ConsoleApp
 
         public Startup()
         {
-            var configBuilder = new ConfigurationBuilder()
-                          .SetBasePath(Directory.GetCurrentDirectory())
-                          .AddJsonFile("appsettings.json", optional: false);
-            IConfiguration _config = configBuilder.Build();
-            var appConfig = _config.GetSection(ClimateTraceDownloaderSettings.ConfigName).Get<ClimateTraceDownloaderSettings>();
-            if (appConfig == null)
-            {
-                throw new InvalidOperationException(
-                    $"{nameof(appConfig)} is null after it should be set. Check appsettings.json contains well formatted settings");
-            }
-
             var builder = new HostBuilder()
                 .AddClimateTraceImporter();
+
 
             var host = builder.Build();
 
