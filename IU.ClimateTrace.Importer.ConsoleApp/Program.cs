@@ -29,12 +29,8 @@ namespace IU.ClimateTrace.Importer.ConsoleApp
         {
             var builder = new HostBuilder()
                 .AddClimateTraceImporter();
-
-
             var host = builder.Build();
-
             importer = host.Services.GetRequiredService<IClimateTraceImporter>();
-
         }
     }
 }
