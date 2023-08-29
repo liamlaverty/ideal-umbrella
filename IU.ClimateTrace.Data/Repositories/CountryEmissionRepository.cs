@@ -4,7 +4,7 @@ using IU.ClimateTrace.Data.Repositories.Interface;
 
 namespace IU.ClimateTrace.Data.Repositories
 {
-    public class CountryEmissionRepository :  ICountryEmissionRepository
+    public class CountryEmissionRepository : IRepository<CountryEmission>
     {
         private IPostgresContext context;
 

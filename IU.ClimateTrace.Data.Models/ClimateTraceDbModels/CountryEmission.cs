@@ -2,23 +2,6 @@
 {
     public class CountryEmission : TrackedDataEntity, IEntity
     {
-
-//        System.Int32 id,
-//System.String iso3_country,
-//System.DateTime start_time,
-//System.DateTime end_time,
-//System.String original_inventory_sector,
-//System.String gas,
-//System.Int64 emissions_quantity,
-//System.String emissions_quantity_units,
-//System.String temporal_granularity,
-//System.String origin_source,
-//System.DateTime source_created_date,
-//System.DateTime source_modified_date,
-//System.DateTime created_date,
-//System.DateTime modified_date
-
-
         public CountryEmission(
             int id,
             string iso3_country,

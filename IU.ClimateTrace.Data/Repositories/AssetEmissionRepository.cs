@@ -6,7 +6,7 @@ using NetTopologySuite.Geometries;
 namespace IU.ClimateTrace.Data.Repositories
 {
 
-    public class AssetEmissionRepository : IAssetEmissionRepository
+    public class AssetEmissionRepository : IRepository<AssetEmission>
     {
         private IPostgresContext context;
 
@@ -35,7 +35,7 @@ namespace IU.ClimateTrace.Data.Repositories
             {
                 using (var conn = await context.GetDataSourceAsync())
                 {
-                    await using var command = conn.CreateCommand("SELECT * FROM asset_emissions LIMIT 500");
+                    await using var command = conn.CreateCommand("SELECT * FROM asset_emissions LIMIT 10");
                     await using var reader = await command.ExecuteReaderAsync();
                     List<AssetEmission> result = new List<AssetEmission>();
 

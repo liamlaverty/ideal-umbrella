@@ -1,4 +1,9 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿using IU.ClimateTrace.Data.Context;
+using IU.ClimateTrace.Data.Models.ClimateTraceDbModels;
+using IU.ClimateTrace.Data.Repositories;
+using IU.ClimateTrace.Data.Repositories.Interface;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace IU.ClimateTrace.Importer.Extensions
 {
@@ -10,7 +15,11 @@ namespace IU.ClimateTrace.Importer.Extensions
             builder.ConfigureServices((hostContext, services) =>
             {
                 services.AddClimateTraceImporterServices();
-                
+
+                services.AddSingleton<IPostgresContext, PostgresContext>();
+                services.AddScoped<IRepository<AssetEmission>, AssetEmissionRepository>();
+                services.AddScoped<IRepository<CountryEmission>, CountryEmissionRepository>();
+
             });
             return builder;
         }

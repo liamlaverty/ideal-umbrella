@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\IU.ClimateTrace.Common\IU.ClimateTrace.Common.csproj" />
     <ProjectReference Include="..\IU.ClimateTrace.Data.Models\IU.ClimateTrace.Data.Models.csproj" />
+    <ProjectReference Include="..\IU.ClimateTrace.Data\IU.ClimateTrace.Data.csproj" />
   </ItemGroup>
 
 </Project>
