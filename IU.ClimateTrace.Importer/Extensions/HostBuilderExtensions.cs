@@ -1,5 +1,4 @@
-﻿using IU.ClimateTrace.Data.Context;
-using IU.ClimateTrace.Data.Models.ClimateTraceDbModels;
+﻿using IU.ClimateTrace.Data.Models.ClimateTraceDbModels;
 using IU.ClimateTrace.Data.Repositories;
 using IU.ClimateTrace.Data.Repositories.Interface;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,7 +15,6 @@ namespace IU.ClimateTrace.Importer.Extensions
             {
                 services.AddClimateTraceImporterServices();
 
-                services.AddTransient<IPostgresDataSource, PostgresDataSource>();
                 services.AddScoped<IRepository<AssetEmission>, AssetEmissionRepository>();
                 services.AddScoped<IRepository<CountryEmission>, CountryEmissionRepository>();
 

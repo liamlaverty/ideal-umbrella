@@ -17,4 +17,8 @@
     <ProjectReference Include="..\IU.ClimateTrace.Data.Models\IU.ClimateTrace.Data.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Context\" />
+  </ItemGroup>
+
 </Project>

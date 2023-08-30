@@ -1,6 +1,7 @@
 ﻿using IU.ClimateTrace.Common.Config;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Npgsql;
 
 namespace IU.ClimateTrace.Importer.Extensions
 {
@@ -23,6 +24,13 @@ namespace IU.ClimateTrace.Importer.Extensions
             // to avoid the error: 'IConfiguration' does not contain a definition for 'Get'
             var appConfig = _config.GetSection(ClimateTraceDownloaderSettings.ConfigName).Get<ClimateTraceDownloaderSettings>() ??
                     throw new ApplicationException($"appConfig was null, verify appsettings.json contains a section for '{ClimateTraceDownloaderSettings.ConfigName}'");
+
+
+            services.AddNpgsqlDataSource(
+                appConfig.ImportConfiguration.PostgresDbConnection,
+                builder => { 
+                    builder.UseNetTopologySuite();
+                });
 
 
             services.AddScoped<IClimateTraceImporter, ClimateTraceImporter>();

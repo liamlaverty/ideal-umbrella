@@ -20,6 +20,7 @@ namespace IU.ClimateTrace.Importer
             IRepository<CountryEmission> countryEmissionRepository) 
         {
             Console.WriteLine($"starting {nameof(ClimateTraceImporter)}");
+
             _settings = climateTraceImporterConfig.Value;
             _assetEmissionRepository = assetEmissionRepository;
             _countryEmissionRepository = countryEmissionRepository;
@@ -27,21 +28,25 @@ namespace IU.ClimateTrace.Importer
 
         public async Task ImportData()
         {
-
-            var countryResult = await _countryEmissionRepository.GetAllAsync();
-            foreach (var item in countryResult)
+            for (int i = 0; i < 200; i++)
             {
-                Console.WriteLine($"{item.Iso3Country}");
+                var countryResult = await _countryEmissionRepository.GetAllAsync();
+                foreach (var item in countryResult)
+                {
+                    Console.WriteLine($"{item.Iso3Country}");
+                }
             }
-            var assetResult = await _assetEmissionRepository.GetAllAsync();
-
-            // var assetResult = await GetAssetEmissions();
-            foreach (var item in assetResult)
+            for (int i = 0; i < 200; i++)
             {
-                Console.WriteLine($"{item.AssetName} - StAstext is null? {(item.StAstext == null ? "true" : "false")}" );
-            }
+                var assetResult = await _assetEmissionRepository.GetAllAsync();
 
-           
+
+                // var assetResult = await GetAssetEmissions();
+                foreach (var item in assetResult)
+                {
+                    Console.WriteLine($"{item.AssetName} - StAstext is null? {(item.StAstext == null ? "true" : "false")}");
+                }
+            }
         }
     }
 }
