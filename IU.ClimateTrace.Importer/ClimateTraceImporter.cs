@@ -28,7 +28,7 @@ namespace IU.ClimateTrace.Importer
 
         public async Task ImportData()
         {
-            for (int i = 0; i < 200; i++)
+            for (int i = 0; i < 2; i++)
             {
                 var countryResult = await _countryEmissionRepository.GetAllAsync();
                 foreach (var item in countryResult)
@@ -36,7 +36,7 @@ namespace IU.ClimateTrace.Importer
                     Console.WriteLine($"{item.Iso3Country}");
                 }
             }
-            for (int i = 0; i < 200; i++)
+            for (int i = 0; i < 2; i++)
             {
                 var assetResult = await _assetEmissionRepository.GetAllAsync();
 
