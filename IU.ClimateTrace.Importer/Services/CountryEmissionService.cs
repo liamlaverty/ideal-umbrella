@@ -38,41 +38,59 @@ namespace IU.ClimateTrace.Importer.Services
         {
             IEnumerable<EmissionCsvEntity> records;
 
-            var countryCsvDataPaths = GetCountryDataPaths();
-            foreach (var directoryPath in countryCsvDataPaths.dataInventories)
+            var countryInventoryDataPaths = GetInventoryDataPaths();
+            var availableCountries = GetAvailableCountries();
+            foreach (var directoryPath in countryInventoryDataPaths.dataInventories)
             {
                 foreach (var dataPath in directoryPath.inventories)
                 {
-                    if (dataPath.fileName.StartsWith("country"))
+                    foreach (var country in availableCountries.countryList)
                     {
-
-                        if (directoryPath.directory == "manufacturing")
-                        {
-                            directoryPath.directory = "manufacturing\\manufacturing";
-                        }
-                        else if (directoryPath.directory == "power")
-                        {
-                            directoryPath.directory = "power\\power";
-                        }
-                        using (var reader = new StreamReader(
+                        if (File.Exists(
                             Path.Combine($"{_settings.Configurations.DownloadDataPath}",
-                            "country_sector_data\\sector_packages",
+                            "non_forest_sectors_data",
+                            country.alpha3,
                             directoryPath.directory,
                             dataPath.fileName)))
-                        using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
                         {
-                            records = csv.GetRecords<EmissionCsvEntity>().ToList();
+                            using (var reader = new StreamReader(
+                                Path.Combine($"{_settings.Configurations.DownloadDataPath}",
+                                "non_forest_sectors_data",
+                                country.alpha3,
+                                directoryPath.directory,
+                                dataPath.fileName)))
+
+                            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+                            {
+                                records = csv.GetRecords<EmissionCsvEntity>().ToList();
+                            }
+                            Console.WriteLine($"Read {country.alpha3} / {directoryPath.directory} / {dataPath.fileName}");
                         }
-                        foreach (var record in records)
+                        else
                         {
-                            Console.WriteLine($"{dataPath.fileName} -> {record.Iso3Country} - {record.OriginalInventorySector}");
+                            Console.WriteLine($"File not found: {country.alpha3} / {directoryPath.directory} / {dataPath.fileName}");
+
                         }
                     }
                 }
             }
         }
 
-        private DataInventoryJsonObj GetCountryDataPaths()
+        private CountryInventoryJsonObj GetAvailableCountries()
+        {
+            var dataInventoriesJsonPath = Path.Combine(Directory.GetCurrentDirectory(),
+                "InventoryFiles\\InventoryLists\\country-list.json");
+
+            CountryInventoryJsonObj? dataInvObject;
+            using (StreamReader sr = File.OpenText(dataInventoriesJsonPath))
+            {
+                dataInvObject = JsonConvert.DeserializeObject<CountryInventoryJsonObj>(sr.ReadToEnd());
+            }
+            return dataInvObject;
+        }
+       
+
+        private DataInventoryJsonObj GetInventoryDataPaths()
         {
             var dataInventoriesJsonPath = Path.Combine(Directory.GetCurrentDirectory(),
                 "InventoryFiles\\InventoryLists\\data-inventories.dev.json");
@@ -84,6 +102,17 @@ namespace IU.ClimateTrace.Importer.Services
             }
             return dataInvObject;
         }
+    }
+
+    public class CountryInventoryJsonObj
+    {
+        public Countrylist[] countryList { get; set; }
+    }
+    public class Countrylist
+    {
+        public string name { get; set; }
+        public string alpha3 { get; set; }
+        public string countryCode { get; set; }
     }
 
 

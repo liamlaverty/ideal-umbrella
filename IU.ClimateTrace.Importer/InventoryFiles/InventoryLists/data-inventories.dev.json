@@ -1,247 +1,7 @@
 {
   "$schema": "data-inventories-schema.json",
   "dataInventories": [
-    {
-      "inventories": [
-        {
-          "fileName": "asset_cropland-fires_emissions.csv",
-          "csvColumns": [
-            "asset_id",
-            "iso3_country",
-            "original_inventory_sector",
-            "start_time",
-            "end_time",
-            "temporal_granularity",
-            "gas",
-            "emissions_quantity",
-            "emissions_factor",
-            "emissions_factor_units",
-            "capacity",
-            "capacity_units",
-            "capacity_factor",
-            "activity",
-            "activity_units",
-            "created_date",
-            "modified_date",
-            "asset_name",
-            "asset_type",
-            "st_astext"
-          ]
-        },
-        {
-          "fileName": "asset_enteric-fermentation_emissions.csv",
-          "csvColumns": [
-            "asset_id",
-            "iso3_country",
-            "original_inventory_sector",
-            "start_time",
-            "end_time",
-            "temporal_granularity",
-            "lat_lon",
-            "gas",
-            "emissions_quantity",
-            "emissions_factor",
-            "emissions_factor_units",
-            "capacity",
-            "capacity_units",
-            "capacity_factor",
-            "activity",
-            "activity_units",
-            "created_date",
-            "modified_date",
-            "asset_name",
-            "asset_type",
-            "st_astext"
-          ]
-        },
-        {
-          "fileName": "asset_manure-management_emissions.csv",
-          "csvColumns": [
-            "asset_id",
-            "iso3_country",
-            "original_inventory_sector",
-            "start_time",
-            "end_time",
-            "temporal_granularity",
-            "lat_lon",
-            "gas",
-            "emissions_quantity",
-            "emissions_factor",
-            "emissions_factor_units",
-            "capacity",
-            "capacity_units",
-            "capacity_factor",
-            "activity",
-            "activity_units",
-            "created_date",
-            "modified_date",
-            "asset_name",
-            "asset_type",
-            "st_astext"
-          ]
-        },
-        {
-          "fileName": "country_cropland-fires_emissions.csv",
-          "csvColumns": [
-            "iso3_country",
-            "start_time",
-            "end_time",
-            "original_inventory_sector",
-            "gas",
-            "emissions_quantity",
-            "emissions_quantity_units",
-            "temporal_granularity",
-            "created_date",
-            "modified_date"
-          ]
-        },
-        {
-          "fileName": "country_enteric-fermentation_emissions.csv",
-          "csvColumns": [
-            "iso3_country",
-            "start_time",
-            "end_time",
-            "original_inventory_sector",
-            "gas",
-            "emissions_quantity",
-            "emissions_quantity_units",
-            "temporal_granularity",
-            "created_date",
-            "modified_date"
-          ]
-        },
-        {
-          "fileName": "country_manure-management_emissions.csv",
-          "csvColumns": [
-            "iso3_country",
-            "start_time",
-            "end_time",
-            "original_inventory_sector",
-            "gas",
-            "emissions_quantity",
-            "emissions_quantity_units",
-            "temporal_granularity",
-            "created_date",
-            "modified_date"
-          ]
-        },
-        {
-          "fileName": "country_other-agricultural-soil-emissions_emissions.csv",
-          "csvColumns": [
-            "iso3_country",
-            "start_time",
-            "end_time",
-            "original_inventory_sector",
-            "gas",
-            "emissions_quantity",
-            "emissions_quantity_units",
-            "temporal_granularity",
-            "created_date",
-            "modified_date"
-          ]
-        },
-        {
-          "fileName": "country_rice-cultivation_emissions.csv",
-          "csvColumns": [
-            "iso3_country",
-            "start_time",
-            "end_time",
-            "original_inventory_sector",
-            "gas",
-            "emissions_quantity",
-            "emissions_quantity_units",
-            "temporal_granularity",
-            "created_date",
-            "modified_date"
-          ]
-        },
-        {
-          "fileName": "country_synthetic-fertilizer-application_emissions.csv",
-          "csvColumns": [
-            "iso3_country",
-            "start_time",
-            "end_time",
-            "original_inventory_sector",
-            "gas",
-            "emissions_quantity",
-            "emissions_quantity_units",
-            "temporal_granularity",
-            "created_date",
-            "modified_date"
-          ]
-        },
-        {
-          "fileName": "asset_synthetic-fertilizer-application-top500_emissions.csv",
-          "csvColumns": [
-            "asset_id",
-            "iso3_country",
-            "original_inventory_sector",
-            "start_time",
-            "end_time",
-            "temporal_granularity",
-            "gas",
-            "emissions_quantity",
-            "emissions_factor",
-            "emissions_factor_units",
-            "capacity",
-            "capacity_units",
-            "capacity_factor",
-            "activity",
-            "activity_units",
-            "created_date",
-            "modified_date",
-            "asset_name",
-            "asset_type",
-            "st_astext"
-          ]
-        },
-        {
-          "fileName": "asset_rice-cultivation-top500_emissions.csv",
-          "csvColumns": [
-            "asset_id",
-            "iso3_country",
-            "original_inventory_sector",
-            "start_time",
-            "end_time",
-            "temporal_granularity",
-            "gas",
-            "emissions_quantity",
-            "emissions_factor",
-            "emissions_factor_units",
-            "capacity",
-            "capacity_units",
-            "capacity_factor",
-            "activity",
-            "activity_units",
-            "created_date",
-            "modified_date",
-            "asset_name",
-            "asset_type",
-            "st_astext"
-          ]
-        },
-        {
-          "fileName": "asset_enteric-fermentation_ownership.csv",
-          "csvColumns": [
-            "asset_id",
-            "asset_name",
-            "owner_name",
-            "owner_classification",
-            "percentage_of_ownership",
-            "owner_direct_parent",
-            "owner_grouping",
-            "operator_name",
-            "percentage_of_operation",
-            "data_source",
-            "url",
-            "recency",
-            "created_date",
-            "original_inventory_sector"
-          ]
-        }
-      ],
-      "directory": "agriculture"
-    },
+
     {
       "inventories": [
         {
@@ -277,26 +37,26 @@
       ],
       "directory": "buildings"
     },
-    //{
-    //  "inventories": [
-    //    {
-    //      "fileName": "country_fluorinated-gases_emissions.csv",
-    //      "csvColumns": [
-    //        "iso3_country",
-    //        "start_time",
-    //        "end_time",
-    //        "original_inventory_sector",
-    //        "gas",
-    //        "emissions_quantity",
-    //        "emissions_quantity_units",
-    //        "temporal_granularity",
-    //        "created_date",
-    //        "modified_date"
-    //      ]
-    //    }
-    //  ],
-    //  "directory": "fluorinated_gases"
-    //},
+    {
+      "inventories": [
+        {
+          "fileName": "country_fluorinated-gases_emissions.csv",
+          "csvColumns": [
+            "iso3_country",
+            "start_time",
+            "end_time",
+            "original_inventory_sector",
+            "gas",
+            "emissions_quantity",
+            "emissions_quantity_units",
+            "temporal_granularity",
+            "created_date",
+            "modified_date"
+          ]
+        }
+      ],
+      "directory": "fluorinated_gases"
+    },
     {
       "inventories": [
         {
@@ -908,6 +668,338 @@
       ],
       "directory": "power"
     },
+
+    {
+      "inventories": [
+        {
+          "fileName": "country_biological-treatment-of-solid-waste-&-biogenic_emissions.csv",
+          "csvColumns": [
+            "iso3_country",
+            "start_time",
+            "end_time",
+            "original_inventory_sector",
+            "gas",
+            "emissions_quantity",
+            "emissions_quantity_units",
+            "temporal_granularity",
+            "created_date",
+            "modified_date"
+          ]
+        },
+        {
+          "fileName": "country_incineration-and-open-burning-of-waste_emissions.csv",
+          "csvColumns": [
+            "iso3_country",
+            "start_time",
+            "end_time",
+            "original_inventory_sector",
+            "gas",
+            "emissions_quantity",
+            "emissions_quantity_units",
+            "temporal_granularity",
+            "created_date",
+            "modified_date"
+          ]
+        },
+        {
+          "fileName": "country_solid-waste-disposal_emissions.csv",
+          "csvColumns": [
+            "iso3_country",
+            "start_time",
+            "end_time",
+            "original_inventory_sector",
+            "gas",
+            "emissions_quantity",
+            "emissions_quantity_units",
+            "temporal_granularity",
+            "created_date",
+            "modified_date"
+          ]
+        },
+        {
+          "fileName": "country_wastewater-treatment-and-discharge_emissions.csv",
+          "csvColumns": [
+            "iso3_country",
+            "start_time",
+            "end_time",
+            "original_inventory_sector",
+            "gas",
+            "emissions_quantity",
+            "emissions_quantity_units",
+            "temporal_granularity",
+            "created_date",
+            "modified_date"
+          ]
+        },
+        {
+          "fileName": "asset_solid-waste-disposal_emissions.csv",
+          "csvColumns": [
+            "asset_id",
+            "iso3_country",
+            "original_inventory_sector",
+            "start_time",
+            "end_time",
+            "temporal_granularity",
+            "gas",
+            "emissions_quantity",
+            "emissions_factor",
+            "emissions_factor_units",
+            "capacity",
+            "capacity_units",
+            "capacity_factor",
+            "activity",
+            "activity_units",
+            "created_date",
+            "modified_date",
+            "asset_name",
+            "asset_type",
+            "st_astext"
+          ]
+        }
+      ],
+      "directory": "waste"
+    },
+    {
+      "inventories": [
+        {
+          "fileName": "asset_cropland-fires_emissions.csv",
+          "csvColumns": [
+            "asset_id",
+            "iso3_country",
+            "original_inventory_sector",
+            "start_time",
+            "end_time",
+            "temporal_granularity",
+            "gas",
+            "emissions_quantity",
+            "emissions_factor",
+            "emissions_factor_units",
+            "capacity",
+            "capacity_units",
+            "capacity_factor",
+            "activity",
+            "activity_units",
+            "created_date",
+            "modified_date",
+            "asset_name",
+            "asset_type",
+            "st_astext"
+          ]
+        },
+        {
+          "fileName": "asset_enteric-fermentation_emissions.csv",
+          "csvColumns": [
+            "asset_id",
+            "iso3_country",
+            "original_inventory_sector",
+            "start_time",
+            "end_time",
+            "temporal_granularity",
+            "lat_lon",
+            "gas",
+            "emissions_quantity",
+            "emissions_factor",
+            "emissions_factor_units",
+            "capacity",
+            "capacity_units",
+            "capacity_factor",
+            "activity",
+            "activity_units",
+            "created_date",
+            "modified_date",
+            "asset_name",
+            "asset_type",
+            "st_astext"
+          ]
+        },
+        {
+          "fileName": "asset_manure-management_emissions.csv",
+          "csvColumns": [
+            "asset_id",
+            "iso3_country",
+            "original_inventory_sector",
+            "start_time",
+            "end_time",
+            "temporal_granularity",
+            "lat_lon",
+            "gas",
+            "emissions_quantity",
+            "emissions_factor",
+            "emissions_factor_units",
+            "capacity",
+            "capacity_units",
+            "capacity_factor",
+            "activity",
+            "activity_units",
+            "created_date",
+            "modified_date",
+            "asset_name",
+            "asset_type",
+            "st_astext"
+          ]
+        },
+        {
+          "fileName": "country_cropland-fires_emissions.csv",
+          "csvColumns": [
+            "iso3_country",
+            "start_time",
+            "end_time",
+            "original_inventory_sector",
+            "gas",
+            "emissions_quantity",
+            "emissions_quantity_units",
+            "temporal_granularity",
+            "created_date",
+            "modified_date"
+          ]
+        },
+        {
+          "fileName": "country_enteric-fermentation_emissions.csv",
+          "csvColumns": [
+            "iso3_country",
+            "start_time",
+            "end_time",
+            "original_inventory_sector",
+            "gas",
+            "emissions_quantity",
+            "emissions_quantity_units",
+            "temporal_granularity",
+            "created_date",
+            "modified_date"
+          ]
+        },
+        {
+          "fileName": "country_manure-management_emissions.csv",
+          "csvColumns": [
+            "iso3_country",
+            "start_time",
+            "end_time",
+            "original_inventory_sector",
+            "gas",
+            "emissions_quantity",
+            "emissions_quantity_units",
+            "temporal_granularity",
+            "created_date",
+            "modified_date"
+          ]
+        },
+        {
+          "fileName": "country_other-agricultural-soil-emissions_emissions.csv",
+          "csvColumns": [
+            "iso3_country",
+            "start_time",
+            "end_time",
+            "original_inventory_sector",
+            "gas",
+            "emissions_quantity",
+            "emissions_quantity_units",
+            "temporal_granularity",
+            "created_date",
+            "modified_date"
+          ]
+        },
+        {
+          "fileName": "country_rice-cultivation_emissions.csv",
+          "csvColumns": [
+            "iso3_country",
+            "start_time",
+            "end_time",
+            "original_inventory_sector",
+            "gas",
+            "emissions_quantity",
+            "emissions_quantity_units",
+            "temporal_granularity",
+            "created_date",
+            "modified_date"
+          ]
+        },
+        {
+          "fileName": "country_synthetic-fertilizer-application_emissions.csv",
+          "csvColumns": [
+            "iso3_country",
+            "start_time",
+            "end_time",
+            "original_inventory_sector",
+            "gas",
+            "emissions_quantity",
+            "emissions_quantity_units",
+            "temporal_granularity",
+            "created_date",
+            "modified_date"
+          ]
+        },
+        {
+          "fileName": "asset_synthetic-fertilizer-application-top500_emissions.csv",
+          "csvColumns": [
+            "asset_id",
+            "iso3_country",
+            "original_inventory_sector",
+            "start_time",
+            "end_time",
+            "temporal_granularity",
+            "gas",
+            "emissions_quantity",
+            "emissions_factor",
+            "emissions_factor_units",
+            "capacity",
+            "capacity_units",
+            "capacity_factor",
+            "activity",
+            "activity_units",
+            "created_date",
+            "modified_date",
+            "asset_name",
+            "asset_type",
+            "st_astext"
+          ]
+        },
+        {
+          "fileName": "asset_rice-cultivation-top500_emissions.csv",
+          "csvColumns": [
+            "asset_id",
+            "iso3_country",
+            "original_inventory_sector",
+            "start_time",
+            "end_time",
+            "temporal_granularity",
+            "gas",
+            "emissions_quantity",
+            "emissions_factor",
+            "emissions_factor_units",
+            "capacity",
+            "capacity_units",
+            "capacity_factor",
+            "activity",
+            "activity_units",
+            "created_date",
+            "modified_date",
+            "asset_name",
+            "asset_type",
+            "st_astext"
+          ]
+        },
+        {
+          "fileName": "asset_enteric-fermentation_ownership.csv",
+          "csvColumns": [
+            "asset_id",
+            "asset_name",
+            "owner_name",
+            "owner_classification",
+            "percentage_of_ownership",
+            "owner_direct_parent",
+            "owner_grouping",
+            "operator_name",
+            "percentage_of_operation",
+            "data_source",
+            "url",
+            "recency",
+            "created_date",
+            "original_inventory_sector"
+          ]
+        }
+      ],
+      "directory": "agriculture"
+    },
     {
       "inventories": [
         {
@@ -1102,96 +1194,6 @@
         }
       ],
       "directory": "transportation"
-    },
-    {
-      "inventories": [
-        {
-          "fileName": "country_biological-treatment-of-solid-waste-&-biogenic_emissions.csv",
-          "csvColumns": [
-            "iso3_country",
-            "start_time",
-            "end_time",
-            "original_inventory_sector",
-            "gas",
-            "emissions_quantity",
-            "emissions_quantity_units",
-            "temporal_granularity",
-            "created_date",
-            "modified_date"
-          ]
-        },
-        {
-          "fileName": "country_incineration-and-open-burning-of-waste_emissions.csv",
-          "csvColumns": [
-            "iso3_country",
-            "start_time",
-            "end_time",
-            "original_inventory_sector",
-            "gas",
-            "emissions_quantity",
-            "emissions_quantity_units",
-            "temporal_granularity",
-            "created_date",
-            "modified_date"
-          ]
-        },
-        {
-          "fileName": "country_solid-waste-disposal_emissions.csv",
-          "csvColumns": [
-            "iso3_country",
-            "start_time",
-            "end_time",
-            "original_inventory_sector",
-            "gas",
-            "emissions_quantity",
-            "emissions_quantity_units",
-            "temporal_granularity",
-            "created_date",
-            "modified_date"
-          ]
-        },
-        {
-          "fileName": "country_wastewater-treatment-and-discharge_emissions.csv",
-          "csvColumns": [
-            "iso3_country",
-            "start_time",
-            "end_time",
-            "original_inventory_sector",
-            "gas",
-            "emissions_quantity",
-            "emissions_quantity_units",
-            "temporal_granularity",
-            "created_date",
-            "modified_date"
-          ]
-        },
-        {
-          "fileName": "asset_solid-waste-disposal_emissions.csv",
-          "csvColumns": [
-            "asset_id",
-            "iso3_country",
-            "original_inventory_sector",
-            "start_time",
-            "end_time",
-            "temporal_granularity",
-            "gas",
-            "emissions_quantity",
-            "emissions_factor",
-            "emissions_factor_units",
-            "capacity",
-            "capacity_units",
-            "capacity_factor",
-            "activity",
-            "activity_units",
-            "created_date",
-            "modified_date",
-            "asset_name",
-            "asset_type",
-            "st_astext"
-          ]
-        }
-      ],
-      "directory": "waste"
     }
   ]
 }
