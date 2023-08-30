@@ -1,10 +1,7 @@
 ﻿using IU.ClimateTrace.Common.Config;
 using IU.ClimateTrace.Data.Models.ClimateTraceDbModels;
-using IU.ClimateTrace.Data.Repositories;
 using IU.ClimateTrace.Data.Repositories.Interface;
 using Microsoft.Extensions.Options;
-using NetTopologySuite.Geometries;
-using Npgsql;
 
 namespace IU.ClimateTrace.Importer
 {
@@ -30,6 +27,12 @@ namespace IU.ClimateTrace.Importer
 
         public async Task ImportData()
         {
+
+            var countryResult = await _countryEmissionRepository.GetAllAsync();
+            foreach (var item in countryResult)
+            {
+                Console.WriteLine($"{item.Iso3Country}");
+            }
             var assetResult = await _assetEmissionRepository.GetAllAsync();
 
             // var assetResult = await GetAssetEmissions();
@@ -37,24 +40,8 @@ namespace IU.ClimateTrace.Importer
             {
                 Console.WriteLine($"{item.AssetName} - StAstext is null? {(item.StAstext == null ? "true" : "false")}" );
             }
-        }
 
-
-
-        /// <summary>
-        ///  Dev/test method to check the database can be connected to
-        /// </summary>
-        /// <returns></returns>
-        private async Task GetCountryEmissions()
-        {
-            var countryResult = await _countryEmissionRepository.GetAllAsync();
-            foreach (var item in countryResult)
-            {
-                Console.WriteLine($"{item.Iso3Country}");
-            }
+           
         }
     }
-
-
-
 }

@@ -4,12 +4,12 @@ using Npgsql;
 
 namespace IU.ClimateTrace.Data.Context
 {
-    public class PostgresContext : IPostgresContext
+    public class PostgresDataSource : IPostgresDataSource
     {
         private readonly ClimateTraceDownloaderSettings _settings;
         private readonly NpgsqlDataSource dataSource;
 
-        public PostgresContext(IOptions<ClimateTraceDownloaderSettings> settings)
+        public PostgresDataSource(IOptions<ClimateTraceDownloaderSettings> settings)
         {
             _settings = settings.Value;
             var dataSourceBuilder = new NpgsqlDataSourceBuilder(_settings.ImportConfiguration.PostgresDbConnection);

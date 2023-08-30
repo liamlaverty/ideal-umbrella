@@ -8,11 +8,11 @@ namespace IU.ClimateTrace.Data.Repositories
 
     public class AssetEmissionRepository : IRepository<AssetEmission>
     {
-        private IPostgresContext context;
+        private IPostgresDataSource dataSource;
 
-        public AssetEmissionRepository(IPostgresContext pgContext)
+        public AssetEmissionRepository(IPostgresDataSource pgDataSource)
         { 
-            this.context = pgContext;
+            this.dataSource = pgDataSource;
         }
 
         public async Task<AssetEmission> AddAsync(AssetEmission entity)
@@ -33,7 +33,7 @@ namespace IU.ClimateTrace.Data.Repositories
         {
             try
             {
-                using (var conn = await context.GetDataSourceAsync())
+                using (var conn = await dataSource.GetDataSourceAsync())
                 {
                     await using var command = conn.CreateCommand("SELECT * FROM asset_emissions LIMIT 10");
                     await using var reader = await command.ExecuteReaderAsync();

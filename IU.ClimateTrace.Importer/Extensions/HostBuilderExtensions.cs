@@ -16,7 +16,7 @@ namespace IU.ClimateTrace.Importer.Extensions
             {
                 services.AddClimateTraceImporterServices();
 
-                services.AddSingleton<IPostgresContext, PostgresContext>();
+                services.AddTransient<IPostgresDataSource, PostgresDataSource>();
                 services.AddScoped<IRepository<AssetEmission>, AssetEmissionRepository>();
                 services.AddScoped<IRepository<CountryEmission>, CountryEmissionRepository>();
 

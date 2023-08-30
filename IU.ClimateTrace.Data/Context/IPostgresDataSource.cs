@@ -2,7 +2,7 @@
 
 namespace IU.ClimateTrace.Data.Context
 {
-    public interface IPostgresContext
+    public interface IPostgresDataSource
     {
         Task<NpgsqlDataSource> GetDataSourceAsync();
     }

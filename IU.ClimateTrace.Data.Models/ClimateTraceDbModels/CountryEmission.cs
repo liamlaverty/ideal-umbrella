@@ -13,8 +13,8 @@
             string emissions_quantity_units,
             string temporal_granularity,
             string origin_source,
-            DateTime source_created_date,
-            DateTime source_modified_date,
+            DateTime? source_created_date,
+            DateTime? source_modified_date,
             DateTime created_date,
             DateTime modified_date
             )
@@ -46,8 +46,8 @@
         public string TemporalGranularity { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
-        public DateTime SourceModifiedDate { get; set; }
-        public DateTime SourceCreatedDate { get; set; }
+        public DateTime? SourceModifiedDate { get; set; }
+        public DateTime? SourceCreatedDate { get; set; }
         public string OriginSource { get; set; }
     }
 }
