@@ -20,11 +20,11 @@ namespace IU.ClimateTrace.Importer.Models.CsvModels
 
         [Optional]
         [Name("start_time")]
-        public string StartTime { get; set; }
+        public DateTime StartTime { get; set; }
 
         [Optional]
         [Name("end_time")]
-        public string EndTime { get; set; }
+        public DateTime EndTime { get; set; }
 
         [Optional]
         [Name("temporal_granularity")]
@@ -36,7 +36,7 @@ namespace IU.ClimateTrace.Importer.Models.CsvModels
 
         [Optional]
         [Name("emissions_quantity")]
-        public string EmissionsQuantity { get; set; }
+        public long EmissionsQuantity { get; set; }
 
         [Optional]
         [Name("emissions_factor")]
@@ -68,11 +68,11 @@ namespace IU.ClimateTrace.Importer.Models.CsvModels
 
         [Optional]
         [Name("created_date")]
-        public string CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; }
 
         [Optional]
         [Name("modified_date")]
-        public string ModifiedDate { get; set; }
+        public DateTime? ModifiedDate { get; set; }
 
         [Optional]
         [Name("asset_name")]
