@@ -1,6 +1,7 @@
 ﻿using IU.ClimateTrace.Data.Models.ClimateTraceDbModels;
 using IU.ClimateTrace.Data.Repositories;
 using IU.ClimateTrace.Data.Repositories.Interface;
+using IU.ClimateTrace.Importer.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -17,6 +18,9 @@ namespace IU.ClimateTrace.Importer.Extensions
 
                 services.AddScoped<IRepository<AssetEmission>, AssetEmissionRepository>();
                 services.AddScoped<IRepository<CountryEmission>, CountryEmissionRepository>();
+
+
+                services.AddScoped<ICountryEmissionService, CountryEmissionService>();
 
             });
             return builder;

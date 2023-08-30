@@ -11,11 +11,20 @@ namespace IU.ClimateTrace.Importer.ConsoleApp
     {
         static async Task Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Console.WriteLine("Starting app");
 
             var startup = new Startup();
 
+
+            Console.WriteLine("Importing data");
+
             await startup.importer.ImportData();
+
+            Console.WriteLine("Printing sample data");
+
+            await startup.importer.PrintSampleData();
+
+            
             Console.WriteLine("Complete, press any key to exit");
 
         }

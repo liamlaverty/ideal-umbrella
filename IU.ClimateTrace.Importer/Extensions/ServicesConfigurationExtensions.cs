@@ -1,6 +1,7 @@
 ﻿using IU.ClimateTrace.Common.Config;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Npgsql;
 
 namespace IU.ClimateTrace.Importer.Extensions
@@ -10,6 +11,8 @@ namespace IU.ClimateTrace.Importer.Extensions
         public static void AddClimateTraceImporterServices(
             this IServiceCollection services)
         {
+            var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
+
             // next line requires `Microsoft.Extensions.Configuration.FileExtensions`, then `Microsoft.Extensions.Configuration.Json`
             // to avoid the error: 'IConfiguration' does not contain a definition for 'SetBasePath'
             // and to avoid the error: 'IConfiguration' does not contain a definition for 'AddJsonFile'
@@ -30,6 +33,7 @@ namespace IU.ClimateTrace.Importer.Extensions
                 appConfig.ImportConfiguration.PostgresDbConnection,
                 builder => { 
                     builder.UseNetTopologySuite();
+                    builder.UseLoggerFactory(loggerFactory);
                 });
 
 
