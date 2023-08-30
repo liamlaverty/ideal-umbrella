@@ -4,6 +4,7 @@ namespace IU.ClimateTrace.Data.Models.ClimateTraceDbModels
 {
     public class AssetEmission : TrackedDataEntity, IEntity
     {
+
         public AssetEmission(
                 int asset_id,
                 string iso3_country,

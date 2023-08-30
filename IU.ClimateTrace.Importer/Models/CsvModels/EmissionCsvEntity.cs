@@ -36,7 +36,10 @@ namespace IU.ClimateTrace.Importer.Models.CsvModels
 
         [Optional]
         [Name("emissions_quantity")]
-        public long EmissionsQuantity { get; set; }
+        public decimal EmissionsQuantity { get; set; }
+        [Optional]
+        [Name("emissions_quantity_units")]
+        public string EmissionsQuantityUnits { get; set; }
 
         [Optional]
         [Name("emissions_factor")]

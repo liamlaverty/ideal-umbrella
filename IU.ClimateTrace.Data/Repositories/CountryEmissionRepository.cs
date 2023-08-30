@@ -14,9 +14,78 @@ namespace IU.ClimateTrace.Data.Repositories
             this.connection = connection;
         }
 
-        public Task<CountryEmission> AddAsync(CountryEmission entity)
+        public async Task AddAsync(CountryEmission entity)
         {
-            throw new NotImplementedException();
+            DateTime now = DateTime.UtcNow;
+            try
+            {
+                await connection.OpenAsync();
+                await using var command = new NpgsqlCommand()
+                {
+                    Connection = connection,
+                    CommandText = @"
+                        INSERT INTO country_emissions(
+                        iso3_country, 
+                        start_time, 
+                        end_time, 
+                        original_inventory_sector, 
+                        gas,
+                        emissions_quantity, 
+                        emissions_quantity_units, 
+                        temporal_granularity,
+                        origin_source, 
+                        source_created_date, 
+                        source_modified_date, 
+                        created_date,
+                        modified_date) 
+                
+                        VALUES(
+                            $1, 
+                            $2, 
+                            $3, 
+                            $4, 
+                            $5, 
+                            $6,
+                            $7, 
+                            $8, 
+                            $9,
+                            $10, 
+                            $11, 
+                            $12, 
+                            $13
+                        )
+                        ON CONFLICT
+                            ON CONSTRAINT country_emissions_pkey
+                                DO NOTHING  
+                        ",
+                    Parameters =
+                    {
+                        new() { Value = entity.Iso3Country },
+                        new() { Value = entity.StartTime },
+                        new() { Value = entity.EndTime },
+                        new() { Value = entity.OriginalInventorySector },
+                        new() { Value = entity.Gas },
+                        new() { Value = entity.EmissionsQuantity },
+                        new() { Value = entity.EmissionsQuantityUnits },
+                        new() { Value = entity.TemporalGranularity },
+                        new() { Value = entity.OriginSource },
+                        new() { Value = entity.SourceCreatedDate },
+                        new() { Value = (entity.SourceModifiedDate == null ? null : entity.SourceModifiedDate) },
+                        new() { Value = now },
+                        new() { Value = now },
+                    }
+                };
+
+                await command.ExecuteNonQueryAsync();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                connection.Close();
+            }
         }
 
         public Task<CountryEmission> DeleteAsync(int id)

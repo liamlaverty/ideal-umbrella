@@ -15,7 +15,7 @@ namespace IU.ClimateTrace.Data.Repositories
             this.connection = connection;
         }
 
-        public async Task<AssetEmission> AddAsync(AssetEmission entity)
+        public async Task AddAsync(AssetEmission entity)
         {
             throw new NotImplementedException();
         }

@@ -22,7 +22,7 @@
             DateTime end_time,
             string original_inventory_sector,
             string gas,
-            long emissions_quantity,
+            decimal emissions_quantity,
             string emissions_quantity_units,
             string temporal_granularity,
             string origin_source,
@@ -67,7 +67,7 @@
             DateTime end_time,
             string original_inventory_sector,
             string gas,
-            long emissions_quantity,
+            decimal emissions_quantity,
             string emissions_quantity_units,
             string temporal_granularity,
             string origin_source,
@@ -99,7 +99,7 @@
         public DateTime EndTime { get; set; }
         public string OriginalInventorySector { get; set; }
         public string Gas { get; set; }
-        public long EmissionsQuantity { get; set; }
+        public decimal EmissionsQuantity { get; set; }
         public string EmissionsQuantityUnits { get; set; }
         public string TemporalGranularity { get; set; }
         public DateTime CreatedDate { get; set; }
