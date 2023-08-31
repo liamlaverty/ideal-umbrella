@@ -62,6 +62,9 @@ namespace IU.ClimateTrace.Importer.Services
 
                             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
                             {
+                                // enable exponents, for example 7.75656e-05 to be read into decimals
+                                csv.Context.TypeConverterOptionsCache.GetOptions<decimal?>().NumberStyles = NumberStyles.Number | NumberStyles.AllowExponent; 
+                                
                                 Console.WriteLine($"Importing {country.Alpha3} / {directoryPath.Directory} / {dataPath.FileName}");
 
                                 while (csv.Read())
@@ -119,10 +122,10 @@ namespace IU.ClimateTrace.Importer.Services
                 end_time: srcCsvRecord.EndTime,
                 original_inventory_sector: srcCsvRecord.OriginalInventorySector,
                 gas: srcCsvRecord.Gas,
-                emissions_quantity: srcCsvRecord.EmissionsQuantity,
+                emissions_quantity: (decimal)(srcCsvRecord.EmissionsQuantity == null ? 0 : srcCsvRecord.EmissionsQuantity),
                 emissions_quantity_units: srcCsvRecord.EmissionsQuantityUnits,
                 temporal_granularity: srcCsvRecord.TemporalGranularity,
-                origin_source: srcCsvRecord.OriginalInventorySector,
+                origin_source: "climate_trace",
                 source_created_date: srcCsvRecord.CreatedDate,
                 source_modified_date: srcCsvRecord.ModifiedDate
             );

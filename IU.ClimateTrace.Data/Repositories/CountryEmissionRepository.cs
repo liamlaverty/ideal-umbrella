@@ -70,7 +70,7 @@ namespace IU.ClimateTrace.Data.Repositories
                         new() { Value = entity.TemporalGranularity },
                         new() { Value = entity.OriginSource },
                         new() { Value = entity.SourceCreatedDate },
-                        new() { Value = (entity.SourceModifiedDate == null ? null : entity.SourceModifiedDate) },
+                        new() { Value = (entity.SourceModifiedDate == null ? DBNull.Value : entity.SourceModifiedDate) },
                         new() { Value = now },
                         new() { Value = now },
                     }
