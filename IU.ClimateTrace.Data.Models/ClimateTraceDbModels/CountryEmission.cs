@@ -78,7 +78,7 @@
             )
         {
 
-            Id = id;
+            AssetId = id;
             Iso3Country = iso3_country;
             StartTime = start_time;
             EndTime = end_time;
@@ -93,7 +93,7 @@
             SourceCreatedDate = source_created_date;
             SourceModifiedDate = source_modified_date;
         }
-        public int Id { get; set; }
+        public int AssetId { get; set; }
         public string Iso3Country { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }

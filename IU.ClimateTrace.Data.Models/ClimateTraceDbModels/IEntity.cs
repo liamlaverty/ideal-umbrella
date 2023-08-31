@@ -2,7 +2,7 @@
 {
     public interface IEntity
     {
-        public int Id { get; set; }
+        public int AssetId { get; set; }
 
     }
 }

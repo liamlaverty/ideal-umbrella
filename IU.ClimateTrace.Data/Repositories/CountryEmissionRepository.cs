@@ -1,16 +1,20 @@
 ﻿using IU.ClimateTrace.Data.Models.ClimateTraceDbModels;
 using IU.ClimateTrace.Data.Repositories.Interface;
+using Microsoft.Extensions.Logging;
 using Npgsql;
 
 namespace IU.ClimateTrace.Data.Repositories
 {
     public class CountryEmissionRepository : IRepository<CountryEmission>
     {
+        private readonly ILogger logger;
         private readonly NpgsqlConnection connection;
 
 
-        public CountryEmissionRepository(NpgsqlConnection connection)
+        public CountryEmissionRepository(NpgsqlConnection connection,
+            ILogger<CountryEmissionRepository> logger)
         {
+            this.logger = logger;
             this.connection = connection;
         }
 
@@ -80,6 +84,8 @@ namespace IU.ClimateTrace.Data.Repositories
             }
             catch (Exception ex)
             {
+                logger.LogError(new EventId(), ex, "Error inserting CountryEmission");
+
                 throw;
             }
             finally

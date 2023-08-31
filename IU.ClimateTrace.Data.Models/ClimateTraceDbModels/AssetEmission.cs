@@ -4,7 +4,6 @@ namespace IU.ClimateTrace.Data.Models.ClimateTraceDbModels
 {
     public class AssetEmission : TrackedDataEntity, IEntity
     {
-
         public AssetEmission(
                 int asset_id,
                 string iso3_country,
@@ -13,13 +12,13 @@ namespace IU.ClimateTrace.Data.Models.ClimateTraceDbModels
                 DateTime end_time,
                 string temporal_granularity,
                 string gas,
-                long emissions_quantity,
-                decimal emissions_factor,
+                decimal? emissions_quantity,
+                decimal? emissions_factor,
                 string emissions_factor_units,
-                decimal capacity,
+                decimal? capacity,
                 string capacity_units,
-                decimal capacity_factor,
-                decimal activity,
+                decimal? capacity_factor,
+                decimal? activity,
                 string activity_units,
                 string origin_source,
                 DateTime? source_created_date,
@@ -30,7 +29,7 @@ namespace IU.ClimateTrace.Data.Models.ClimateTraceDbModels
                 string asset_type,
                 Geometry st_astext) 
         {
-            Id = asset_id;
+            AssetId = asset_id;
             Iso3Country = iso3_country;
             OriginalInventorySector = original_inventory_sector;
             StartTime = start_time;
@@ -55,20 +54,20 @@ namespace IU.ClimateTrace.Data.Models.ClimateTraceDbModels
             StAstext = st_astext;
         }
 
-        public int Id { get; set; }
+        public int AssetId { get; set; }
         public string Iso3Country { get; set; }
         public string OriginalInventorySector { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public string TemporalGranularity { get; set; }
         public string Gas { get; set; }
-        public decimal EmissionsQuantity { get; set; }
-        public decimal EmissionsFactor { get; set; }
+        public decimal? EmissionsQuantity { get; set; }
+        public decimal? EmissionsFactor { get; set; }
         public string EmissionsFactorUnits { get; set; }
-        public decimal Capacity { get; set; }
+        public decimal? Capacity { get; set; }
         public string CapacityUnits { get; set; }
-        public decimal CapacityFactor { get; set; }
-        public decimal Activity { get; set; }
+        public decimal? CapacityFactor { get; set; }
+        public decimal? Activity { get; set; }
         public string ActivityUnits { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }

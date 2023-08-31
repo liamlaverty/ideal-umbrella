@@ -8,7 +8,7 @@ namespace IU.ClimateTrace.Importer.Models.CsvModels
 
         [Optional]
         [Name("asset_id")]
-        public string AssetId { get; set; }
+        public int AssetId { get; set; }
 
         [Optional]
         [Name("iso3_country")]
@@ -37,13 +37,18 @@ namespace IU.ClimateTrace.Importer.Models.CsvModels
         [Optional]
         [Name("emissions_quantity")]
         public decimal? EmissionsQuantity { get; set; }
+
+        [Optional]
+        [Name("Lat_lon")]
+        public string LatLon { get; set; }
+
         [Optional]
         [Name("emissions_quantity_units")]
         public string EmissionsQuantityUnits { get; set; }
 
         [Optional]
         [Name("emissions_factor")]
-        public string EmissionsFactor { get; set; }
+        public decimal? EmissionsFactor { get; set; }
 
         [Optional]
         [Name("emissions_factor_units")]
@@ -51,7 +56,7 @@ namespace IU.ClimateTrace.Importer.Models.CsvModels
 
         [Optional]
         [Name("capacity")]
-        public string Capacity { get; set; }
+        public decimal? Capacity { get; set; }
 
         [Optional]
         [Name("capacity_units")]
@@ -59,11 +64,11 @@ namespace IU.ClimateTrace.Importer.Models.CsvModels
 
         [Optional]
         [Name("capacity_factor")]
-        public string CapacityFactor { get; set; }
+        public decimal? CapacityFactor { get; set; }
 
         [Optional]
         [Name("activity")]
-        public string Activity { get; set; }
+        public decimal? Activity { get; set; }
 
         [Optional]
         [Name("activity_units")]
@@ -86,7 +91,7 @@ namespace IU.ClimateTrace.Importer.Models.CsvModels
         public string AssetType { get; set; }
 
         [Optional]
-        [Name("st_astex")]
+        [Name("st_astext")]
         public string StAstex { get; set; }
 
 
