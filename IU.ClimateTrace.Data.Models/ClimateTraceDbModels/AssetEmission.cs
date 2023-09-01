@@ -2,6 +2,7 @@
 
 namespace IU.ClimateTrace.Data.Models.ClimateTraceDbModels
 {
+
     public class AssetEmission : TrackedDataEntity, IEntity
     {
         public AssetEmission(
@@ -60,6 +61,16 @@ namespace IU.ClimateTrace.Data.Models.ClimateTraceDbModels
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public string TemporalGranularity { get; set; }
+
+        /// <summary>
+        /// Possible values: 
+        /// 
+        /// ch4
+        /// co2
+        /// co2e_100yr
+        /// co2e_20yr
+        /// n2o
+        /// </summary>
         public string Gas { get; set; }
         public decimal? EmissionsQuantity { get; set; }
         public decimal? EmissionsFactor { get; set; }
