@@ -148,7 +148,7 @@ namespace IU.ClimateTrace.Importer.Services
                capacity_factor: srcCsvRecord.CapacityFactor,
                activity: srcCsvRecord.Activity,
                activity_units: srcCsvRecord.ActivityUnits,
-               origin_source: "climate trace",
+               origin_source: "climate_trace",
                source_created_date: srcCsvRecord.CreatedDate,
                source_modified_date: srcCsvRecord.ModifiedDate,
                created_date: now,
