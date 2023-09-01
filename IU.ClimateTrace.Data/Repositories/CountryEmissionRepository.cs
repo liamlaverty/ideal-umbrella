@@ -79,7 +79,7 @@ namespace IU.ClimateTrace.Data.Repositories
                         new() { Value = now },
                     }
                 };
-
+                await command.PrepareAsync();
                 await command.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
