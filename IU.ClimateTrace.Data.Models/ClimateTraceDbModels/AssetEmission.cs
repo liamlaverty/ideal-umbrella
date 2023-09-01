@@ -3,6 +3,8 @@
 namespace IU.ClimateTrace.Data.Models.ClimateTraceDbModels
 {
 
+   
+
     public class AssetEmission : TrackedDataEntity, IEntity
     {
         public AssetEmission(

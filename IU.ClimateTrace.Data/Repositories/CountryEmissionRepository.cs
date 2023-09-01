@@ -94,47 +94,23 @@ namespace IU.ClimateTrace.Data.Repositories
             }
         }
 
-        public Task<CountryEmission> DeleteAsync(int id)
+        public async Task<PagedResult<CountryEmission>> GetPagedAsync(int pageNumber = 0, int pageSize = 1000)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<CountryEmission>> GetAllAsync()
-        {
-            try
-            {
-                List<CountryEmission> result = new List<CountryEmission>();
-                await connection.OpenAsync();
-
-                await using var command = new NpgsqlCommand("SELECT * FROM country_emissions LIMIT 100", connection);
-                await using var reader = await command.ExecuteReaderAsync();
-
-                while (await reader.ReadAsync())
-                {
-                    result.Add(
-                         CountryEmissionFromDataReader(reader));
-                }
-                return result;
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-            finally
-            {
-                await connection.CloseAsync();
-            }
-        }
-
-
-
-
-        public Task<CountryEmission> GetAsync(int id)
+        public async Task DeleteAsync(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<CountryEmission> Update(CountryEmission entity)
+
+        public async Task<CountryEmission> GetAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<CountryEmission> Update(CountryEmission entity)
         {
             throw new NotImplementedException();
         }

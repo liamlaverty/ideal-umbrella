@@ -38,19 +38,19 @@ namespace IU.ClimateTrace.Importer
 
         public async Task PrintSampleData()
         {
+            //for (int i = 0; i < 2; i++)
+            //{
+            //    var countryResult = await _countryEmissionRepository.GetPagedAsync();
+            //    foreach (var item in countryResult.Results)
+            //    {
+            //        Console.WriteLine($"{item.Iso3Country}");
+            //    }
+            //}
             for (int i = 0; i < 2; i++)
             {
-                var countryResult = await _countryEmissionRepository.GetAllAsync();
-                foreach (var item in countryResult)
-                {
-                    Console.WriteLine($"{item.Iso3Country}");
-                }
-            }
-            for (int i = 0; i < 2; i++)
-            {
-                var assetResult = await _assetEmissionRepository.GetAllAsync();
+                var assetResult = await _assetEmissionRepository.GetPagedAsync();
 
-                foreach (var item in assetResult)
+                foreach (var item in assetResult.Results)
                 {
                     Console.WriteLine($"{item.AssetName} - StAstext is null? {(item.StAstext == null ? "true" : "false")}");
                 }

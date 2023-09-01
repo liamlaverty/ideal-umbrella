@@ -18,7 +18,7 @@ namespace IU.ClimateTrace.Importer.ConsoleApp
 
             Console.WriteLine("Importing data");
 
-            await startup.importer.ImportData();
+            // await startup.importer.ImportData();
 
             Console.WriteLine("Printing sample data");
 
