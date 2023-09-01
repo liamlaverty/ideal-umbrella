@@ -165,9 +165,58 @@ namespace IU.ClimateTrace.Data.Repositories
             );
         }
 
-        public Task<bool> Exists(CountryEmission entity)
+
+        /// <summary>
+        /// Checks if an country emission entity in the database
+        /// 
+        /// </summary>
+        /// <param name="entity">A country emission object to check</param>
+        /// <returns>
+        /// true if the entity already exists
+        /// false if not
+        /// </returns>
+        public async Task<bool> Exists(CountryEmission entity)
         {
-            throw new NotImplementedException();
+            // PKEY: iso3_country, start_time, gas, temporal_granularity, original_inventory_sector
+            try
+            {
+                await connection.OpenAsync();
+                await using var command = new NpgsqlCommand()
+                {
+                    Connection = connection,
+                    CommandText =
+                    @"SELECT EXISTS 
+                        (
+                            SELECT 1 FROM country_emissions
+                                WHERE iso3_country = $1
+                                AND start_time = $2
+                                AND gas = $3
+                                AND temporal_granularity = $4
+                                AND original_inventory_sector = $5
+                        )",
+                    Parameters =
+                    {
+                        new() { Value = entity.Iso3Country },
+                        new() { Value = entity.StartTime },
+                        new() { Value = entity.Gas },
+                        new() { Value = entity.TemporalGranularity },
+                        new() { Value=entity.OriginalInventorySector },
+                    }
+                };
+                await command.PrepareAsync();
+                var result = await command.ExecuteScalarAsync();
+                Boolean.TryParse(result?.ToString(), out bool didExist);
+                return didExist;
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(new EventId(), ex, "Error inserting AssetEmission");
+                throw;
+            }
+            finally
+            {
+                await connection.CloseAsync();
+            }
         }
     }
 }

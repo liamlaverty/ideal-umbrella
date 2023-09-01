@@ -40,7 +40,7 @@ namespace IU.ClimateTrace.Data.Repositories
                         )",
                     Parameters =
                     {
-                         new() {Value = entity.Iso3Country },
+                        new() {Value = entity.Iso3Country },
                         new() {Value = entity.AssetId },
                         new() {Value = entity.StartTime },
                         new() {Value = entity.Gas },

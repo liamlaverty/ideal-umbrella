@@ -88,8 +88,11 @@ namespace IU.ClimateTrace.Importer.Services
                                             {
                                                 if (dataPath.FileName.StartsWith("country"))
                                                 {
-                                                    //var mappedRecord = MapToCountryEntityFromCsvRecord(record);
-                                                    //await _countryEmissionRepository.AddAsync(mappedRecord);
+                                                    var mappedRecord = MapToCountryEntityFromCsvRecord(record);
+                                                    if (! await _countryEmissionRepository.Exists(mappedRecord))
+                                                    {
+                                                        await _countryEmissionRepository.AddAsync(mappedRecord);
+                                                    }
                                                 }
                                                 else if (dataPath.FileName.StartsWith("asset"))
                                                 {
