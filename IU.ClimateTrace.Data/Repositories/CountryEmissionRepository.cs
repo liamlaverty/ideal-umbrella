@@ -164,5 +164,10 @@ namespace IU.ClimateTrace.Data.Repositories
                 modified_date: reader.GetDateTime(13)
             );
         }
+
+        public Task<bool> Exists(CountryEmission entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

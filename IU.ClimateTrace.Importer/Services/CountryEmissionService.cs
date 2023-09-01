@@ -1,5 +1,4 @@
 ﻿using CsvHelper;
-using CsvHelper.Configuration.Attributes;
 using IU.ClimateTrace.Common.Config;
 using IU.ClimateTrace.Data.Models.ClimateTraceDbModels;
 using IU.ClimateTrace.Data.Repositories.Interface;
@@ -89,14 +88,18 @@ namespace IU.ClimateTrace.Importer.Services
                                             {
                                                 if (dataPath.FileName.StartsWith("country"))
                                                 {
-                                                    var mappedRecord = MapToCountryEntityFromCsvRecord(record);
-                                                    await _countryEmissionRepository.AddAsync(mappedRecord);
+                                                    //var mappedRecord = MapToCountryEntityFromCsvRecord(record);
+                                                    //await _countryEmissionRepository.AddAsync(mappedRecord);
                                                 }
                                                 else if (dataPath.FileName.StartsWith("asset"))
                                                 {
                                                     // this is an asset record, upsert it
                                                     var mappedRecord = MapToAssetEntityFromCsvRecord(record);
-                                                    await _assetEmissionRepository.AddAsync(mappedRecord);
+
+                                                    if (! await _assetEmissionRepository.Exists(mappedRecord))
+                                                    {
+                                                        await _assetEmissionRepository.AddAsync(mappedRecord);
+                                                    }
                                                 }
                                             }
                                         }

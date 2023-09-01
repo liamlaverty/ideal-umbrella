@@ -19,8 +19,54 @@ namespace IU.ClimateTrace.Data.Repositories
             this.connection = connection;
         }
 
+        public async Task<bool> Exists(AssetEmission entity)
+        {
+            // PKEY: iso3_country, asset_id, start_time, gas, temporal_granularity
+            try
+            {
+                await connection.OpenAsync();
+                await using var command = new NpgsqlCommand()
+                {
+                    Connection = connection,
+                    CommandText =
+                    @"SELECT EXISTS 
+                        (
+                            SELECT 1 FROM asset_emissions
+                                WHERE iso3_country = $1
+                                AND asset_id = $2
+                                AND start_time = $3
+                                AND gas = $4
+                                AND temporal_granularity = $5
+                        )",
+                    Parameters =
+                    {
+                         new() {Value = entity.Iso3Country },
+                        new() {Value = entity.AssetId },
+                        new() {Value = entity.StartTime },
+                        new() {Value = entity.Gas },
+                        new() {Value = entity.TemporalGranularity },
+                    }
+                };
+                await command.PrepareAsync();
+                var result = await command.ExecuteScalarAsync();
+                Boolean.TryParse(result?.ToString(), out bool didExist);
+                return didExist;
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(new EventId(), ex, "Error inserting AssetEmission");
+                throw;
+            }
+            finally 
+            {
+                await connection.CloseAsync();
+            }
+        }
+
         public async Task AddAsync(AssetEmission entity)
         {
+
+
             DateTime now = DateTime.UtcNow;
             try
             {
@@ -90,6 +136,7 @@ namespace IU.ClimateTrace.Data.Repositories
                         new() {Value = now }
                     }
                 };
+                await command.PrepareAsync();
                 await command.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
