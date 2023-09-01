@@ -1,0 +1,22 @@
+{
+  "$schema": "country-list-schema.json",
+  "countryList": [
+    {
+      "name": "United Kingdom of Great Britain and Northern Ireland",
+      "alpha3": "GBR",
+      "countryCode": "826"
+    },
+    //{
+    //  "name": "Åland Islands",
+    //  "alpha3": "ALA",
+    //  "countryCode": "248"
+    //},
+
+    //{
+    //  "name": "Afghanistan",
+    //  "alpha3": "AFG",
+    //  "countryCode": "004"
+    //}
+
+  ]
+}

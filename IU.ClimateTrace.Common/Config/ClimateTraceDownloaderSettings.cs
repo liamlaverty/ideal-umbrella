@@ -1,11 +1,12 @@
-﻿namespace IU.ClimateTrace.Downloader.Models.Config
+﻿namespace IU.ClimateTrace.Common.Config
 {
     public class ClimateTraceDownloaderSettings
     {
         public static readonly string ConfigName = "iuClimateTraceConfig";
 
-        public required ClimateTraceDownloaderSettings_DownloadConfiguration DownloadConfiguration { get; set; } 
-        public required ClimateTraceDownloaderSettings_Configurations Configurations { get; set; } 
+        public required ClimateTraceDownloaderSettings_DownloadConfiguration DownloadConfiguration { get; set; }
+        public required ClimateTraceDownloaderSettings_Configurations Configurations { get; set; }
+        public required ClimateTraceImportConfiguration_Configurations ImportConfiguration { get; set; }
 
     }
 
@@ -24,5 +25,10 @@
         public bool EnableDownloadNonForestryData { get; set; }
         public bool EnableUnzipAfterDownload { get; set; }
         public required string DownloadDataPath { get; set; }
+    }
+
+    public class ClimateTraceImportConfiguration_Configurations
+    {
+        public required string PostgresDbConnection { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 using IdealUmbrella.DataConnector.CountryData;
 using IdealUmbrella.site.Models.Config;
-using IdealUmbrella.site.ScheduledTasks;
 using IdealUmbrella.site.Services.ContentServices.Impl;
+using IU.ClimateTrace.Downloader.Extensions;
 
 namespace IdealUmbrella.site
 {
@@ -34,6 +34,8 @@ namespace IdealUmbrella.site
         /// </remarks>
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddClimateTraceDownloaderServices();
+
             services.AddUmbraco(_env, _config)
                 .AddBackOffice()
                 .AddWebsite()
@@ -49,8 +51,14 @@ namespace IdealUmbrella.site
             services.AddTransient<ICountryDataCsvService, CountryDataCsvService>();
             services.AddTransient<IRegionContentService, RegionContentService>();
 
+
             // Add recurring hosted services
             // services.AddHostedService<UpdateRegionsRecurringTask>();
+
+            // TODO: DownloadClimateTraceData requires some AddScoped<Services>
+            // which can't be injected, because AddHostedServices are singletons
+            // see https://learn.microsoft.com/en-us/dotnet/core/extensions/scoped-service?pivots=dotnet-7-0
+            // services.AddHostedService<DownloadClimateTraceDataRecurringTask>();
         }
 
         /// <summary>
