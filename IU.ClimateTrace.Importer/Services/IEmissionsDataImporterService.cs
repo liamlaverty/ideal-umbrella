@@ -1,6 +1,6 @@
 ﻿namespace IU.ClimateTrace.Importer.Services
 {
-    public interface ICountryEmissionService
+    public interface IEmissionsDataImporterService
     {
         Task UpdateCountryEmissionsFromCsvAsync();
     }

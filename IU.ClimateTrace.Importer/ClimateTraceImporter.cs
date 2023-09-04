@@ -17,13 +17,13 @@ namespace IU.ClimateTrace.Importer
         private readonly ClimateTraceDownloaderSettings _settings;
         private readonly IRepository<AssetEmission> _assetEmissionRepository;
         private readonly IRepository<CountryEmission> _countryEmissionRepository;
-        private readonly ICountryEmissionService _countryEmissionService;
+        private readonly IEmissionsDataImporterService _countryEmissionService;
         private readonly ILogger<ClimateTraceImporter> _logger;
 
         public ClimateTraceImporter(IOptions<ClimateTraceDownloaderSettings> climateTraceImporterConfig,
             IRepository<AssetEmission> assetEmissionRepository,
             IRepository<CountryEmission> countryEmissionRepository,
-            ICountryEmissionService countryEmissionService, 
+            IEmissionsDataImporterService countryEmissionService, 
             ILogger<ClimateTraceImporter> logger) 
         {
             _logger = logger;

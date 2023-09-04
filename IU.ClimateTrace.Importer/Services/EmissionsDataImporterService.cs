@@ -16,18 +16,18 @@ namespace IU.ClimateTrace.Importer.Services
     /// <summary>
     ///  A service to import country emissions
     /// </summary>
-    internal class CountryEmissionService : ICountryEmissionService
+    internal class EmissionsDataImporterService : IEmissionsDataImporterService
     {
         private readonly IRepository<CountryEmission> _countryEmissionRepository;
         private readonly IRepository<AssetEmission> _assetEmissionRepository;
         private readonly ClimateTraceDownloaderSettings _settings;
         private readonly ILogger _logger;
 
-        public CountryEmissionService(
+        public EmissionsDataImporterService(
             IOptions<ClimateTraceDownloaderSettings> climateTraceImporterConfig,
             IRepository<CountryEmission> countryEmissionRepository,
             IRepository<AssetEmission> assetEmissionRepository,
-            ILogger<CountryEmissionService> logger
+            ILogger<EmissionsDataImporterService> logger
             )
         {
             _settings = climateTraceImporterConfig.Value;

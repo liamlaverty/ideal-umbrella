@@ -2,7 +2,6 @@
 using IU.ClimateTrace.Data.Repositories.Interface;
 using Microsoft.Extensions.Logging;
 using NetTopologySuite.Geometries;
-using NetTopologySuite.Operation.Valid;
 using Npgsql;
 
 namespace IU.ClimateTrace.Data.Repositories

@@ -20,7 +20,7 @@ namespace IU.ClimateTrace.Importer.Extensions
                 services.AddScoped<IRepository<CountryEmission>, CountryEmissionRepository>();
 
 
-                services.AddScoped<ICountryEmissionService, CountryEmissionService>();
+                services.AddScoped<IEmissionsDataImporterService, EmissionsDataImporterService>();
 
             });
             return builder;
