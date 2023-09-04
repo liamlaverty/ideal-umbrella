@@ -13,17 +13,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IU.ClimateTrace.Downloader.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IU.ClimateTrace.Downloader.Tests", "..\IU.ClimateTrace.Downloader.Tests\IU.ClimateTrace.Downloader.Tests.csproj", "{CE22BD98-EB8B-4BE6-B6A6-06820A61B84B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IU.ClimateTrace.Importer", "..\IU.ClimateTrace.Importer\IU.ClimateTrace.Importer.csproj", "{E2AE3123-9791-46F2-97DF-8B7C5E0989EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IU.ClimateTrace.Importer", "..\IU.ClimateTrace.Importer\IU.ClimateTrace.Importer.csproj", "{E2AE3123-9791-46F2-97DF-8B7C5E0989EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IU.ClimateTrace.Importer.Tests", "..\IU.ClimateTrace.Importer.Tests\IU.ClimateTrace.Importer.Tests.csproj", "{3E2010C3-6068-49AE-B4DA-3A6F1B068627}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IU.ClimateTrace.Importer.Tests", "..\IU.ClimateTrace.Importer.Tests\IU.ClimateTrace.Importer.Tests.csproj", "{3E2010C3-6068-49AE-B4DA-3A6F1B068627}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IU.ClimateTrace.Importer.ConsoleApp", "..\IU.ClimateTrace.Importer.ConsoleApp\IU.ClimateTrace.Importer.ConsoleApp.csproj", "{BD98FCBD-70B1-4405-95ED-61C8A2C7C82F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IU.ClimateTrace.Importer.ConsoleApp", "..\IU.ClimateTrace.Importer.ConsoleApp\IU.ClimateTrace.Importer.ConsoleApp.csproj", "{BD98FCBD-70B1-4405-95ED-61C8A2C7C82F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IU.ClimateTrace.Data.Models", "..\IU.ClimateTrace.Data.Models\IU.ClimateTrace.Data.Models.csproj", "{0DAE0AC8-1577-4A32-9B39-DF91C5A0521E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IU.ClimateTrace.Data.Models", "..\IU.ClimateTrace.Data.Models\IU.ClimateTrace.Data.Models.csproj", "{0DAE0AC8-1577-4A32-9B39-DF91C5A0521E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IU.ClimateTrace.Common", "..\IU.ClimateTrace.Common\IU.ClimateTrace.Common.csproj", "{B6AD6A68-00DF-4257-AB48-63CF3AFEDD0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IU.ClimateTrace.Common", "..\IU.ClimateTrace.Common\IU.ClimateTrace.Common.csproj", "{B6AD6A68-00DF-4257-AB48-63CF3AFEDD0D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IU.ClimateTrace.Data", "..\IU.ClimateTrace.Data\IU.ClimateTrace.Data.csproj", "{E0CD50A3-17E0-4863-9AE5-4853B7AA725F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IU.ClimateTrace.Data", "..\IU.ClimateTrace.Data\IU.ClimateTrace.Data.csproj", "{E0CD50A3-17E0-4863-9AE5-4853B7AA725F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IU.ClimateTrace.Data.Tests", "..\IU.ClimateTrace.Data.Tests\IU.ClimateTrace.Data.Tests.csproj", "{51014CD2-BD41-40C4-9BE7-CC6355BB4BB2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IU.ClimateTrace.Importer.Web.API", "..\IU.ClimateTrace.Importer.Web.API\IU.ClimateTrace.Importer.Web.API.csproj", "{18851E22-C939-4C3A-8D18-095C31C6DC14}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +79,14 @@ Global
 		{E0CD50A3-17E0-4863-9AE5-4853B7AA725F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0CD50A3-17E0-4863-9AE5-4853B7AA725F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0CD50A3-17E0-4863-9AE5-4853B7AA725F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51014CD2-BD41-40C4-9BE7-CC6355BB4BB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51014CD2-BD41-40C4-9BE7-CC6355BB4BB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51014CD2-BD41-40C4-9BE7-CC6355BB4BB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51014CD2-BD41-40C4-9BE7-CC6355BB4BB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18851E22-C939-4C3A-8D18-095C31C6DC14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18851E22-C939-4C3A-8D18-095C31C6DC14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18851E22-C939-4C3A-8D18-095C31C6DC14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18851E22-C939-4C3A-8D18-095C31C6DC14}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
