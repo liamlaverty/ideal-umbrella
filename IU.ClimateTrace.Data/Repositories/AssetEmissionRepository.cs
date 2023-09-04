@@ -72,7 +72,7 @@ namespace IU.ClimateTrace.Data.Repositories
                     Parameters =
                     {
                         new() {Value = entity.Iso3Country },
-                        new() {Value = entity.AssetId },
+                        new() {Value = entity.Id },
                         new() {Value = entity.StartTime },
                         new() {Value = entity.Gas },
                         new() {Value = entity.TemporalGranularity },
@@ -140,7 +140,7 @@ namespace IU.ClimateTrace.Data.Repositories
                         DO NOTHING",
                     Parameters =
                     {
-                        new() {Value = entity.AssetId },
+                        new() {Value = entity.Id },
                         new() {Value = entity.Iso3Country },
                         new() {Value = entity.OriginalInventorySector },
                         new() {Value = entity.StartTime },
@@ -232,8 +232,8 @@ namespace IU.ClimateTrace.Data.Repositories
                 {
                     Connection = connection,
                     CommandText =
-                    @"SELECT 1 FROM asset_emissions
-                                WHERE asset_id = $1",
+                    @"SELECT * FROM asset_emissions
+                                WHERE asset_id = $1 LIMIT 1",
                     Parameters =
                     {
                         new() {Value = id },
@@ -253,7 +253,7 @@ namespace IU.ClimateTrace.Data.Repositories
             }
             catch (Exception ex)
             {
-                logger.LogError(new EventId(), ex, "Error inserting AssetEmission");
+                logger.LogError(new EventId(), ex, "Error getting AssetEmission");
                 throw;
             }
             finally
@@ -322,7 +322,7 @@ namespace IU.ClimateTrace.Data.Repositories
             }
             catch (Exception ex)
             {
-                logger.LogError(new EventId(), ex, "Error inserting AssetEmission");
+                logger.LogError(new EventId(), ex, "Error getting paged AssetEmission");
                 throw;
             }
             finally
