@@ -34,7 +34,7 @@ namespace IU.ClimateTrace.Importer.Web.API.Extensions
                     builder.UseLoggerFactory(npgSqlLoggerFactory);
                 });
             services.AddScoped<IRepository<AssetEmission>, AssetEmissionRepository>();
-            services.AddScoped<IRepository<CountryEmission>, CountryEmissionRepository>();
+            services.AddScoped<ICountryEmissionRepository, CountryEmissionRepository>();
             return services;
         }
     }

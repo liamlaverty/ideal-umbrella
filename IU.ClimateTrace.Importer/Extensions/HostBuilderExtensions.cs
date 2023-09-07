@@ -17,7 +17,7 @@ namespace IU.ClimateTrace.Importer.Extensions
                 services.AddClimateTraceImporterServices();
 
                 services.AddScoped<IRepository<AssetEmission>, AssetEmissionRepository>();
-                services.AddScoped<IRepository<CountryEmission>, CountryEmissionRepository>();
+                services.AddScoped<ICountryEmissionRepository, CountryEmissionRepository>();
 
 
                 services.AddScoped<IEmissionsDataImporterService, EmissionsDataImporterService>();

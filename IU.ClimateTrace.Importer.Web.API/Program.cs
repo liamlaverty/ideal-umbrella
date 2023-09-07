@@ -17,11 +17,12 @@ namespace IU.ClimateTrace.Importer.Web.API
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(config =>
             {
+                config.EnableAnnotations();
                 config.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "IU Emissions API",
-                    Description = "Service descriptions"
+                    Title = "IU0 Emissions API",
+                    Description = "An API to interact with climate and sustainability datasets"
                 });
             });
 

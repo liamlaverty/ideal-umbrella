@@ -1,11 +1,13 @@
-﻿using IU.ClimateTrace.Data.Models.ClimateTraceDbModels;
+﻿using IU.ClimateTrace.Common.DataFilters;
+using IU.ClimateTrace.Data.Models.ClimateTraceDbModels;
 using IU.ClimateTrace.Data.Repositories.Interface;
 using Microsoft.Extensions.Logging;
 using Npgsql;
 
 namespace IU.ClimateTrace.Data.Repositories
 {
-    public class CountryEmissionRepository : IRepository<CountryEmission>
+
+    public class CountryEmissionRepository : ICountryEmissionRepository
     {
         private readonly ILogger logger;
         private readonly NpgsqlConnection connection;
@@ -92,6 +94,19 @@ namespace IU.ClimateTrace.Data.Repositories
             {
                 connection.Close();
             }
+        }
+
+        public async Task<PagedResult<CountryEmission>> GetPagedAsync(
+            string isoCountryCode,
+            string gasName,
+            DateTime startDate,
+            DateTime endDate,
+            OrderByDirection orderByDirection,
+            CountryEmissionsOrderByCol orderByColumn,
+            int pageNumber = 0,
+            int pageSize = 50)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<PagedResult<CountryEmission>> GetPagedAsync(int pageNumber = 0, int pageSize = 1000)
