@@ -19,6 +19,36 @@ namespace IU.ClimateTrace.Data.Repositories
             this.connection = connection;
         }
 
+        private async Task<long> CountRecords()
+        {
+            try
+            {
+                await connection.OpenAsync();
+                await using var command = new NpgsqlCommand()
+                {
+                    Connection = connection,
+                    CommandText =
+                    @"SELECT COUNT(*) FROM asset_emissions",
+                };
+                await command.PrepareAsync();
+                var result = await command.ExecuteScalarAsync();
+                if (Int64.TryParse(result?.ToString(), out long count))
+                {
+                    return count;
+                }
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(new EventId(), ex, "Error counting AssetEmission records");
+                throw;
+            }
+            finally
+            {
+                await connection.CloseAsync();
+            }
+        }
+
         public async Task<bool> Exists(AssetEmission entity)
         {
             // PKEY: iso3_country, asset_id, start_time, gas, temporal_granularity
@@ -41,7 +71,7 @@ namespace IU.ClimateTrace.Data.Repositories
                     Parameters =
                     {
                         new() {Value = entity.Iso3Country },
-                        new() {Value = entity.AssetId },
+                        new() {Value = entity.Id },
                         new() {Value = entity.StartTime },
                         new() {Value = entity.Gas },
                         new() {Value = entity.TemporalGranularity },
@@ -54,7 +84,7 @@ namespace IU.ClimateTrace.Data.Repositories
             }
             catch (Exception ex)
             {
-                logger.LogError(new EventId(), ex, "Error inserting AssetEmission");
+                logger.LogError(new EventId(), ex, "Error checking if AssetEmission existed");
                 throw;
             }
             finally 
@@ -65,8 +95,6 @@ namespace IU.ClimateTrace.Data.Repositories
 
         public async Task AddAsync(AssetEmission entity)
         {
-
-
             DateTime now = DateTime.UtcNow;
             try
             {
@@ -111,7 +139,7 @@ namespace IU.ClimateTrace.Data.Repositories
                         DO NOTHING",
                     Parameters =
                     {
-                        new() {Value = entity.AssetId },
+                        new() {Value = entity.Id },
                         new() {Value = entity.Iso3Country },
                         new() {Value = entity.OriginalInventorySector },
                         new() {Value = entity.StartTime },
@@ -147,32 +175,32 @@ namespace IU.ClimateTrace.Data.Repositories
             finally { await connection.CloseAsync(); }
         }
 
-        public async Task<AssetEmission> DeleteAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<AssetEmission> GetAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-        public async Task<IEnumerable<AssetEmission>> GetAllAsync()
+        /// <summary>
+        /// Deletes all entities from a database with a given `asset_id
+        /// </summary>
+        /// <param name="id">the `asset_id` of the entry in the database</param>
+        public async Task DeleteAsync(int id)
         {
             try
             {
-                List<AssetEmission> result = new List<AssetEmission>();
                 await connection.OpenAsync();
-
-                await using var command = new NpgsqlCommand("SELECT * FROM asset_emissions LIMIT 100", connection);
-                await using var reader = await command.ExecuteReaderAsync();
-                while (await reader.ReadAsync())
+                await using var command = new NpgsqlCommand()
                 {
-                    result.Add(AssetEmissionFromDataReader(reader));
-                }
-                return result;
+                    Connection = connection,
+                    CommandText =
+                    @"DELETE FROM asset_emissions 
+                            WHERE asset_id = $1",
+                    Parameters =
+                    {
+                        new() {Value = id },
+                    }
+                };
+                await command.PrepareAsync();
+                await command.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
             {
+                logger.LogError(new EventId(), ex, $"Error deleting asset emission by ID {id}");
                 throw;
             }
             finally
@@ -180,6 +208,152 @@ namespace IU.ClimateTrace.Data.Repositories
                 await connection.CloseAsync();
             }
         }
+
+        /// <summary>
+        /// Gets a single AssetEmission by its Asset_ID
+        /// 
+        /// if no assetID can be found, returns null
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// an asset with the given ID
+        /// 
+        /// OR 
+        /// 
+        /// null
+        /// </returns>
+        public async Task<AssetEmission> GetAsync(int id)
+        {
+            try
+            {
+                await connection.OpenAsync();
+                await using var command = new NpgsqlCommand()
+                {
+                    Connection = connection,
+                    CommandText =
+                    @"SELECT * FROM asset_emissions
+                                WHERE asset_id = $1 LIMIT 1",
+                    Parameters =
+                    {
+                        new() {Value = id },
+                    }
+                };
+                await command.PrepareAsync();
+                await using var reader = await command.ExecuteReaderAsync();
+                if (reader.HasRows)
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        var castResult = AssetEmissionFromDataReader(reader);
+                        return castResult;
+                    }
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(new EventId(), ex, "Error getting AssetEmission");
+                throw;
+            }
+            finally
+            {
+                await connection.CloseAsync();
+            }
+        }
+
+
+
+
+        public async Task<PagedResult<AssetEmission>> GetPagedAsync(int pageNumber = 0, int pageSize = 1000)
+        {
+            if (pageNumber < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(pageNumber), "must be 0 or greater");
+            }
+            if (pageSize < 1)
+            {
+                throw new ArgumentOutOfRangeException(nameof(pageSize), "must be 1 or greater");
+            }
+            try
+            {
+                await connection.OpenAsync();
+                await using var countCommand = new NpgsqlCommand()
+                {
+                    Connection = connection,
+                    CommandText =
+                    @"SELECT COUNT(*) FROM asset_emissions",
+                };
+                await countCommand.PrepareAsync();
+                var dbCount = await countCommand.ExecuteScalarAsync();
+                Int64.TryParse(dbCount?.ToString(), out long countResult);
+
+                // https://stackoverflow.com/a/17974/1663868
+                var pageCount = (countResult + pageSize - 1) / pageSize;
+
+
+
+                await using var command = new NpgsqlCommand()
+                {
+                    Connection = connection,
+                    CommandText =
+                    @"SELECT * FROM asset_emissions 
+                            LIMIT $1
+                            OFFSET $2",
+                    Parameters =
+                    {
+                        new() {Value = pageSize },
+                        new() {Value = pageNumber * pageSize },
+                    }
+                };
+                await command.PrepareAsync();
+                await using var reader = await command.ExecuteReaderAsync();
+                List<AssetEmission> results = new();
+                if (reader.HasRows)
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        var castResult = AssetEmissionFromDataReader(reader);
+                        results.Add(castResult);
+                    }
+                }
+
+                return new PagedResult<AssetEmission>(results, pageNumber, pageSize, pageCount: pageCount, totalRecords: countResult);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(new EventId(), ex, "Error getting paged AssetEmission");
+                throw;
+            }
+            finally
+            {
+                await connection.CloseAsync();
+            }
+
+
+            //try
+            //{
+            //    List<AssetEmission> result = new List<AssetEmission>();
+            //    await connection.OpenAsync();
+
+            //    await using var command = new NpgsqlCommand("SELECT * FROM asset_emissions LIMIT $1", connection);
+            //    await using var reader = await command.ExecuteReaderAsync();
+            //    while (await reader.ReadAsync())
+            //    {
+            //        result.Add(AssetEmissionFromDataReader(reader));
+            //    }
+            //    return result;
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw;
+            //}
+            //finally
+            //{
+            //    await connection.CloseAsync();
+            //}
+        }
+
+       
 
 
 

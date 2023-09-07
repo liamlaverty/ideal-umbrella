@@ -1,11 +1,13 @@
-﻿using IU.ClimateTrace.Data.Models.ClimateTraceDbModels;
+﻿using IU.ClimateTrace.Common.DataFilters;
+using IU.ClimateTrace.Data.Models.ClimateTraceDbModels;
 using IU.ClimateTrace.Data.Repositories.Interface;
 using Microsoft.Extensions.Logging;
 using Npgsql;
 
 namespace IU.ClimateTrace.Data.Repositories
 {
-    public class CountryEmissionRepository : IRepository<CountryEmission>
+
+    public class CountryEmissionRepository : ICountryEmissionRepository
     {
         private readonly ILogger logger;
         private readonly NpgsqlConnection connection;
@@ -94,30 +96,114 @@ namespace IU.ClimateTrace.Data.Repositories
             }
         }
 
-        public Task<CountryEmission> DeleteAsync(int id)
+        public async Task<PagedResult<CountryEmission>> GetPagedAsync(
+            string isoCountryCode,
+            string gasName,
+            DateTime startDate,
+            DateTime endDate,
+            OrderByDirection orderByDirection,
+            CountryEmissionsOrderByCol orderByColumn,
+            int pageNumber = 0,
+            int pageSize = 50)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<CountryEmission>> GetAllAsync()
+        public async Task<PagedResult<CountryEmission>> GetPagedAsync(int pageNumber = 0, int pageSize = 1000)
         {
+            if (pageNumber < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(pageNumber), "must be 0 or greater");
+            }
+            if (pageSize < 1)
+            {
+                throw new ArgumentOutOfRangeException(nameof(pageSize), "must be 1 or greater");
+            }
             try
             {
-                List<CountryEmission> result = new List<CountryEmission>();
                 await connection.OpenAsync();
-
-                await using var command = new NpgsqlCommand("SELECT * FROM country_emissions LIMIT 100", connection);
-                await using var reader = await command.ExecuteReaderAsync();
-
-                while (await reader.ReadAsync())
+                await using var countCommand = new NpgsqlCommand()
                 {
-                    result.Add(
-                         CountryEmissionFromDataReader(reader));
+                    Connection = connection,
+                    CommandText =
+                    @"SELECT COUNT(*) FROM country_emissions",
+                };
+                await countCommand.PrepareAsync();
+                var dbCount = await countCommand.ExecuteScalarAsync();
+                Int64.TryParse(dbCount?.ToString(), out long countResult);
+
+                // https://stackoverflow.com/a/17974/1663868
+                var pageCount = (countResult + pageSize - 1) / pageSize;
+
+
+
+                await using var command = new NpgsqlCommand()
+                {
+                    Connection = connection,
+                    CommandText =
+                    @"SELECT * FROM country_emissions 
+                            LIMIT $1
+                            OFFSET $2",
+                    Parameters =
+                    {
+                        new() {Value = pageSize },
+                        new() {Value = pageNumber * pageSize },
+                    }
+                };
+                await command.PrepareAsync();
+                await using var reader = await command.ExecuteReaderAsync();
+                List<CountryEmission> results = new();
+                if (reader.HasRows)
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        var castResult = CountryEmissionFromDataReader(reader);
+                        results.Add(castResult);
+                    }
                 }
-                return result;
+
+                return new PagedResult<CountryEmission>(results, pageNumber, pageSize, pageCount: pageCount, totalRecords: countResult);
             }
             catch (Exception ex)
             {
+                logger.LogError(new EventId(), ex, "Error Getting paged CountryEmission");
+                throw;
+            }
+            finally
+            {
+                await connection.CloseAsync();
+            }
+
+        }
+
+        /// <summary>
+        ///  Deletes all entities form a database with a given ID
+        /// </summary>
+        /// <param name="id">the ID of the country emission to be deleted</param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public async Task DeleteAsync(int id)
+        {
+            try
+            {
+                await connection.OpenAsync();
+                await using var command = new NpgsqlCommand()
+                {
+                    Connection = connection,
+                    CommandText =
+                    @"DELETE FROM country_emissions 
+                            WHERE id = $1",
+                    Parameters =
+                    {
+                        new() {Value = id },
+                    }
+                };
+                await command.PrepareAsync();
+                await command.ExecuteNonQueryAsync();
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(new EventId(), ex, $"Error deleting country emission by ID {id}");
                 throw;
             }
             finally
@@ -126,15 +212,59 @@ namespace IU.ClimateTrace.Data.Repositories
             }
         }
 
-
-
-
-        public Task<CountryEmission> GetAsync(int id)
+        /// <summary>
+        ///  Gets a single CountryEmisison by its ID
+        ///  
+        /// if no CountryEmission can be found, returns null
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// a country emission with the given ID
+        /// 
+        /// OR 
+        /// 
+        /// null
+        /// </returns>
+        public async Task<CountryEmission> GetAsync(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await connection.OpenAsync();
+                await using var command = new NpgsqlCommand()
+                {
+                    Connection = connection,
+                    CommandText =
+                    @"SELECT * FROM country_emissions
+                                WHERE id = $1 LIMIT 1",
+                    Parameters =
+                    {
+                        new() {Value = id },
+                    }
+                };
+                await command.PrepareAsync();
+                await using var reader = await command.ExecuteReaderAsync();
+                if (reader.HasRows)
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        var castResult = CountryEmissionFromDataReader(reader);
+                        return castResult;
+                    }
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(new EventId(), ex, "Error getting CountryEmission");
+                throw;
+            }
+            finally
+            {
+                await connection.CloseAsync();
+            }
         }
 
-        public Task<CountryEmission> Update(CountryEmission entity)
+        public async Task<CountryEmission> Update(CountryEmission entity)
         {
             throw new NotImplementedException();
         }

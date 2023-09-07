@@ -3,6 +3,8 @@
 namespace IU.ClimateTrace.Data.Models.ClimateTraceDbModels
 {
 
+   
+
     public class AssetEmission : TrackedDataEntity, IEntity
     {
         public AssetEmission(
@@ -30,7 +32,7 @@ namespace IU.ClimateTrace.Data.Models.ClimateTraceDbModels
                 string asset_type,
                 Geometry st_astext) 
         {
-            AssetId = asset_id;
+            Id = asset_id;
             Iso3Country = iso3_country;
             OriginalInventorySector = original_inventory_sector;
             StartTime = start_time;
@@ -55,7 +57,7 @@ namespace IU.ClimateTrace.Data.Models.ClimateTraceDbModels
             StAstext = st_astext;
         }
 
-        public int AssetId { get; set; }
+        public int Id { get; set; }
         public string Iso3Country { get; set; }
         public string OriginalInventorySector { get; set; }
         public DateTime StartTime { get; set; }
