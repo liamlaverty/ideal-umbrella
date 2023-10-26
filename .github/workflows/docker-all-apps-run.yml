@@ -9,32 +9,29 @@ on:
     branches: [ "main", "develop" ]
 
 jobs:
-  get_runner:
-    name: get_runner
-    if: ${{ always() }}
+  all:
+    name: Docker compose test postgres server is created
     runs-on: ubuntu-latest
-    outputs:
-      RUNNER: ${{ runner.name }}
-    steps: 
-      - run: echo "selected runner = ${{ runner.name }}"
-
-  build_and_launch_to_docker:
-    name: build_and_launch_to_docker_app
-    needs: get_runner
-    runs-on: ${{needs.get_runner.outputs.RUNNER}}
     steps:
       - uses: actions/checkout@v3
+      
       - name: Docker Create postgres volume
         run: docker volume create ideal_umbrella_postgres_data
+      
       - name: Docker compose up
         run: docker-compose --env-file .env.example up -d --build sql_postgres_db
-  test_apps_are_running:
-    name: Test Applications are running
-    runs-on: ${{needs.get_runner.outputs.RUNNER}}
-    needs: build_and_launch_to_docker
-    steps:
-      - uses: actions/checkout@v3
+      
       - name: Make the script files executable
         run: chmod +x .github/workflows/workflow-scripts/docker-all-apps-run-healthcheck.sh
+      
       - name: Test Postgres running
         run: .github/workflows/workflow-scripts/docker-all-apps-run-healthcheck.sh example_postgres_sql_server_db 30
+      
+      - name: Test MsSQL running
+        run: .github/workflows/workflow-scripts/docker-all-apps-run-healthcheck.sh example_umbraco_sql_server_db 30
+      
+      - name: Test Umbraco Backoffice running
+        run: .github/workflows/workflow-scripts/docker-all-apps-run-healthcheck.sh EXAMPLE_PROJECT_NAME_umbraco_backoffice 30
+      
+      - name: Test Umbraco Frontend running
+        run: .github/workflows/workflow-scripts/docker-all-apps-run-healthcheck.sh EXAMPLE_PROJECT_NAME_umbraco_frontend 30
