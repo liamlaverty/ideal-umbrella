@@ -25,9 +25,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IU.ClimateTrace.Common", ".
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IU.ClimateTrace.Data", "..\IU.ClimateTrace.Data\IU.ClimateTrace.Data.csproj", "{E0CD50A3-17E0-4863-9AE5-4853B7AA725F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IU.ClimateTrace.Data.Tests", "..\IU.ClimateTrace.Data.Tests\IU.ClimateTrace.Data.Tests.csproj", "{51014CD2-BD41-40C4-9BE7-CC6355BB4BB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IU.ClimateTrace.Data.Tests", "..\IU.ClimateTrace.Data.Tests\IU.ClimateTrace.Data.Tests.csproj", "{51014CD2-BD41-40C4-9BE7-CC6355BB4BB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IU.ClimateTrace.Importer.Web.API", "..\IU.ClimateTrace.Importer.Web.API\IU.ClimateTrace.Importer.Web.API.csproj", "{18851E22-C939-4C3A-8D18-095C31C6DC14}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IU.ClimateTrace.Importer.Web.API", "..\IU.ClimateTrace.Importer.Web.API\IU.ClimateTrace.Importer.Web.API.csproj", "{18851E22-C939-4C3A-8D18-095C31C6DC14}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sln Items", "Sln Items", "{9E088233-08F6-4EB3-80DA-FB45318F1027}"
+	ProjectSection(SolutionItems) = preProject
+		..\.gitignore = ..\.gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
