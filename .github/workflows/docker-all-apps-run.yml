@@ -9,8 +9,8 @@ on:
     branches: [ "main", "develop" ]
 
 jobs:
-  all:
-    name: Docker compose test postgres server is created
+  build_and_launch_to_docker:
+    name: build_and_launch_to_docker_app
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -18,6 +18,12 @@ jobs:
         run: docker volume create ideal_umbrella_postgres_data
       - name: Docker compose up
         run: docker-compose --env-file .env.example up -d --build sql_postgres_db
+  test_apps_are_running:
+    name: Test Applications are running
+    runs-on: ubuntu-latest
+    needs: build_and_launch_to_docker
+    steps:
+      - uses: actions/checkout@v3
       - name: Make the script files executable
         run: chmod +x .github/workflows/workflow-scripts/docker-all-apps-run-healthcheck.sh
       - name: Test Postgres running
