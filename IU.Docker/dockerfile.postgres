@@ -1,0 +1,7 @@
+FROM postgis/postgis:15-3.3
+
+LABEL author="Liam Laverty"
+LABEL description="Postgres image for data api"
+LABEL version="1.0"
+
+COPY ./IU.Docker/postgres-entrypoint/postgres-startup.sql /docker-entrypoint-initdb.d/
