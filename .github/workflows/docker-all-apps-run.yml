@@ -25,13 +25,13 @@ jobs:
         run: chmod +x .github/workflows/workflow-scripts/docker-all-apps-run-healthcheck.sh
       
       - name: Test Postgres running
-        run: .github/workflows/workflow-scripts/docker-all-apps-run-healthcheck.sh example_postgres_sql_server_db 30
+        run: .github/workflows/workflow-scripts/docker-all-apps-run-healthcheck.sh example_postgres_sql_server_db 30 || exit 1
       
       - name: Test MsSQL running
-        run: .github/workflows/workflow-scripts/docker-all-apps-run-healthcheck.sh example_umbraco_sql_server_db 30
+        run: .github/workflows/workflow-scripts/docker-all-apps-run-healthcheck.sh example_umbraco_sql_server_db 30 || exit 1
       
       - name: Test Umbraco Backoffice running
-        run: .github/workflows/workflow-scripts/docker-all-apps-run-healthcheck.sh EXAMPLE_PROJECT_NAME_umbraco_backoffice 30
+        run: .github/workflows/workflow-scripts/docker-all-apps-run-healthcheck.sh EXAMPLE_PROJECT_NAME_umbraco_backoffice 30 || exit 1
       
       - name: Test Umbraco Frontend running
-        run: .github/workflows/workflow-scripts/docker-all-apps-run-healthcheck.sh EXAMPLE_PROJECT_NAME_umbraco_frontend 30
+        run: .github/workflows/workflow-scripts/docker-all-apps-run-healthcheck.sh EXAMPLE_PROJECT_NAME_umbraco_frontend 30 || exit 1
