@@ -1,23 +1,3 @@
-create table if not exists country_emissions
-(
-    id                        serial            ,
-    iso3_country              char(3)           not null,
-    start_time                TIMESTAMP         ,
-    end_time                  TIMESTAMP         ,
-    original_inventory_sector varchar(80)       not null,
-    gas                       char(11)          not null,
-    emissions_quantity        bigint default 0  not null,
-    emissions_quantity_units  varchar(32)       not null,
-    temporal_granularity      varchar(32)       not null,
-    origin_source             varchar(32)       not null,
-    source_created_date       TIMESTAMP         ,
-    source_modified_date      TIMESTAMP         ,
-    created_date              TIMESTAMP         ,
-    modified_date             TIMESTAMP         ,
-
-    PRIMARY KEY (iso3_country, start_time, gas, temporal_granularity, original_inventory_sector)
-);
-
 CREATE TABLE IF NOT EXISTS asset_emissions_test 
 (
     asset_id                        INTEGER             NOT NULL,
@@ -45,9 +25,31 @@ CREATE TABLE IF NOT EXISTS asset_emissions_test
     st_astext                       GEOMETRY            NOT NULL, 
 
     PRIMARY KEY (iso3_country, asset_id, start_time, gas, temporal_granularity)
-)
+);
+
+create table if not exists country_emissions
+(
+    id                        serial            ,
+    iso3_country              char(3)           not null,
+    start_time                TIMESTAMP         ,
+    end_time                  TIMESTAMP         ,
+    original_inventory_sector varchar(80)       not null,
+    gas                       char(11)          not null,
+    emissions_quantity        bigint default 0  not null,
+    emissions_quantity_units  varchar(32)       not null,
+    temporal_granularity      varchar(32)       not null,
+    origin_source             varchar(32)       not null,
+    source_created_date       TIMESTAMP         ,
+    source_modified_date      TIMESTAMP         ,
+    created_date              TIMESTAMP         ,
+    modified_date             TIMESTAMP         ,
+
+    PRIMARY KEY (iso3_country, start_time, gas, temporal_granularity, original_inventory_sector)
+);
+
+
 
 CREATE TABLE IF NOT EXISTS asset_owners 
 (
 
-)
+);
