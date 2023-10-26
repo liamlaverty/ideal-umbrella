@@ -14,6 +14,12 @@ fi
 echo "Container: $container_name";
 echo "Timeout: $timeout sec";
 
+CID=$(docker ps -q -f status=running -f name=^/${container_name}$)
+if [ ! "${CID}" ]; then
+  echo "Container doesn't exist"
+  exit 1;
+fi
+
 try=0;
 is_healthy="false";
 while [ $is_healthy != "true" ];
@@ -27,3 +33,5 @@ do
     exit 1;
   fi
 done
+
+
