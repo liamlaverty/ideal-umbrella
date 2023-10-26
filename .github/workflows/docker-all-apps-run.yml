@@ -14,29 +14,29 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      
-      - name: Docker Create postgres volume
-        run: docker volume create ideal_umbrella_postgres_data
-      
-      - name: Docker compose up
-        run: docker-compose --env-file .github/workflows/workflow-scripts/.env.github_actions_env up -d
-      
-      - name: Make the script files executable
+
+      - name: Make test script files executable
         shell: bash
         run: chmod +x .github/workflows/workflow-scripts/docker-all-apps-run-healthcheck.sh
+
+      - name: Docker - create external postgres volume
+        run: docker volume create ideal_umbrella_postgres_data
       
-      - name: Test Postgres running
+      - name: Docker compose up with custom github actions env file
+        run: docker-compose --env-file .github/workflows/workflow-scripts/.env.github_actions_env up -d
+      
+      - name: Test Postgres running and healthy after 60 seconds
         shell: bash
         run: .github/workflows/workflow-scripts/docker-all-apps-run-healthcheck.sh example_postgres_sql_server_db 60
       
-      - name: Test MsSQL running
+      - name: Test MsSQL running and healthy after 60 seconds
         shell: bash
         run: .github/workflows/workflow-scripts/docker-all-apps-run-healthcheck.sh example_umbraco_sql_server_db 60
       
-      - name: Test Umbraco Backoffice running
+      - name: Test Umbraco Backoffice running and healthy after 60 seconds
         shell: bash
         run: .github/workflows/workflow-scripts/docker-all-apps-run-healthcheck.sh EXAMPLE_PROJECT_NAME_umbraco_backoffice 60
       
-      - name: Test Umbraco Frontend running
+      - name: Test Umbraco Frontend running and healthy after 60 seconds
         shell: bash
         run: .github/workflows/workflow-scripts/docker-all-apps-run-healthcheck.sh EXAMPLE_PROJECT_NAME_umbraco_frontend 60
