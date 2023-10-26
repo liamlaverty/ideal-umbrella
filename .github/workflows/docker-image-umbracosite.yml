@@ -14,4 +14,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build Umbraco Docker image
-      run: docker build . --file ./IU.Docker/dockerfile.umbracosite --tag my-image-name:$(date +%s)
+      run: docker build . --file IU.Docker/dockerfile.umbracosite --tag my-image-name:$(date +%s)
