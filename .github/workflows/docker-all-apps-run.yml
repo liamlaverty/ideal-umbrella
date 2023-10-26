@@ -1,6 +1,7 @@
 name: "Test Docker Compose"
-author: "Ryo Kuroyanagi, Liam Laverty"
-description: "Checks if the docker app has launched, based on the article: https://dev.to/ku6ryo/script-to-check-if-docker-booted-for-github-actions-138g"
+# author: "Ryo Kuroyanagi, Liam Laverty"
+# description: "Checks if the docker app has launched, based on the article: https://dev.to/ku6ryo/script-to-check-if-docker-booted-for-github-actions-138g"
+
 on:
   push:
     branches: [ "main", "stage", "develop" ]
