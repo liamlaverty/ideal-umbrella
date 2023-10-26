@@ -1,0 +1,18 @@
+name: Test Docker Compose
+author: Ryo Kuroyanagi, Liam Laverty
+description: Checks if the docker app has launched, based on the article: https://dev.to/ku6ryo/script-to-check-if-docker-booted-for-github-actions-138g
+on:
+  push:
+    branches: [ "main", "stage", "develop" ]
+  pull_request:
+    branches: [ "main", "develop" ]
+
+jobs:
+  all:
+    name: Docker compose test postgres server is created
+    runs-on: ubuntu-latest
+    steps:
+      - name: Docker compose up
+        run: docker-compose --env-file ./.env.example up -d
+      - name: Test
+        run: .workflow-scripts\docker-all-apps-run-healthcheck.sh example_postgres_sql_server_db 30 && test.sh

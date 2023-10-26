@@ -69,6 +69,7 @@ services:
     build:
       context: .
       dockerfile: ./IU.Docker/dockerfile.umbracosite
+    container_name: '${PROJECT_FRIENDLY_NAME}_umbraco_backoffice'
     healthcheck:
       # test to see if the site is online, if the Install Umbraco page
       # is loaded, this will report failures
@@ -106,6 +107,7 @@ services:
     build:
       context: .
       dockerfile: ./IU.Docker/dockerfile.umbracosite
+    container_name: '${PROJECT_FRIENDLY_NAME}_umbraco_frontend'
     healthcheck:
       # test to see if the site is online, if the Install Umbraco page
       # is loaded, this will report failures
