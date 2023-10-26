@@ -19,7 +19,7 @@ jobs:
         run: docker volume create ideal_umbrella_postgres_data
       
       - name: Docker compose up
-        run: docker-compose --env-file .env.example up -d --build sql_postgres_db
+        run: docker-compose --env-file .env.example up -d
       
       - name: Make the script files executable
         shell: bash
@@ -27,16 +27,16 @@ jobs:
       
       - name: Test Postgres running
         shell: bash
-        run: .github/workflows/workflow-scripts/docker-all-apps-run-healthcheck.sh example_postgres_sql_server_db 30 || exit 1
+        run: .github/workflows/workflow-scripts/docker-all-apps-run-healthcheck.sh example_postgres_sql_server_db 30
       
       - name: Test MsSQL running
         shell: bash
-        run: .github/workflows/workflow-scripts/docker-all-apps-run-healthcheck.sh example_umbraco_sql_server_db 30 || exit 1
+        run: .github/workflows/workflow-scripts/docker-all-apps-run-healthcheck.sh example_umbraco_sql_server_db 30
       
       - name: Test Umbraco Backoffice running
         shell: bash
-        run: .github/workflows/workflow-scripts/docker-all-apps-run-healthcheck.sh EXAMPLE_PROJECT_NAME_umbraco_backoffice 30 || exit 1
+        run: .github/workflows/workflow-scripts/docker-all-apps-run-healthcheck.sh EXAMPLE_PROJECT_NAME_umbraco_backoffice 30
       
       - name: Test Umbraco Frontend running
         shell: bash
-        run: .github/workflows/workflow-scripts/docker-all-apps-run-healthcheck.sh EXAMPLE_PROJECT_NAME_umbraco_frontend 30 || exit 1
+        run: .github/workflows/workflow-scripts/docker-all-apps-run-healthcheck.sh EXAMPLE_PROJECT_NAME_umbraco_frontend 30

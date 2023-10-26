@@ -14,6 +14,7 @@ fi
 echo "Container: $container_name";
 echo "Timeout: $timeout sec";
 
+# test the container exists before checking its health
 CID=$(docker ps -q -f status=running -f name=^/${container_name}$)
 if [ ! "${CID}" ]; then
   echo "Container doesn't exist"
