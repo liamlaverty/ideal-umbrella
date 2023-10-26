@@ -14,6 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Docker compose up
-        run: docker-compose --env-file ./.env.example up -d
+        run: docker-compose --env-file .env.example up -d
       - name: Test
         run: .workflow-scripts\docker-all-apps-run-healthcheck.sh example_postgres_sql_server_db 30 && test.sh
