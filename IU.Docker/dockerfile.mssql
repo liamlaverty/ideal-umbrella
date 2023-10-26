@@ -6,8 +6,8 @@ RUN chown mssql /var/opt/sqlserver
 
 EXPOSE 1433/tcp
 
-COPY entrypoint/docker-umbraco-setup.sql /
-COPY entrypoint/docker-entrypoint.sh /
+COPY ./IU.Docker/entrypoint/docker-umbraco-setup.sql /
+COPY ./IU.Docker/entrypoint/docker-entrypoint.sh /
 
 RUN chmod +x /docker-entrypoint.sh
 
