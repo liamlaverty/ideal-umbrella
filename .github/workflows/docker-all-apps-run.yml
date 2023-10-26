@@ -19,4 +19,4 @@ jobs:
       - name: Docker compose up
         run: docker-compose --env-file .env.example up -d --build sql_postgres_db
       - name: Test Postgres running
-        run: .workflow-scripts\docker-all-apps-run-healthcheck.sh example_postgres_sql_server_db 30 && test.sh
+        run: .github\workflows\workflow-scripts\docker-all-apps-run-healthcheck.sh example_postgres_sql_server_db 30 && test.sh
