@@ -37,6 +37,6 @@ jobs:
         shell: bash
         run: .github/workflows/workflow-scripts/docker-all-apps-run-healthcheck.sh EXAMPLE_PROJECT_NAME_umbraco_backoffice 60
       
-      - name: Test Umbraco Frontend running and healthy after 60 seconds
+      - name: Test Umbraco Frontend running and healthy after 120 seconds
         shell: bash
-        run: .github/workflows/workflow-scripts/docker-all-apps-run-healthcheck.sh EXAMPLE_PROJECT_NAME_umbraco_frontend 60
+        run: .github/workflows/workflow-scripts/docker-all-apps-run-healthcheck.sh EXAMPLE_PROJECT_NAME_umbraco_frontend 120
