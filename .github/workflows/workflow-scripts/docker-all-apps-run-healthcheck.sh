@@ -6,6 +6,10 @@ container_name="$1"
 # Timeout in seconds. Default: 60
 timeout=$((${2:-60}));
 
+echo "docker ps result:"
+DOCKER_PS_OUTPUT=$(docker ps)
+echo "${DOCKER_PS_OUTPUT}"
+
 if [ -z $container_name ]; then
   echo "No container name specified";
   exit 1;
@@ -17,7 +21,7 @@ echo "Timeout: $timeout sec";
 # test the container exists before checking its health
 CID=$(docker ps -q -f status=running -f name=^/${container_name}$)
 if [ ! "${CID}" ]; then
-  echo "Container doesn't exist"
+  echo "Container  $container_name doesn't exist"
   exit 1;
 fi
 
