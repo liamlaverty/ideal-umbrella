@@ -11,8 +11,8 @@
 
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="30.0.1" />
-    <PackageReference Include="Umbraco.Cms" Version="12.1.1" />
-    <PackageReference Include="uSync" Version="12.1.0" />
+    <PackageReference Include="Umbraco.Cms" Version="12.2.0" />
+    <PackageReference Include="uSync" Version="12.2.1" />
   </ItemGroup>
 
   <ItemGroup>
