@@ -13,6 +13,7 @@ jobs:
     name: Docker compose test postgres server is created
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - name: Docker compose up
         run: docker-compose --env-file .env.example up -d
       - name: Test
