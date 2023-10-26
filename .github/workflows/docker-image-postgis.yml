@@ -1,4 +1,4 @@
-name: Docker Image CI - MsSQL
+name: Docker Image CI - Posgis
 
 on:
   push:
@@ -14,5 +14,5 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Build MsSQL Docker image
-      run: docker build . --file IU.Docker/dockerfile.mssql --tag my-image-name:$(date +%s)
+    - name: Build Postgres/Postgis Docker image
+      run: docker build . --file IU.Docker/dockerfile.postgres --tag my-image-name:$(date +%s)

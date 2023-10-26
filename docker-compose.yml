@@ -1,6 +1,28 @@
 version: '3'
-# replace instances of 'moretive' in this file with your project name
 services:
+  sql_postgres_db:
+    build:
+      context: .
+      dockerfile: ./IU.Docker/dockerfile.postgres
+    image: 'postgis-database'
+    container_name: ${POSTGRES_DATABASE_SERVER_AND_CONTAINER_NAME}
+    environment:
+      POSTGRES_DB: ${POSTGRES_DATABASE_DB}
+      POSTGRES_USER: ${POSTGRES_DATABASE_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_DATABASE_PASSWORD}
+      PGDATA: ${POSTGRES_DATABASE_DATA}
+    volumes: 
+      - ideal_umbrella_postgres_data:${POSTGRES_DATABASE_DATA}
+    ports:
+      - "5432:5432"
+    restart: always
+    networks:
+      - postgis_database_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
   sql_server_db:
     build:
       context: .
@@ -23,7 +45,7 @@ services:
     ports: 
       - "1433:1433"
     networks:
-      - umbraco_application_network
+      - umbraco_application_mssql_network
     environment: 
       SA_PASSWORD: "${UMBRACO_DATABASE_SERVER_SA_PASSWORD}"
       MSSQL_SA_PASSWORD: "${UMBRACO_DATABASE_SERVER_SA_PASSWORD}"
@@ -32,8 +54,9 @@ services:
       MSSQL_BACKUP_DIR: "/var/opt/mssql"
       MSSQL_DATA_DIR: "/var/opt/data"
       MSSQL_LOG_DIR: "/var/opt/log"
+    restart: always
     volumes: 
-     - moretive_mssql_data:/var/opt/mssql
+     - ideal_umbrella_mssql_data:/var/opt/mssql
     healthcheck:
       # prevents the Umbraco site running before the database is created
       # test: ["CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -S ${UMBRACO_DATABASE_SERVER_AND_CONTAINER_NAME} -d ${UMBRACO_DATABASE_NAME} -U ${UMBRACO_DATABASE_USERNAME_STRING} -P ${UMBRACO_DATABASE_PASSWORD_STRING} -Q 'SELECT 1' || exit 1"]
@@ -55,10 +78,10 @@ services:
       retries: 100
       start_period: 180s
     volumes:
-      - moretive_umbraco_media:/publish/wwwroot/media
-      - moretive_umbraco_logs:/publish/umbraco/Logs
+      - ideal_umbrella_umbraco_media:/publish/wwwroot/media
+      - ideal_umbrella_umbraco_logs:/publish/umbraco/Logs
     networks:
-      - umbraco_application_network
+      - umbraco_application_mssql_network
     restart: always
     ports:
       - 5010:80
@@ -92,10 +115,10 @@ services:
       retries: 100
       start_period: 180s
     volumes:
-      - moretive_umbraco_media:/publish/wwwroot/media
-      - moretive_umbraco_logs:/publish/umbraco/Logs
+      - ideal_umbrella_umbraco_media:/publish/wwwroot/media
+      - ideal_umbrella_umbraco_logs:/publish/umbraco/Logs
     networks:
-      - umbraco_application_network
+      - umbraco_application_mssql_network
     restart: always
     ports:
       - 5011:80
@@ -119,12 +142,22 @@ services:
       Umbraco__CMS__Unattended__InstallUnattended: false # the backoffice does the install
       ASPNETCORE_ENVIRONMENT: Production
 networks:
-  umbraco_application_network: 
-    name: "${PROJECT_FRIENDLY_NAME}_umbraco_application_network"
+  umbraco_application_mssql_network: 
+    # this network is for the Umbraco MSSQL server only. 
+    # applications can be granted access to the network if they 
+    # need to communicate with MSSQL. Do not add otherwise    
+    name: "${PROJECT_FRIENDLY_NAME}_umbraco_application_mssql_network"
+  postgis_database_network:
+    # this network is for the Postgres server only. 
+    # applications can be granted access to the network if they 
+    # need to communicate with Postgres. Do not add otherwise
+    name: "${PROJECT_FRIENDLY_NAME}_postgis_database_network"
 volumes: 
-  moretive_umbraco_media: 
+  ideal_umbrella_umbraco_media: 
     external: false
-  moretive_umbraco_logs: 
+  ideal_umbrella_umbraco_logs: 
     external: false
-  moretive_mssql_data:
+  ideal_umbrella_mssql_data:
     external: false
+  ideal_umbrella_postgres_data:
+    external: true
