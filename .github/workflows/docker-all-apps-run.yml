@@ -21,7 +21,7 @@ jobs:
   build_and_launch_to_docker:
     name: build_and_launch_to_docker_app
     needs: get_runner
-    runs-on: ${{needs.get-runner.outputs.RUNNER}}
+    runs-on: ${{needs.get_runner.outputs.RUNNER}}
     steps:
       - uses: actions/checkout@v3
       - name: Docker Create postgres volume
@@ -30,7 +30,7 @@ jobs:
         run: docker-compose --env-file .env.example up -d --build sql_postgres_db
   test_apps_are_running:
     name: Test Applications are running
-    runs-on: ${{needs.get-runner.outputs.RUNNER}}
+    runs-on: ${{needs.get_runner.outputs.RUNNER}}
     needs: build_and_launch_to_docker
     steps:
       - uses: actions/checkout@v3
