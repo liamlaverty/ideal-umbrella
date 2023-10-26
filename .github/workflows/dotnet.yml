@@ -5,9 +5,9 @@ name: .NET Umbraco build
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "stage", "develop" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "develop" ]
 
 jobs:
   build:
