@@ -19,7 +19,7 @@ jobs:
         run: docker volume create ideal_umbrella_postgres_data
       
       - name: Docker compose up
-        run: docker-compose --env-file .github/workflows/workflow-scripts/env.github_actions_env up -d
+        run: docker-compose --env-file .github/workflows/workflow-scripts/.env.github_actions_env up -d
       
       - name: Make the script files executable
         shell: bash
