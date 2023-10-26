@@ -3,8 +3,8 @@ version: '3'
 services:
   sql_server_db:
     build:
-      context: ./IU.Docker
-      dockerfile: dockerfile.mssql
+      context: .
+      dockerfile: ./IU.Docker/dockerfile.mssql
     entrypoint: [
       "/bin/bash", 
       "docker-entrypoint.sh"
