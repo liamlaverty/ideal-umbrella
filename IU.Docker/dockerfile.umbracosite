@@ -1,0 +1,17 @@
+# syntax=docker/dockerfile:1
+
+FROM mcr.microsoft.com/dotnet/sdk:7.0 as build-env
+WORKDIR /src
+# COPY ["../IdealUmbrella.site/IdealUmbrella.site.csproj", "."]
+COPY ["IdealUmbrella.site/IdealUmbrella.site.csproj", "."]
+
+RUN dotnet restore
+COPY . .
+RUN dotnet publish IdealUmbrella.site/IdealUmbrella.site.csproj --configuration Release --output /publish
+
+FROM mcr.microsoft.com/dotnet/sdk:7.0 as runtime-env
+WORKDIR /publish
+COPY --from=build-env /publish .
+ENV ASPNETCORE_URLS "http://+:80"
+EXPOSE 80
+ENTRYPOINT [ "dotnet", "IdealUmbrella.site.dll"]

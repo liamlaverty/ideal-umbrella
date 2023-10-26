@@ -1,0 +1,27 @@
+IF NOT EXISTS(SELECT * FROM sys.databases WHERE name = '$(UMBRACO_DB_NAME)')
+    BEGIN
+        CREATE DATABASE [$(UMBRACO_DB_NAME)]
+    END
+
+
+-- Creates the login MORETIVE_DATABASE_LOGIN with password 'TEST1234!'.  
+CREATE LOGIN $(UMBRACO_DB_USER_LOGIN)   
+    WITH PASSWORD = '$(UMBRACO_DB_USER_PASSWORD)';  
+GO  
+
+-- Creates a database user for the login created above.  
+USE [$(UMBRACO_DB_NAME)]
+    CREATE USER $(UMBRACO_DB_USER_NAME) FOR LOGIN $(UMBRACO_DB_USER_LOGIN);  
+GO  
+
+USE [$(UMBRACO_DB_NAME)]
+    ALTER ROLE db_datareader ADD MEMBER $(UMBRACO_DB_USER_NAME)
+GO  
+
+USE [$(UMBRACO_DB_NAME)]    
+    ALTER ROLE db_datawriter ADD MEMBER $(UMBRACO_DB_USER_NAME)
+GO  
+
+USE [$(UMBRACO_DB_NAME)]
+    ALTER ROLE db_ddladmin ADD MEMBER $(UMBRACO_DB_USER_NAME)
+GO

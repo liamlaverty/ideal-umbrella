@@ -1,0 +1,130 @@
+version: '3'
+# replace instances of 'moretive' in this file with your project name
+services:
+  sql_server_db:
+    build:
+      context: .
+      dockerfile: ./IU.Docker/dockerfile.mssql
+    entrypoint: [
+      "/bin/bash", 
+      "docker-entrypoint.sh"
+    ]
+    command: [ 
+      "/opt/mssql/bin/sqlservr",  
+      "${UMBRACO_DATABASE_SERVER_AND_CONTAINER_NAME}", 
+      "${UMBRACO_DATABASE_SERVER_SA_USERNAME}", 
+      "${UMBRACO_DATABASE_SERVER_SA_PASSWORD}",
+      "${UMBRACO_DATABASE_NAME}",
+      "${UMBRACO_DATABASE_USERNAME_STRING}",
+      "${UMBRACO_DATABASE_PASSWORD_STRING}"      
+    ]
+    container_name: ${UMBRACO_DATABASE_SERVER_AND_CONTAINER_NAME}
+    image:  mcr.microsoft.com/mssql/server:2022-latest
+    ports: 
+      - "1433:1433"
+    networks:
+      - umbraco_application_network
+    environment: 
+      SA_PASSWORD: "${UMBRACO_DATABASE_SERVER_SA_PASSWORD}"
+      MSSQL_SA_PASSWORD: "${UMBRACO_DATABASE_SERVER_SA_PASSWORD}"
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Express"
+      MSSQL_BACKUP_DIR: "/var/opt/mssql"
+      MSSQL_DATA_DIR: "/var/opt/data"
+      MSSQL_LOG_DIR: "/var/opt/log"
+    volumes: 
+     - moretive_mssql_data:/var/opt/mssql
+    healthcheck:
+      # prevents the Umbraco site running before the database is created
+      # test: ["CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -S ${UMBRACO_DATABASE_SERVER_AND_CONTAINER_NAME} -d ${UMBRACO_DATABASE_NAME} -U ${UMBRACO_DATABASE_USERNAME_STRING} -P ${UMBRACO_DATABASE_PASSWORD_STRING} -Q 'SELECT 1' || exit 1"]
+      test: ["CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -S ${UMBRACO_DATABASE_SERVER_AND_CONTAINER_NAME} -d ${UMBRACO_DATABASE_NAME} -U ${UMBRACO_DATABASE_USERNAME_STRING} -P ${UMBRACO_DATABASE_PASSWORD_STRING} -Q 'SELECT 1' || exit 1"]      
+      interval: 15s
+      timeout: 30s
+      retries: 5
+      start_period: 20s
+  website_backoffice:
+    build:
+      context: .
+      dockerfile: ./IU.Docker/dockerfile.umbracosite
+    healthcheck:
+      # test to see if the site is online, if the Install Umbraco page
+      # is loaded, this will report failures
+      test: curl --fail http://localhost:80 || exit 1
+      interval: 30s
+      timeout: 30s
+      retries: 100
+      start_period: 180s
+    volumes:
+      - moretive_umbraco_media:/publish/wwwroot/media
+      - moretive_umbraco_logs:/publish/umbraco/Logs
+    networks:
+      - umbraco_application_network
+    restart: always
+    ports:
+      - 5010:80
+    depends_on:
+      sql_server_db:
+        # this condition forces the website to wait for the database to report "healthy" status 
+        condition: service_healthy
+    environment:
+      ConnectionStrings__umbracoDbDSN: "Server=${UMBRACO_DATABASE_SERVER_AND_CONTAINER_NAME},1433;Database=${UMBRACO_DATABASE_NAME};User Id=${UMBRACO_DATABASE_USERNAME_STRING};Password=${UMBRACO_DATABASE_PASSWORD_STRING};TrustServerCertificate=true;"
+      ConnectionStrings__umbracoDbDSN_ProviderName: 'System.Data.SqlClient'
+      uSync__Settings__ImportOnFirstBoot: true
+      uSync__Settings__ExportOnSave: false
+      uSync__Settings__FirstBootGroup: 'all'
+      uSync__Sets__Default__HandlerDefaults__GuidNames: true
+      MapboxConfig__Settings__FrontEndKey: ${MAPBOX_FRONTEND_KEY}
+      Umbraco__CMS__Unattended__InstallUnattended: ${UMBRACO_CMS_UNATTENDED_INSTALLUNATTENDED}
+      Umbraco__CMS__Unattended__UnattendedUserName: '${UMBRACO_CMS_UNATTENDED_UNATTENDED_USERNAME}'
+      Umbraco__CMS__Unattended__UnattendedUserEmail: '${UMBRACO_CMS_UNATTENDED_UNATTENDED_EMAIL}'
+      Umbraco__CMS__Unattended__UnattendedUserPassword: '${UMBRACO_CMS_UNATTENDED_UNATTENDED_PASSWORD}'
+      ASPNETCORE_ENVIRONMENT: Production
+  website_frontend_1:
+    build:
+      context: .
+      dockerfile: ./IU.Docker/dockerfile.umbracosite
+    healthcheck:
+      # test to see if the site is online, if the Install Umbraco page
+      # is loaded, this will report failures
+      test: curl --fail http://localhost:80 || exit 1
+      interval: 30s
+      timeout: 30s
+      retries: 100
+      start_period: 180s
+    volumes:
+      - moretive_umbraco_media:/publish/wwwroot/media
+      - moretive_umbraco_logs:/publish/umbraco/Logs
+    networks:
+      - umbraco_application_network
+    restart: always
+    ports:
+      - 5011:80
+    depends_on:
+      sql_server_db:
+        # this condition forces the website to wait for the database to report "healthy" status 
+        condition: service_healthy
+        # this condition forces the front-end to wait for the backoffice to be "healthy" before starting
+      website_backoffice:
+        condition: service_healthy
+    environment:
+      ConnectionStrings__umbracoDbDSN: "Server=${UMBRACO_DATABASE_SERVER_AND_CONTAINER_NAME},1433;Database=${UMBRACO_DATABASE_NAME};User Id=${UMBRACO_DATABASE_USERNAME_STRING};Password=${UMBRACO_DATABASE_PASSWORD_STRING};TrustServerCertificate=true;"
+      ConnectionStrings__umbracoDbDSN_ProviderName: 'System.Data.SqlClient'
+      MapboxConfig__Settings__FrontEndKey: ${MAPBOX_FRONTEND_KEY}
+      uSync__Settings__ImportAtStartup: false
+      uSync__Settings__ImportOnFirstBoot: false
+      uSync__Settings__ExportOnSave: false
+      uSync__Settings__ExportOnStartup: false
+      uSync__Settings__DisableDashboard: true
+      uSync__Settings__SummaryDashboard: true
+      Umbraco__CMS__Unattended__InstallUnattended: false # the backoffice does the install
+      ASPNETCORE_ENVIRONMENT: Production
+networks:
+  umbraco_application_network: 
+    name: "${PROJECT_FRIENDLY_NAME}_umbraco_application_network"
+volumes: 
+  moretive_umbraco_media: 
+    external: false
+  moretive_umbraco_logs: 
+    external: false
+  moretive_mssql_data:
+    external: false
