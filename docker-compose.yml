@@ -93,10 +93,10 @@ services:
     environment:
       ConnectionStrings__umbracoDbDSN: "Server=${UMBRACO_DATABASE_SERVER_AND_CONTAINER_NAME},1433;Database=${UMBRACO_DATABASE_NAME};User Id=${UMBRACO_DATABASE_USERNAME_STRING};Password=${UMBRACO_DATABASE_PASSWORD_STRING};TrustServerCertificate=true;"
       ConnectionStrings__umbracoDbDSN_ProviderName: 'System.Data.SqlClient'
-      uSync__Settings__ImportOnFirstBoot: true
-      uSync__Settings__ExportOnSave: false
+      uSync__Settings__ImportOnFirstBoot: 'true'
+      uSync__Settings__ExportOnSave: 'false'
       uSync__Settings__FirstBootGroup: 'all'
-      uSync__Sets__Default__HandlerDefaults__GuidNames: true
+      uSync__Sets__Default__HandlerDefaults__GuidNames: 'true'
       MapboxConfig__Settings__FrontEndKey: ${MAPBOX_FRONTEND_KEY}
       Umbraco__CMS__Unattended__InstallUnattended: ${UMBRACO_CMS_UNATTENDED_INSTALLUNATTENDED}
       Umbraco__CMS__Unattended__UnattendedUserName: '${UMBRACO_CMS_UNATTENDED_UNATTENDED_USERNAME}'
@@ -135,13 +135,13 @@ services:
       ConnectionStrings__umbracoDbDSN: "Server=${UMBRACO_DATABASE_SERVER_AND_CONTAINER_NAME},1433;Database=${UMBRACO_DATABASE_NAME};User Id=${UMBRACO_DATABASE_USERNAME_STRING};Password=${UMBRACO_DATABASE_PASSWORD_STRING};TrustServerCertificate=true;"
       ConnectionStrings__umbracoDbDSN_ProviderName: 'System.Data.SqlClient'
       MapboxConfig__Settings__FrontEndKey: ${MAPBOX_FRONTEND_KEY}
-      uSync__Settings__ImportAtStartup: false
-      uSync__Settings__ImportOnFirstBoot: false
-      uSync__Settings__ExportOnSave: false
-      uSync__Settings__ExportOnStartup: false
-      uSync__Settings__DisableDashboard: true
-      uSync__Settings__SummaryDashboard: true
-      Umbraco__CMS__Unattended__InstallUnattended: false # the backoffice does the install
+      uSync__Settings__ImportAtStartup: 'false'
+      uSync__Settings__ImportOnFirstBoot: 'false'
+      uSync__Settings__ExportOnSave: 'false'
+      uSync__Settings__ExportOnStartup: 'false'
+      uSync__Settings__DisableDashboard: 'true'
+      uSync__Settings__SummaryDashboard: 'true'
+      Umbraco__CMS__Unattended__InstallUnattended: 'false' # the backoffice does the install
       ASPNETCORE_ENVIRONMENT: Production
 networks:
   umbraco_application_mssql_network: 
