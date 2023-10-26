@@ -1,5 +1,5 @@
 # ideal-umbrella
-Messing around with Umbraco 
+A climate data API and website
 
 
 ## Run the application 
