@@ -1,3 +1,6 @@
+#!/bin/bash
+set -e
+
 # Name of the target container to check
 container_name="$1"
 # Timeout in seconds. Default: 60
