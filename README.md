@@ -60,11 +60,11 @@ docker volume create ideal_umbrella_postgres_data
 docker compose --env-file ./.env.example up --build 
 ```
 
-*Note* this uses credentials stored in git, do not use the `.env.example` file for anything but local development. See [Detail](#detail) for full setup details
+*Note* this uses credentials stored in git, do not use the `.env.example` file for anything but local development. See [Detail](#docker-env-environment-variables) for full setup details
 
 ## Full Docker Install
 
-If you don't have the Docker platform installed, run through [Install Docker Platform](install-docker-platform), then come back to this step.
+If you don't have the Docker platform installed, run through [Install Docker Platform](#install-docker-platform), then come back to this step.
 
 1. Create a volume for your postgres data to persist on 
 
