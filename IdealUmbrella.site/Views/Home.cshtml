@@ -6,46 +6,49 @@
 
 
 
-
-<h2>National Emissions</h2>
-<div class="row">
-
-@foreach (var child in Model.Ancestor<Site>().Children<RegionCollection>().FirstOrDefault().Children<RegionSingle>().Take(12)) 
-	{
-		<div class="mb-4 col-sm-6 col-md-3 ">
-			<div class="card country-link-card">
-				@{
-					string svgPath = $"{child.CountryAlpha3.ToLower()}.svg";
-				}
-				<img class="card-img-top" src="/static/country-svg/@svgPath" alt="Country image">
-				<div class="card-body">
-					<h5 class="card-title">@child.PageTitle</h5>
-					<p class="card-text">@child.SEodescription</p>
-				<a href="@child.Url()" class="btn btn-primary stretched-link">View @child.CountryName's Emissions</a>
+@if (Model?.Ancestor<Site>()?.Children<RegionCollection>()?.FirstOrDefault()?.Children<RegionSingle>() != null && 
+			Model.Ancestor<Site>().Children<RegionCollection>().FirstOrDefault().Children<RegionSingle>().Any())
+{
+	<h2>National Emissions</h2>
+	<div class="row">
+		@foreach (var child in Model.Ancestor<Site>().Children<RegionCollection>().FirstOrDefault().Children<RegionSingle>().Take(12))
+		{
+			<div class="mb-4 col-sm-6 col-md-3 ">
+				<div class="card country-link-card">
+					@{
+						string svgPath = $"{child.CountryAlpha3.ToLower()}.svg";
+					}
+					<img class="card-img-top" src="/static/country-svg/@svgPath" alt="Country image">
+					<div class="card-body">
+						<h5 class="card-title">@child.PageTitle</h5>
+						<p class="card-text">@child.SEodescription</p>
+						<a href="@child.Url()" class="btn btn-primary stretched-link">View Emissions</a>
+					</div>
 				</div>
 			</div>
-		</div>
-	}
-	
-</div>
+		}
+	</div>
+}
+
+@if (Model?.Ancestor<Site>()?.Children<CompanyCollection>()?.FirstOrDefault()?.Children<CompanySingle>() != null && 
+					Model.Ancestor<Site>().Children<CompanyCollection>().FirstOrDefault().Children<CompanySingle>().Any())
+{
+	<h2>Corporate Emissions</h2>
+
+	@foreach (var child in Model.Ancestor<Site>().Children<CompanyCollection>().FirstOrDefault().Children<CompanySingle>()) 
+		{
+		<p>
+			<a href="@child.Url()">
+				@child.PageTitle
+				</a>
+		</p>
+		}
+}
 
 
-
-
-<h2>Corporate Emissions</h2>
-
-@foreach (var child in Model.Ancestor<Site>().Children<CompanyCollection>().FirstOrDefault().Children<CompanySingle>()) 
-	{
-	<p>
-		<a href="@child.Url()">
-			@child.PageTitle
-			</a>
-	</p>
-	}
-
-
-
-
+@if (Model?.Ancestor<Site>()?.Children<AssetCollection>()?.FirstOrDefault()?.Children<AssetSingle>() != null && 
+			Model.Ancestor<Site>().Children<AssetCollection>().FirstOrDefault().Children<AssetSingle>().Any())
+{
 <h2>Asset Emissions</h2>
 
 @foreach (var child in Model.Ancestor<Site>().Children<AssetCollection>().FirstOrDefault().Children<AssetSingle>()) 
@@ -54,3 +57,4 @@
 		<a href="@child.Url()">@child.PageTitle</a>
 	</p>
 	}
+}
