@@ -29,6 +29,10 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\static\sdg-icons\png\" />
+  </ItemGroup>
+
   <PropertyGroup>
     <!-- Razor files are needed for the backoffice to work correctly -->
     <CopyRazorGenerateFilesToPublishDirectory>true</CopyRazorGenerateFilesToPublishDirectory>

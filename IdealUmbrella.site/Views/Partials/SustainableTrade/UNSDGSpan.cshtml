@@ -1,0 +1,5 @@
+﻿@model int
+@{
+    string filePath = $"/static/sdg-icons/png/E-WEB-Goal-{Model.ToString("00")}.png";
+}
+<img src="@filePath" alt="UNSDG @Model.ToString("00") logo" class="img-fluid">
