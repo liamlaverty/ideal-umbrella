@@ -4,175 +4,20 @@
 @{
     Layout = "_Master.cshtml";
 
-    string sdgColSettings = "3 mb-0 p-1";
+    string sdgColSettings = "2 mb-0 p-1";
+    string rowMarginPaddingBorderClass = " pt-3 mb-3";
 }
-
-
-<div class="row">
-
-    <div class="col-6">
-        <div class="card sustainable-trade-card mb-3">
-            <div class="card-body">
-                <h5 class="card-title">Textiles/Cotton Example</h5>
-                <p class="card-text">
-                    'Use of proceeds' grade is
-                    prioritised and implies an @await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")
-                    on Environmental
-                </p>
-
-            </div>
-            <div class="card-body">
-                <table class="table icc-grading-table">
-                    <thead>
-                        <tr>
-                            <th scope="col"></th>
-                            <th scope="col">Environmental</th>
-                            <th scope="col">Socio-economic</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">Use of Proceeds</th>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Seller</th>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Buyer</th>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Distribution</th>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "b")</td>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "u")</td>
-                        </tr>
-                        <tr class="overall-grade">
-                            <th scope="row">Overall</th>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+<div class="row @rowMarginPaddingBorderClass">
+    <div class="col-8">
+        <p>
+            Donec lacus nisl, fringilla quis turpis eu, congue bibendum nibh. Maecenas egestas eget eros eu venenatis. Fusce nibh lectus, euismod sagittis velit in, consectetur tempor mi. Vestibulum consectetur eu sem eget convallis. Praesent eu molestie velit. Nullam posuere quam non quam blandit convallis. Nulla consectetur volutpat accumsan. Sed eleifend volutpat purus, mollis interdum sapien dapibus eget. Quisque volutpat sodales augue ac semper. Integer aliquam libero et sapien pretium, rutrum dictum nulla finibus. Donec sodales erat sit amet nibh consequat, sed molestie enim euismod.
+        </p>
+        <p>
+            Donec lacus nisl, fringilla quis turpis eu, congue bibendum nibh. Maecenas egestas eget eros eu venenatis. Fusce nibh lectus, euismod sagittis velit in, consectetur tempor mi. Vestibulum consectetur eu sem eget convallis. Praesent eu molestie velit. Nullam posuere quam non quam blandit convallis. Nulla consectetur volutpat accumsan. Sed eleifend volutpat purus, mollis interdum sapien dapibus eget. Quisque volutpat sodales augue ac semper. Integer aliquam libero et sapien pretium, rutrum dictum nulla finibus. Donec sodales erat sit amet nibh consequat, sed molestie enim euismod.
+        </p>
     </div>
-    <div class="col-6">
-        <div class="card sustainable-trade-card mb-3">
-            <div class="card-body">
-                <h5 class="card-title">Agriculture/Tomatoes</h5>
-                <p class="card-text">
-                    Insufficient information on the
-                    seller, buyer and distribution
-                    method implies a @await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "u") on
-                    Environmental
-                </p>
-
-            </div>
-            <div class="card-body">
-                <table class="table icc-grading-table">
-                    <thead>
-                        <tr>
-                            <th scope="col"></th>
-                            <th scope="col">Environmental</th>
-                            <th scope="col">Socio-economic</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">Use of Proceeds</th>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Seller</th>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "u")</td>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Buyer</th>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "u")</td>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Distribution</th>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "u")</td>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "u")</td>
-                        </tr>
-                        <tr class="overall-grade">
-                            <th scope="row">Overall</th>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "u")</td>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="col-6">
-        <div class="card sustainable-trade-card mb-3">
-            <div class="card-body">
-                <h5 class="card-title">Energy/Wind turbine</h5>
-                <p class="card-text">
-                    The use of proceeds is
-                    sustainable which implies
-                    an @await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a") on Environmental
-                </p>
-
-            </div>
-            <div class="card-body">
-                <table class="table icc-grading-table">
-                    <thead>
-                        <tr>
-                            <th scope="col"></th>
-                            <th scope="col">Environmental</th>
-                            <th scope="col">Socio-economic</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">Use of Proceeds</th>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "u")</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Seller</th>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Buyer</th>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Distribution</th>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "b")</td>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "u")</td>
-                        </tr>
-                        <tr class="overall-grade">
-                            <th scope="row">Overall</th>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "u")</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-
-<div class="row">
-    <div class="col-4">
-        <div class="card sustainable-trade-card mb-3">
+    <div class="col-4 my-auto">
+        <div class="card sustainable-trade-card ">
             <div class="card-body">
                 <h5 class="card-title">ICC Sustainable Trade Grading Definitions</h5>
                 <p class="card-text">
@@ -201,11 +46,190 @@
             </div>
         </div>
     </div>
-    <div class="col-4">
+</div>
+
+<div class="row @rowMarginPaddingBorderClass">
+    <div class="col-6">
+        <h2>Sector: Industry Examples</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-6">
+        <div class="card sustainable-trade-card mb-3">
+            <div class="card-body">
+                <table class="table icc-grading-table">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Environmental</th>
+                            <th scope="col">Socio-economic</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Use of Proceeds</th>
+                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
+                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Seller</th>
+                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
+                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Buyer</th>
+                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
+                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Distribution</th>
+                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "b")</td>
+                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "u")</td>
+                        </tr>
+                        <tr class="overall-grade">
+                            <th scope="row">Overall</th>
+                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
+                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 my-auto">
+        <h3 class="title">Textiles: Cotton Example</h3>
+        <p class="text">
+            'Use of proceeds' grade is prioritised and implies an
+            @await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n") on Environmental
+        </p>
+        <p>
+            Donec lacus nisl, fringilla quis turpis eu, congue bibendum nibh. Maecenas egestas eget eros eu venenatis. Fusce nibh lectus, euismod sagittis velit in, consectetur tempor mi. Vestibulum consectetur eu sem eget convallis. Praesent eu molestie velit. Nullam posuere quam non quam blandit convallis. Nulla consectetur volutpat accumsan. Sed eleifend volutpat purus, mollis interdum sapien dapibus eget. Quisque volutpat sodales augue ac semper. Integer aliquam libero et sapien pretium, rutrum dictum nulla finibus. Donec sodales erat sit amet nibh consequat, sed molestie enim euismod.
+        </p>
+
+    </div>
+
+
+</div>
+<div class="row @rowMarginPaddingBorderClass">
+    <div class="col-6 my-auto">
+        <h3 class="title">Agriculture: Tomatoes Example</h3>
+        <p class="text">
+            Insufficient information on the
+            seller, buyer and distribution
+            method implies a @await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "u") on
+            Environmental
+        </p>
+        <p>
+            Donec lacus nisl, fringilla quis turpis eu, congue bibendum nibh. Maecenas egestas eget eros eu venenatis. Fusce nibh lectus, euismod sagittis velit in, consectetur tempor mi. Vestibulum consectetur eu sem eget convallis. Praesent eu molestie velit. Nullam posuere quam non quam blandit convallis. Nulla consectetur volutpat accumsan. Sed eleifend volutpat purus, mollis interdum sapien dapibus eget. Quisque volutpat sodales augue ac semper. Integer aliquam libero et sapien pretium, rutrum dictum nulla finibus. Donec sodales erat sit amet nibh consequat, sed molestie enim euismod.
+        </p>
+    </div>
+    <div class="col-6">
+        <div class="card sustainable-trade-card mb-3">
+            <div class="card-body">
+                <table class="table icc-grading-table">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Environmental</th>
+                            <th scope="col">Socio-economic</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Use of Proceeds</th>
+                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
+                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Seller</th>
+                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "u")</td>
+                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Buyer</th>
+                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "u")</td>
+                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Distribution</th>
+                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "u")</td>
+                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "u")</td>
+                        </tr>
+                        <tr class="overall-grade">
+                            <th scope="row">Overall</th>
+                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "u")</td>
+                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="row @rowMarginPaddingBorderClass">
+    <div class="col-6">
+        <div class="card sustainable-trade-card mb-3">
+            <div class="card-body">
+                <table class="table icc-grading-table">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Environmental</th>
+                            <th scope="col">Socio-economic</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Use of Proceeds</th>
+                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
+                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "u")</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Seller</th>
+                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
+                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Buyer</th>
+                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
+                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Distribution</th>
+                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "b")</td>
+                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "u")</td>
+                        </tr>
+                        <tr class="overall-grade">
+                            <th scope="row">Overall</th>
+                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
+                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "u")</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 my-auto">
+        <h3 class="title">Energy: Wind Turbine Example</h3>
+        <p class="text">
+            The use of proceeds is
+            sustainable which implies
+            an @await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a") on Environmental
+        </p>
+        <p>
+            Donec lacus nisl, fringilla quis turpis eu, congue bibendum nibh. Maecenas egestas eget eros eu venenatis. Fusce nibh lectus, euismod sagittis velit in, consectetur tempor mi. Vestibulum consectetur eu sem eget convallis. Praesent eu molestie velit. Nullam posuere quam non quam blandit convallis. Nulla consectetur volutpat accumsan. Sed eleifend volutpat purus, mollis interdum sapien dapibus eget. Quisque volutpat sodales augue ac semper. Integer aliquam libero et sapien pretium, rutrum dictum nulla finibus. Donec sodales erat sit amet nibh consequat, sed molestie enim euismod.
+        </p>
+    </div>
+</div>
+
+<div class="row @rowMarginPaddingBorderClass">
+    <h3>Sustainable Development Goals (SDGs) mapping</h3>
+    <div class="col-6">
 
         <div class="card sustainable-trade-card mb-3">
             <div class="card-body">
-                <h5 class="card-title">Environmental SDGs (Sustainable Development Goals)</h5>
+                <h4 class="card-title"><span class="font-weight-bold">Environmental</span> SDGs</h4>
                 <div class="row">
                     <div class="col-@sdgColSettings">
                         @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 6)
@@ -229,10 +253,10 @@
             </div>
         </div>
     </div>
-    <div class="col-4">
+    <div class="col-6">
         <div class="card sustainable-trade-card mb-3">
             <div class="card-body">
-                <h5 class="card-title">Socio-economic SDGs (Sustainable Development Goals)</h5>
+                <h5 class="card-title"><span class="font-weight-bold">Socio-economic</span> SDGs</h5>
                 <div class="row">
                     <div class="col-@sdgColSettings">
                         @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 1)
@@ -272,3 +296,4 @@
         </div>
     </div>
 </div>
+
