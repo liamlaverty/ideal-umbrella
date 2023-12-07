@@ -20,7 +20,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>Sustainable Trade</summary>
 	[PublishedModel("sustainableTrade")]
-	public partial class SustainableTrade : PublishedContentModel
+	public partial class SustainableTrade : PublishedContentModel, IPageMetadata
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -48,5 +48,44 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		}
 
 		// properties
+
+		///<summary>
+		/// Main Navigation Display Text: Text to appear in the main navigation. If unset, the page's main title will be used by default
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.3.3+d2ff2ea")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("mainNavigationDisplayText")]
+		public virtual string MainNavigationDisplayText => global::Umbraco.Cms.Web.Common.PublishedModels.PageMetadata.GetMainNavigationDisplayText(this, _publishedValueFallback);
+
+		///<summary>
+		/// Page Title: the title of the page as displayed on the front-end
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.3.3+d2ff2ea")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("pageTitle")]
+		public virtual string PageTitle => global::Umbraco.Cms.Web.Common.PublishedModels.PageMetadata.GetPageTitle(this, _publishedValueFallback);
+
+		///<summary>
+		/// SEO Description: The meta SEO description tag
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.3.3+d2ff2ea")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("sEODescription")]
+		public virtual string SEodescription => global::Umbraco.Cms.Web.Common.PublishedModels.PageMetadata.GetSEodescription(this, _publishedValueFallback);
+
+		///<summary>
+		/// SEO Title: The SEO title of the page (uses the Page Title property if unset)
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.3.3+d2ff2ea")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("sEOTitle")]
+		public virtual string SEotitle => global::Umbraco.Cms.Web.Common.PublishedModels.PageMetadata.GetSEotitle(this, _publishedValueFallback);
+
+		///<summary>
+		/// Show In Main Navigation: If set to true, the page will appear in the main navigation for the site
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.3.3+d2ff2ea")]
+		[ImplementPropertyType("showInMainNavigation")]
+		public virtual bool ShowInMainNavigation => global::Umbraco.Cms.Web.Common.PublishedModels.PageMetadata.GetShowInMainNavigation(this, _publishedValueFallback);
 	}
 }
