@@ -8,12 +8,26 @@
 
 
 <h2>National Emissions</h2>
-@foreach (var child in Model.Ancestor<Site>().Children<RegionCollection>().FirstOrDefault().Children<RegionSingle>()) 
+<div class="row">
+
+@foreach (var child in Model.Ancestor<Site>().Children<RegionCollection>().FirstOrDefault().Children<RegionSingle>().Take(12)) 
 	{
-	<p>
-		<a href="@child.Url()">@child.PageTitle</a>
-	</p>
+		<div class="mb-4 col-sm-6 col-md-3 ">
+			<div class="card country-link-card">
+				@{
+					string svgPath = $"{child.CountryAlpha3.ToLower()}.svg";
+				}
+				<img class="card-img-top" src="/static/country-svg/@svgPath" alt="Country image">
+				<div class="card-body">
+					<h5 class="card-title">@child.PageTitle</h5>
+					<p class="card-text">@child.SEodescription</p>
+				<a href="@child.Url()" class="btn btn-primary stretched-link">View @child.CountryName's Emissions</a>
+				</div>
+			</div>
+		</div>
 	}
+	
+</div>
 
 
 

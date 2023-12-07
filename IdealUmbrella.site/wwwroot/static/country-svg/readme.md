@@ -1,0 +1,1 @@
+Based on https://github.com/linssen/country-flag-icons, as of Dec 7 2023

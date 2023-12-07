@@ -1,0 +1,22 @@
+﻿body {
+}
+
+
+.country-link-card {
+}
+
+    .country-link-card img {
+        max-height: 150px;
+        overflow: hidden;
+        object-fit: cover;
+        object-position: top;
+        filter: grayscale(100%);
+        transition-duration: 150ms;
+        transition-property: filter;
+    }
+
+    .country-link-card:hover img {
+        filter: grayscale(0%);
+        transition-duration: 150ms;
+        transition-property: filter;
+    }
