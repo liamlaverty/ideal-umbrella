@@ -17,7 +17,7 @@
 {
     <ul class="breadcrumb">
         @* For each page in the ancestors collection which have been ordered by Level (so we start with the highest top node first) *@
-        <li><a href="/">Home</a> <span class="divider">/</span></li>
+        @*<li><a href="/">Home</a> <span class="divider">/</span></li>*@
         @foreach (var item in selection.OrderBy(x => x.Level).Skip(1))
         {
             <li><a href="@item.Url(PublishedUrlProvider)">@item.Name</a> <span class="divider">/</span></li>
