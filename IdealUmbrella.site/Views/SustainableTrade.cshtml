@@ -11,45 +11,189 @@
     string sectorExamplesDescriptionClass = "col-12 col-md-4 col-lg-6 my-auto order-1 order-md-2 ";
 }
 <div class="row @rowMarginPaddingBorderClass align-content-sm-center d-flex justify-content-around">
-    <div class="col-12 order-1 order-md-2 col-md-8">
+    <div class="col-12 col-lg-8">
         <p>
-            Donec lacus nisl, fringilla quis turpis eu, congue bibendum nibh. Maecenas egestas eget eros eu venenatis. Fusce nibh lectus, euismod sagittis velit in, consectetur tempor mi. Vestibulum consectetur eu sem eget convallis. Praesent eu molestie velit. Nullam posuere quam non quam blandit convallis. Nulla consectetur volutpat accumsan. Sed eleifend volutpat purus, mollis interdum sapien dapibus eget. Quisque volutpat sodales augue ac semper. Integer aliquam libero et sapien pretium, rutrum dictum nulla finibus. Donec sodales erat sit amet nibh consequat, sed molestie enim euismod.
-        </p>
-        <p>
-            Donec lacus nisl, fringilla quis turpis eu, congue bibendum nibh. Maecenas egestas eget eros eu venenatis. Fusce nibh lectus, euismod sagittis velit in, consectetur tempor mi. Vestibulum consectetur eu sem eget convallis. Praesent eu molestie velit. Nullam posuere quam non quam blandit convallis. Nulla consectetur volutpat accumsan. Sed eleifend volutpat purus, mollis interdum sapien dapibus eget. Quisque volutpat sodales augue ac semper. Integer aliquam libero et sapien pretium, rutrum dictum nulla finibus. Donec sodales erat sit amet nibh consequat, sed molestie enim euismod.
+            Donec lacus nisl, fringilla quis turpis eu, congue bibendum nibh. Maecenas egestas eget eros eu venenatis. Fusce nibh lectus, euismod sagittis velit in, consectetur tempor mi. Vestibulum consectetur eu sem eget convallis. 
+            Praesent eu molestie velit. Nullam posuere quam non quam blandit convallis. Nulla consectetur volutpat accumsan.</p>
+            <p> Sed eleifend volutpat purus, mollis interdum sapien dapibus eget. Quisque volutpat sodales augue ac semper. 
+            Integer aliquam libero et sapien pretium, rutrum dictum nulla finibus. Donec sodales erat sit amet nibh consequat, sed molestie enim euismod.
         </p>
     </div>
-    <div class="col-8 col-md-4 my-auto order-2 order-md-1">
-        <div class="card sustainable-trade-card ">
+    <div class="col-12 col-lg-8 mb-3">
+        <div class="row">
+            <div class="col-12 col-md-8 my-auto">
+                <div class="card sustainable-trade-card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Sample Trade Assessment</h5>
+
+                        <table class="table icc-grading-table">
+                            <thead>
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col">Environmental</th>
+                                    <th scope="col">Socio-economic</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Use of Proceeds</th>
+                                    <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
+                                    <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Seller</th>
+                                    <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
+                                    <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Buyer</th>
+                                    <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
+                                    <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Distribution</th>
+                                    <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "b")</td>
+                                    <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "u")</td>
+                                </tr>
+                                <tr class="overall-grade">
+                                    <th scope="row">Overall</th>
+                                    <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
+                                    <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8 col-md-4 my-md-auto mb-sm-3">
+                <div class="card sustainable-trade-card ">
+                    <div class="card-body">
+                        <h5 class="card-title">ICC Sustainable Trade Grading Definitions</h5>
+                        <p class="card-text">
+                            @await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")
+                            <small class="text-muted">Sustainable, with a high degree of condidence</small>
+                        </p>
+                        <p class="card-text">
+
+
+                            @await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "b")
+                            <small class="text-muted">Sustainable in part</small>
+                        </p>
+                        <p class="card-text">
+
+                            @await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")
+                            <small class="text-muted">Not sustainable</small>
+                        </p>
+                        <p class="card-text">
+
+                            @await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "u")
+                            <small class="text-muted">Ungraded, given insufficient information</small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-8">
+        <p>
+            Donec lacus nisl, fringilla quis turpis eu, congue bibendum nibh. Maecenas egestas eget eros eu venenatis. Fusce nibh lectus, euismod sagittis velit in, consectetur tempor mi. Vestibulum consectetur eu sem eget convallis.
+            Praesent eu molestie velit. Nullam posuere quam non quam blandit convallis. Nulla consectetur volutpat accumsan.
+        </p>
+        <p>
+            Sed eleifend volutpat purus, mollis interdum sapien dapibus eget. Quisque volutpat sodales augue ac semper.
+            Integer aliquam libero et sapien pretium, rutrum dictum nulla finibus. Donec sodales erat sit amet nibh consequat, sed molestie enim euismod.
+        </p>
+    </div>
+   
+
+</div>
+
+<div class="row @rowMarginPaddingBorderClass" id="dimensions-of-trade">
+    <h3>Two Dimensions of Trade</h3>
+    <div class="col-12 col-md-6">
+
+        <div class="card sustainable-trade-card mb-3">
             <div class="card-body">
-                <h5 class="card-title">ICC Sustainable Trade Grading Definitions</h5>
-                <p class="card-text">
+                <h4 class="card-title"><i class="bi bi-1-circle"></i> Environmental Trade SDGs</h4>
 
-                </p>
-                <p class="card-text">
-                    @await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")
-                    <small class="text-muted">Sustainable, with a high degree of condidence</small>
-                </p>
-                <p class="card-text">
+                <div class="row">
+                    <p>
+                        Donec lacus nisl, fringilla quis turpis eu, congue bibendum nibh. Maecenas egestas eget eros eu venenatis. Fusce nibh lectus, euismod sagittis velit in, consectetur tempor mi. Vestibulum consectetur eu sem eget convallis. Praesent eu molestie velit. Nullam posuere quam non quam blandit convallis. Nulla consectetur volutpat accumsan. Sed eleifend volutpat purus, mollis interdum sapien dapibus eget. Quisque volutpat sodales augue ac semper. Integer aliquam libero et sapien pretium, rutrum dictum nulla finibus. Donec sodales erat sit amet nibh consequat, sed molestie enim euismod.
+                    </p>
+                    <div class="col-@sdgColSettings">
+                        @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 6)
+                    </div>
+                    <div class="col-@sdgColSettings">
+                        @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 7)
+                    </div>
+                    <div class="col-@sdgColSettings">
+                        @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 12)
+                    </div>
+                    <div class="col-@sdgColSettings">
+                        @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 13)
+                    </div>
+                    <div class="col-@sdgColSettings">
+                        @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 14)
+                    </div>
+                    <div class="col-@sdgColSettings">
+                        @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 15)
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6">
+        <div class="card sustainable-trade-card mb-3">
+            <div class="card-body">
+                <h4 class="card-title"><i class="bi bi-2-circle"></i> Socio-economic Trade SDGs</h4>
 
-
-                    @await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "b")
-                    <small class="text-muted">Sustainable in part</small>
-                </p>
-                <p class="card-text">
-
-                    @await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")
-                    <small class="text-muted">Not sustainable</small>
-                </p>
-                <p class="card-text">
-
-                    @await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "u")
-                    <small class="text-muted">Ungraded, given insufficient information</small>
+                <div class="row">
+                    <div class="col-@sdgColSettings">
+                        @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 1)
+                    </div>
+                    <div class="col-@sdgColSettings">
+                        @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 2)
+                    </div>
+                    <div class="col-@sdgColSettings">
+                        @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 3)
+                    </div>
+                    <div class="col-@sdgColSettings">
+                        @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 4)
+                    </div>
+                    <div class="col-@sdgColSettings">
+                        @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 5)
+                    </div>
+                    <div class="col-@sdgColSettings">
+                        @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 8)
+                    </div>
+                    <div class="col-@sdgColSettings">
+                        @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 9)
+                    </div>
+                    <div class="col-@sdgColSettings">
+                        @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 10)
+                    </div>
+                    <div class="col-@sdgColSettings">
+                        @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 11)
+                    </div>
+                    <div class="col-@sdgColSettings">
+                        @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 16)
+                    </div>
+                    <div class="col-@sdgColSettings">
+                        @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 17)
+                    </div>
+                </div>
+                <p>
+                    Donec lacus nisl, fringilla quis turpis eu, congue bibendum nibh. Maecenas egestas eget eros eu venenatis. Fusce nibh lectus, euismod sagittis velit in, consectetur tempor mi. Vestibulum consectetur eu sem eget convallis.
+                    Praesent eu molestie velit. Nullam posuere quam non quam blandit convallis. Nulla consectetur volutpat accumsan. Sed eleif
                 </p>
             </div>
         </div>
     </div>
 </div>
+
+
+
 <div class="row @rowMarginPaddingBorderClass" id="components-of-trade">
     @{
         string tradeComponentClasses = "col-md-6 col-12 mb-3";
@@ -60,12 +204,16 @@
     <div class="@tradeComponentClasses">
         <div class="card">
             <div class="card-body">
-                <h3 class="card-title">1. Use of Proceeds</h3>
+                <h3 class="card-title text-align"><i class="bi bi-1-square"></i> Use of Proceeds</h3>
                 <h5 class="card-text">
                     Financed good and its primary usage
                 </h5>
                 <p class="card-text">
-                    Assessed by correspondence to Standards, ESG Scores,
+                    Use of Proceeds are for environmentally sustainable
+                    and socially responsible goods and activities.
+                </p>
+                <p class="card-text">
+                    The component is assessed by correspondence to Standards, ESG Scores,
                     Conventions, EU Taxonomy eligibility or through classification
                 </p>
             </div>
@@ -74,13 +222,17 @@
     <div class="@tradeComponentClasses">
         <div class="card">
             <div class="card-body">
-                <h3 class="card-title">2. Seller</h3>
+                <h3 class="card-title"><i class="bi bi-2-square"></i> Seller</h3>
                 <h5 class="card-text">
                     Producer/manufacturer making a sale of the goods
                 </h5>
                 <p class="card-text">
-                    Sustainability measured by either ESG scores or
-                    ICC-approved standards
+                    Originates from an environmentally sustainable and socially
+                    responsible Seller.
+                </p>
+                <p class="card-text">
+                    The component's sustainability is measured by either ESG scores or
+                    ICC-approved standards.
                 </p>
             </div>
         </div>
@@ -88,12 +240,20 @@
     <div class="@tradeComponentClasses">
         <div class="card">
             <div class="card-body">
-                <h3 class="card-title">3. Buyer</h3>
+                <h3 class="card-title"><i class="bi bi-3-square"></i> Buyer</h3>
                 <h5 class="card-text">
                     Producer/manufacturer purchasing the goods
                 </h5>
+                
                 <p class="card-text">
-                    Sustainability measured by either ESG scores or
+                    Delivers to an
+                    environmentally
+                    sustainable and
+                    socially
+                    responsible Buyer
+                </p>
+                <p class="card-text">
+                    The component's sustainability is measured by either ESG scores or
                     ICC-approved standards
                 </p>
             </div>
@@ -102,12 +262,17 @@
     <div class="@tradeComponentClasses">
         <div class="card">
             <div class="card-body">
-                <h3 class="card-title">4. Distribution</h3>
+                <h3 class="card-title"><i class="bi bi-4-square"></i> Distribution</h3>
                 <h5 class="card-text">
                     Primary mode of transport
                 </h5>
+              
                 <p class="card-text">
-                    Assessed by distribution rules based on category of transport
+                    Its means of Distribution (transport) is environmentally
+                    sustainable and socially responsible
+                </p>
+                <p class="card-text">
+                    The component is assessed by distribution rules based on category of transport
                 </p>
             </div>
         </div>
@@ -283,89 +448,6 @@
         <p>
             Donec lacus nisl, fringilla quis turpis eu, congue bibendum nibh. Maecenas egestas eget eros eu venenatis. Fusce nibh lectus, euismod sagittis velit in, consectetur tempor mi. Vestibulum consectetur eu sem eget convallis. Praesent eu molestie velit. Nullam posuere quam non quam blandit convallis. Nulla consectetur volutpat accumsan. Sed eleifend volutpat purus, mollis interdum sapien dapibus eget. Quisque volutpat sodales augue ac semper. Integer aliquam libero et sapien pretium, rutrum dictum nulla finibus. Donec sodales erat sit amet nibh consequat, sed molestie enim euismod.
         </p>
-    </div>
-</div>
-
-<div class="row @rowMarginPaddingBorderClass">
-    <h3>Sustainable Development Goals (SDGs) mapping</h3>
-    <div class="col-12 col-md-6">
-
-        <div class="card sustainable-trade-card mb-3">
-            <div class="card-body">
-                <h4 class="card-title"><span class="font-weight-bold">Environmental</span> SDGs</h4>
-
-                <div class="row">
-                    <div class="col-@sdgColSettings">
-                        @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 6)
-                    </div>
-                    <div class="col-@sdgColSettings">
-                        @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 7)
-                    </div>
-                    <div class="col-@sdgColSettings">
-                        @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 12)
-                    </div>
-                    <div class="col-@sdgColSettings">
-                        @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 13)
-                    </div>
-                    <div class="col-@sdgColSettings">
-                        @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 14)
-                    </div>
-                    <div class="col-@sdgColSettings">
-                        @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 15)
-                    </div>
-                </div>
-                <p>
-                    Donec lacus nisl, fringilla quis turpis eu, congue bibendum nibh. Maecenas egestas eget eros eu venenatis. Fusce nibh lectus, euismod sagittis velit in, consectetur tempor mi. Vestibulum consectetur eu sem eget convallis. Praesent eu molestie velit. Nullam posuere quam non quam blandit convallis. Nulla consectetur volutpat accumsan. Sed eleifend volutpat purus, mollis interdum sapien dapibus eget. Quisque volutpat sodales augue ac semper. Integer aliquam libero et sapien pretium, rutrum dictum nulla finibus. Donec sodales erat sit amet nibh consequat, sed molestie enim euismod.
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="col-12 col-md-6">
-        <div class="card sustainable-trade-card mb-3">
-            <div class="card-body">
-                <h5 class="card-title"><span class="font-weight-bold">Socio-economic</span> SDGs</h5>
-
-                <div class="row">
-                    <div class="col-@sdgColSettings">
-                        @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 1)
-                    </div>
-                    <div class="col-@sdgColSettings">
-                        @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 2)
-                    </div>
-                    <div class="col-@sdgColSettings">
-                        @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 3)
-                    </div>
-                    <div class="col-@sdgColSettings">
-                        @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 4)
-                    </div>
-                    <div class="col-@sdgColSettings">
-                        @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 5)
-                    </div>
-                    <div class="col-@sdgColSettings">
-                        @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 8)
-                    </div>
-                    <div class="col-@sdgColSettings">
-                        @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 9)
-                    </div>
-                    <div class="col-@sdgColSettings">
-                        @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 10)
-                    </div>
-                    <div class="col-@sdgColSettings">
-                        @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 11)
-                    </div>
-                    <div class="col-@sdgColSettings">
-                        @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 16)
-                    </div>
-                    <div class="col-@sdgColSettings">
-                        @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 17)
-                    </div>
-                </div>
-                <p>
-                    Donec lacus nisl, fringilla quis turpis eu, congue bibendum nibh. Maecenas egestas eget eros eu venenatis. Fusce nibh lectus, euismod sagittis velit in, consectetur tempor mi. Vestibulum consectetur eu sem eget convallis.
-                    Praesent eu molestie velit. Nullam posuere quam non quam blandit convallis. Nulla consectetur volutpat accumsan. Sed eleif
-                </p>
-            </div>
-        </div>
     </div>
 </div>
 
