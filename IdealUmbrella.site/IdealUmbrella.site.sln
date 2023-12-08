@@ -32,6 +32,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sln Items", "Sln Items", "{9E088233-08F6-4EB3-80DA-FB45318F1027}"
 	ProjectSection(SolutionItems) = preProject
 		..\.gitignore = ..\.gitignore
+		..\ATTRIBUTION.md = ..\ATTRIBUTION.md
 	EndProjectSection
 EndProject
 Global

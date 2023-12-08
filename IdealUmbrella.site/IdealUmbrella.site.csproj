@@ -30,6 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\static\bs-icons\" />
     <Folder Include="wwwroot\static\sdg-icons\png\" />
   </ItemGroup>
 

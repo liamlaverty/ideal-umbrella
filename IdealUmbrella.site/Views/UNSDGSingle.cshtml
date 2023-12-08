@@ -1,0 +1,40 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.UNsdgsingle>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    Layout = "_Master.cshtml";
+    string remoteUrl = "https://sdgs.un.org/goals/goal" + Model.SDgnumber;
+}
+
+<div class="row">
+    <div class="col-3 my-auto">
+        @await Html.PartialAsync("SustainableTrade/UNSDGSpan", Model.SDgnumber)
+    </div>
+    <div class="col-9">
+        <h2>Focus: @Model.SDgfocus</h2>
+        @await Html.GetBlockGridHtmlAsync(Model.BodyContent)
+        <a class="btn btn-primary" href="@remoteUrl" role="button" target="_blank">View on the UN SDG Website <i class="bi bi-box-arrow-up-right"></i></a>
+    </div>    
+</div>
+
+<nav aria-label="SDG navigation" class="position-relative ">
+    <ul class="pagination pagination-sm justify-content-center mt-3 end-0">
+        @foreach (var child in Model.Parent<UNsdgcollection>().Children<UNsdgsingle>())
+        {
+            bool isActivePage = false;
+            @if (Model.SDgnumber == child.SDgnumber)
+            {
+                isActivePage = true;
+
+            }
+            <li class="page-item text-center">
+                <a class="page-link @(isActivePage ? "active" : String.Empty)" href="@child.Url()"
+                @(isActivePage ? "aria-current='page'" : String.Empty)>
+                    @await Html.PartialAsync("SustainableTrade/UNSDGSpan", child.SDgnumber)
+                    @child.SDgnumber
+
+                </a>
+            </li>
+        }
+    </ul>
+</nav>

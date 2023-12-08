@@ -1,0 +1,33 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.UNsdgcollection>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    Layout = "_Master.cshtml";
+}
+
+<div class="row">
+    @foreach (var child in Model.Children<UNsdgsingle>())
+    {
+
+        <div class="col-6 col-md-3 col-lg-2 p-0 m-0">
+            <div class="card unsdg-card border-0 m-0 p-0">
+                <div class="card-body p-0 m-0">
+                    <div class="row">
+                        <a href="@child.Url()">
+                        <div>
+                            @await Html.PartialAsync("SustainableTrade/UNSDGSpan", child.SDgnumber)
+                        </div>
+                        </a>
+                        @*<h4 class="card-title">
+                            <i class="bi bi-@child.SDgnumber-circle"></i>
+                            @child.PageTitle
+                        </h4>*@
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
