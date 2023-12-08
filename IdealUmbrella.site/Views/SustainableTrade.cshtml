@@ -4,18 +4,21 @@
 @{
     Layout = "_Master.cshtml";
 
-    string sdgColSettings = "2 mb-0 p-1";
+    string sdgColSettings = "col-4 col-md-3 col-xl-2 mb-0 p-1";
     string rowMarginPaddingBorderClass = " pt-3 mb-3";
 
-    string sectorExampleBoxClass = "col-12 col-md-8 col-lg-6 my-auto ";
+    string sectorExampleBoxClass = "col-12 col-md-8 col-xl-6 my-auto ";
     string sectorExamplesDescriptionClass = "col-12 col-md-4 col-lg-6 my-auto order-1 order-md-2 ";
 }
+
 <div class="row @rowMarginPaddingBorderClass align-content-sm-center d-flex justify-content-around">
     <div class="col-12 col-lg-8">
         <p>
-            Donec lacus nisl, fringilla quis turpis eu, congue bibendum nibh. Maecenas egestas eget eros eu venenatis. Fusce nibh lectus, euismod sagittis velit in, consectetur tempor mi. Vestibulum consectetur eu sem eget convallis. 
-            Praesent eu molestie velit. Nullam posuere quam non quam blandit convallis. Nulla consectetur volutpat accumsan.</p>
-            <p> Sed eleifend volutpat purus, mollis interdum sapien dapibus eget. Quisque volutpat sodales augue ac semper. 
+            Donec lacus nisl, fringilla quis turpis eu, congue bibendum nibh. Maecenas egestas eget eros eu venenatis. Fusce nibh lectus, euismod sagittis velit in, consectetur tempor mi. Vestibulum consectetur eu sem eget convallis.
+            Praesent eu molestie velit. Nullam posuere quam non quam blandit convallis. Nulla consectetur volutpat accumsan.
+        </p>
+        <p>
+            Sed eleifend volutpat purus, mollis interdum sapien dapibus eget. Quisque volutpat sodales augue ac semper.
             Integer aliquam libero et sapien pretium, rutrum dictum nulla finibus. Donec sodales erat sit amet nibh consequat, sed molestie enim euismod.
         </p>
     </div>
@@ -24,7 +27,7 @@
             <div class="col-12 col-md-8 my-auto">
                 <div class="card sustainable-trade-card mb-3">
                     <div class="card-body">
-                        <h5 class="card-title">Sample Trade Assessment</h5>
+                        <h5 class="card-title">Example Trade Assessment</h5>
 
                         <table class="table icc-grading-table">
                             <thead>
@@ -104,7 +107,7 @@
             Integer aliquam libero et sapien pretium, rutrum dictum nulla finibus. Donec sodales erat sit amet nibh consequat, sed molestie enim euismod.
         </p>
     </div>
-   
+
 
 </div>
 
@@ -120,26 +123,26 @@
                     <p>
                         Donec lacus nisl, fringilla quis turpis eu, congue bibendum nibh. Maecenas egestas eget eros eu venenatis. Fusce nibh lectus, euismod sagittis velit in, consectetur tempor mi. Vestibulum consectetur eu sem eget convallis. Praesent eu molestie velit. Nullam posuere quam non quam blandit convallis. Nulla consectetur volutpat accumsan. Sed eleifend volutpat purus, mollis interdum sapien dapibus eget. Quisque volutpat sodales augue ac semper. Integer aliquam libero et sapien pretium, rutrum dictum nulla finibus. Donec sodales erat sit amet nibh consequat, sed molestie enim euismod.
                     </p>
-                    <div class="col-@sdgColSettings">
+                    <div class="@sdgColSettings">
                         @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 6)
                     </div>
-                    <div class="col-@sdgColSettings">
+                    <div class="@sdgColSettings">
                         @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 7)
                     </div>
-                    <div class="col-@sdgColSettings">
+                    <div class="@sdgColSettings">
                         @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 12)
                     </div>
-                    <div class="col-@sdgColSettings">
+                    <div class="@sdgColSettings">
                         @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 13)
                     </div>
-                    <div class="col-@sdgColSettings">
+                    <div class="@sdgColSettings">
                         @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 14)
                     </div>
-                    <div class="col-@sdgColSettings">
+                    <div class="@sdgColSettings">
                         @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 15)
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -149,37 +152,37 @@
                 <h4 class="card-title"><i class="bi bi-2-circle"></i> Socio-economic Trade SDGs</h4>
 
                 <div class="row">
-                    <div class="col-@sdgColSettings">
+                    <div class="@sdgColSettings">
                         @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 1)
                     </div>
-                    <div class="col-@sdgColSettings">
+                    <div class="@sdgColSettings">
                         @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 2)
                     </div>
-                    <div class="col-@sdgColSettings">
+                    <div class="@sdgColSettings">
                         @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 3)
                     </div>
-                    <div class="col-@sdgColSettings">
+                    <div class="@sdgColSettings">
                         @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 4)
                     </div>
-                    <div class="col-@sdgColSettings">
+                    <div class="@sdgColSettings">
                         @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 5)
                     </div>
-                    <div class="col-@sdgColSettings">
+                    <div class="@sdgColSettings">
                         @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 8)
                     </div>
-                    <div class="col-@sdgColSettings">
+                    <div class="@sdgColSettings">
                         @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 9)
                     </div>
-                    <div class="col-@sdgColSettings">
+                    <div class="@sdgColSettings">
                         @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 10)
                     </div>
-                    <div class="col-@sdgColSettings">
+                    <div class="@sdgColSettings">
                         @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 11)
                     </div>
-                    <div class="col-@sdgColSettings">
+                    <div class="@sdgColSettings">
                         @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 16)
                     </div>
-                    <div class="col-@sdgColSettings">
+                    <div class="@sdgColSettings">
                         @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 17)
                     </div>
                 </div>
@@ -193,7 +196,6 @@
 </div>
 
 
-
 <div class="row @rowMarginPaddingBorderClass" id="components-of-trade">
     @{
         string tradeComponentClasses = "col-md-6 col-12 mb-3";
@@ -204,85 +206,124 @@
     <div class="@tradeComponentClasses">
         <div class="card">
             <div class="card-body">
-                <h3 class="card-title text-align"><i class="bi bi-1-square"></i> Use of Proceeds</h3>
-                <h5 class="card-text">
-                    Financed good and its primary usage
-                </h5>
-                <p class="card-text">
-                    Use of Proceeds are for environmentally sustainable
-                    and socially responsible goods and activities.
-                </p>
-                <p class="card-text">
-                    The component is assessed by correspondence to Standards, ESG Scores,
-                    Conventions, EU Taxonomy eligibility or through classification
-                </p>
+                <div class="row">
+                    <div class="col-3 my-auto col-xl-2 ">
+                        <svg class="bi img-fluid w-100" fill="currentColor" role="image" aria-hidden="true">
+                            <use xlink:href="/static/bs-icons/bootstrap-icons.svg#cash-coin" />
+                        </svg>
+                    </div>
+                    <div class="col-9 col-xl-10">
+                        <h3 class="card-title text-align"><i class="bi bi-1-square" aria-label="First trade component"></i> Use of Proceeds</h3>
+                        <h5 class="card-text">
+                            The financed good, and its primary usage
+                        </h5>
+                        <p class="card-text">
+                            Use of Proceeds for environmentally sustainable
+                            and socially responsible goods and activities.
+                        </p>
+                        <p class="card-text">
+                            The component is assessed by correspondence to Standards, ESG Scores,
+                            Conventions, EU Taxonomy eligibility or through classification
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <div class="@tradeComponentClasses">
         <div class="card">
             <div class="card-body">
-                <h3 class="card-title"><i class="bi bi-2-square"></i> Seller</h3>
-                <h5 class="card-text">
-                    Producer/manufacturer making a sale of the goods
-                </h5>
-                <p class="card-text">
-                    Originates from an environmentally sustainable and socially
-                    responsible Seller.
-                </p>
-                <p class="card-text">
-                    The component's sustainability is measured by either ESG scores or
-                    ICC-approved standards.
-                </p>
+                <div class="row">
+                    <div class="col-3 my-auto col-xl-2 order-2 order-md-0">
+                        <svg class="bi img-fluid  d-block w-100" fill="currentColor" role="image" aria-hidden="true">
+                            <use xlink:href="/static/bs-icons/bootstrap-icons.svg#shop" />
+                        </svg>
+                    </div>
+                    <div class="col-9 col-xl-10">
+                        <h3 class="card-title"><i class="bi bi-2-square" aria-label="Second trade component"></i> Seller</h3>
+                        <h5 class="card-text">
+                            Producer/manufacturer making a sale of the goods
+                        </h5>
+                        <p class="card-text">
+                            Originates from an environmentally sustainable and socially
+                            responsible Seller.
+                        </p>
+                        <p class="card-text">
+                            The component's sustainability is measured by either ESG scores or
+                            ICC-approved standards.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <div class="@tradeComponentClasses">
         <div class="card">
             <div class="card-body">
-                <h3 class="card-title"><i class="bi bi-3-square"></i> Buyer</h3>
-                <h5 class="card-text">
-                    Producer/manufacturer purchasing the goods
-                </h5>
-                
-                <p class="card-text">
-                    Delivers to an
-                    environmentally
-                    sustainable and
-                    socially
-                    responsible Buyer
-                </p>
-                <p class="card-text">
-                    The component's sustainability is measured by either ESG scores or
-                    ICC-approved standards
-                </p>
+                <div class="row">
+                    <div class="col-3 my-auto col-xl-2">
+                        <svg class="bi img-fluid  d-block w-100" fill="currentColor" role="image" aria-hidden="true">
+                            <use xlink:href="/static/bs-icons/bootstrap-icons.svg#basket" />
+                        </svg>
+                    </div>
+                    <div class="col-9 col-xl-10">
+
+                        <h3 class="card-title"><i class="bi bi-3-square" aria-label="Third trade component"></i> Buyer</h3>
+                        <h5 class="card-text">
+                            Producer/manufacturer purchasing the goods
+                        </h5>
+
+                        <p class="card-text">
+                            Delivers to an
+                            environmentally
+                            sustainable and
+                            socially
+                            responsible Buyer
+                        </p>
+                        <p class="card-text">
+                            The component's sustainability is measured by either ESG scores or
+                            ICC-approved standards
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <div class="@tradeComponentClasses">
         <div class="card">
             <div class="card-body">
-                <h3 class="card-title"><i class="bi bi-4-square"></i> Distribution</h3>
-                <h5 class="card-text">
-                    Primary mode of transport
-                </h5>
-              
-                <p class="card-text">
-                    Its means of Distribution (transport) is environmentally
-                    sustainable and socially responsible
-                </p>
-                <p class="card-text">
-                    The component is assessed by distribution rules based on category of transport
-                </p>
+                <div class="row">
+                    <div class="col-3 my-auto col-xl-2 order-2 order-md-0">
+                        <svg class="bi img-fluid d-block w-100" fill="currentColor" role="image" aria-hidden="true">
+                            <use xlink:href="/static/bs-icons/bootstrap-icons.svg#truck" />
+                        </svg>
+                    </div>
+                    <div class="col-9 col-xl-10">
+                        <h3 class="card-title"><i class="bi bi-4-square" aria-label="Fourth trade component"></i> Distribution</h3>
+                        <h5 class="card-text">
+                            Primary mode of transport
+                        </h5>
+
+                        <p class="card-text">
+                            Its means of Distribution (transport) is environmentally
+                            sustainable and socially responsible
+                        </p>
+                        <p class="card-text">
+                            The component is assessed by distribution rules based on category of transport
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+
 <div class="row @rowMarginPaddingBorderClass">
     <div class="col-12">
         <h2>Sector: Industry Examples</h2>
     </div>
-    
+
     <div class="@sectorExamplesDescriptionClass">
         <h3 class="title">Textiles: Cotton Example</h3>
         <p class="text">
