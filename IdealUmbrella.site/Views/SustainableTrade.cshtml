@@ -6,9 +6,12 @@
 
     string sdgColSettings = "2 mb-0 p-1";
     string rowMarginPaddingBorderClass = " pt-3 mb-3";
+
+    string sectorExampleBoxClass = "col-12 col-md-8 col-lg-6 my-auto ";
+    string sectorExamplesDescriptionClass = "col-12 col-md-4 col-lg-6 my-auto order-1 order-md-2 ";
 }
-<div class="row @rowMarginPaddingBorderClass">
-    <div class="col-8">
+<div class="row @rowMarginPaddingBorderClass align-content-sm-center d-flex justify-content-around">
+    <div class="col-12 order-1 order-md-2 col-md-8">
         <p>
             Donec lacus nisl, fringilla quis turpis eu, congue bibendum nibh. Maecenas egestas eget eros eu venenatis. Fusce nibh lectus, euismod sagittis velit in, consectetur tempor mi. Vestibulum consectetur eu sem eget convallis. Praesent eu molestie velit. Nullam posuere quam non quam blandit convallis. Nulla consectetur volutpat accumsan. Sed eleifend volutpat purus, mollis interdum sapien dapibus eget. Quisque volutpat sodales augue ac semper. Integer aliquam libero et sapien pretium, rutrum dictum nulla finibus. Donec sodales erat sit amet nibh consequat, sed molestie enim euismod.
         </p>
@@ -16,7 +19,7 @@
             Donec lacus nisl, fringilla quis turpis eu, congue bibendum nibh. Maecenas egestas eget eros eu venenatis. Fusce nibh lectus, euismod sagittis velit in, consectetur tempor mi. Vestibulum consectetur eu sem eget convallis. Praesent eu molestie velit. Nullam posuere quam non quam blandit convallis. Nulla consectetur volutpat accumsan. Sed eleifend volutpat purus, mollis interdum sapien dapibus eget. Quisque volutpat sodales augue ac semper. Integer aliquam libero et sapien pretium, rutrum dictum nulla finibus. Donec sodales erat sit amet nibh consequat, sed molestie enim euismod.
         </p>
     </div>
-    <div class="col-4 my-auto">
+    <div class="col-8 col-md-4 my-auto order-2 order-md-1">
         <div class="card sustainable-trade-card ">
             <div class="card-body">
                 <h5 class="card-title">ICC Sustainable Trade Grading Definitions</h5>
@@ -47,14 +50,86 @@
         </div>
     </div>
 </div>
-
-<div class="row @rowMarginPaddingBorderClass">
-    <div class="col-6">
-        <h2>Sector: Industry Examples</h2>
+<div class="row @rowMarginPaddingBorderClass" id="components-of-trade">
+    @{
+        string tradeComponentClasses = "col-md-6 col-12 mb-3";
+    }
+    <div class="col-12">
+        <h2>Four Components of Trade</h2>
+    </div>
+    <div class="@tradeComponentClasses">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">1. Use of Proceeds</h3>
+                <h5 class="card-text">
+                    Financed good and its primary usage
+                </h5>
+                <p class="card-text">
+                    Assessed by correspondence to Standards, ESG Scores,
+                    Conventions, EU Taxonomy eligibility or through classification
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="@tradeComponentClasses">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">2. Seller</h3>
+                <h5 class="card-text">
+                    Producer/manufacturer making a sale of the goods
+                </h5>
+                <p class="card-text">
+                    Sustainability measured by either ESG scores or
+                    ICC-approved standards
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="@tradeComponentClasses">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">3. Buyer</h3>
+                <h5 class="card-text">
+                    Producer/manufacturer purchasing the goods
+                </h5>
+                <p class="card-text">
+                    Sustainability measured by either ESG scores or
+                    ICC-approved standards
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="@tradeComponentClasses">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">4. Distribution</h3>
+                <h5 class="card-text">
+                    Primary mode of transport
+                </h5>
+                <p class="card-text">
+                    Assessed by distribution rules based on category of transport
+                </p>
+            </div>
+        </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-6">
+<div class="row @rowMarginPaddingBorderClass">
+    <div class="col-12">
+        <h2>Sector: Industry Examples</h2>
+    </div>
+    
+    <div class="@sectorExamplesDescriptionClass">
+        <h3 class="title">Textiles: Cotton Example</h3>
+        <p class="text">
+            'Use of proceeds' grade is prioritised and implies an
+            @await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n") on Environmental
+        </p>
+        <p>
+            Donec lacus nisl, fringilla quis turpis eu, congue bibendum nibh. Maecenas egestas eget eros eu venenatis. Fusce nibh lectus, euismod sagittis velit in, consectetur tempor mi. Vestibulum consectetur eu sem eget convallis. Praesent eu molestie velit. Nullam posuere quam non quam blandit convallis. Nulla consectetur volutpat accumsan. Sed eleifend volutpat purus, mollis interdum sapien dapibus eget. Quisque volutpat sodales augue ac semper. Integer aliquam libero et sapien pretium, rutrum dictum nulla finibus. Donec sodales erat sit amet nibh consequat, sed molestie enim euismod.
+        </p>
+
+    </div>
+    <div class="@sectorExampleBoxClass">
         <div class="card sustainable-trade-card mb-3">
             <div class="card-body">
                 <table class="table icc-grading-table">
@@ -96,22 +171,10 @@
             </div>
         </div>
     </div>
-    <div class="col-6 my-auto">
-        <h3 class="title">Textiles: Cotton Example</h3>
-        <p class="text">
-            'Use of proceeds' grade is prioritised and implies an
-            @await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n") on Environmental
-        </p>
-        <p>
-            Donec lacus nisl, fringilla quis turpis eu, congue bibendum nibh. Maecenas egestas eget eros eu venenatis. Fusce nibh lectus, euismod sagittis velit in, consectetur tempor mi. Vestibulum consectetur eu sem eget convallis. Praesent eu molestie velit. Nullam posuere quam non quam blandit convallis. Nulla consectetur volutpat accumsan. Sed eleifend volutpat purus, mollis interdum sapien dapibus eget. Quisque volutpat sodales augue ac semper. Integer aliquam libero et sapien pretium, rutrum dictum nulla finibus. Donec sodales erat sit amet nibh consequat, sed molestie enim euismod.
-        </p>
-
-    </div>
-
 
 </div>
 <div class="row @rowMarginPaddingBorderClass">
-    <div class="col-6 my-auto">
+    <div class="@sectorExamplesDescriptionClass order-md-1">
         <h3 class="title">Agriculture: Tomatoes Example</h3>
         <p class="text">
             Insufficient information on the
@@ -123,7 +186,7 @@
             Donec lacus nisl, fringilla quis turpis eu, congue bibendum nibh. Maecenas egestas eget eros eu venenatis. Fusce nibh lectus, euismod sagittis velit in, consectetur tempor mi. Vestibulum consectetur eu sem eget convallis. Praesent eu molestie velit. Nullam posuere quam non quam blandit convallis. Nulla consectetur volutpat accumsan. Sed eleifend volutpat purus, mollis interdum sapien dapibus eget. Quisque volutpat sodales augue ac semper. Integer aliquam libero et sapien pretium, rutrum dictum nulla finibus. Donec sodales erat sit amet nibh consequat, sed molestie enim euismod.
         </p>
     </div>
-    <div class="col-6">
+    <div class="@sectorExampleBoxClass order-md-2">
         <div class="card sustainable-trade-card mb-3">
             <div class="card-body">
                 <table class="table icc-grading-table">
@@ -168,7 +231,7 @@
     </div>
 </div>
 <div class="row @rowMarginPaddingBorderClass">
-    <div class="col-6">
+    <div class="@sectorExampleBoxClass">
         <div class="card sustainable-trade-card mb-3">
             <div class="card-body">
                 <table class="table icc-grading-table">
@@ -210,7 +273,7 @@
             </div>
         </div>
     </div>
-    <div class="col-6 my-auto">
+    <div class="@sectorExamplesDescriptionClass">
         <h3 class="title">Energy: Wind Turbine Example</h3>
         <p class="text">
             The use of proceeds is
@@ -225,11 +288,12 @@
 
 <div class="row @rowMarginPaddingBorderClass">
     <h3>Sustainable Development Goals (SDGs) mapping</h3>
-    <div class="col-6">
+    <div class="col-12 col-md-6">
 
         <div class="card sustainable-trade-card mb-3">
             <div class="card-body">
                 <h4 class="card-title"><span class="font-weight-bold">Environmental</span> SDGs</h4>
+
                 <div class="row">
                     <div class="col-@sdgColSettings">
                         @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 6)
@@ -250,13 +314,17 @@
                         @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 15)
                     </div>
                 </div>
+                <p>
+                    Donec lacus nisl, fringilla quis turpis eu, congue bibendum nibh. Maecenas egestas eget eros eu venenatis. Fusce nibh lectus, euismod sagittis velit in, consectetur tempor mi. Vestibulum consectetur eu sem eget convallis. Praesent eu molestie velit. Nullam posuere quam non quam blandit convallis. Nulla consectetur volutpat accumsan. Sed eleifend volutpat purus, mollis interdum sapien dapibus eget. Quisque volutpat sodales augue ac semper. Integer aliquam libero et sapien pretium, rutrum dictum nulla finibus. Donec sodales erat sit amet nibh consequat, sed molestie enim euismod.
+                </p>
             </div>
         </div>
     </div>
-    <div class="col-6">
+    <div class="col-12 col-md-6">
         <div class="card sustainable-trade-card mb-3">
             <div class="card-body">
                 <h5 class="card-title"><span class="font-weight-bold">Socio-economic</span> SDGs</h5>
+
                 <div class="row">
                     <div class="col-@sdgColSettings">
                         @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 1)
@@ -292,6 +360,10 @@
                         @await Html.PartialAsync("SustainableTrade/UNSDGSpan", 17)
                     </div>
                 </div>
+                <p>
+                    Donec lacus nisl, fringilla quis turpis eu, congue bibendum nibh. Maecenas egestas eget eros eu venenatis. Fusce nibh lectus, euismod sagittis velit in, consectetur tempor mi. Vestibulum consectetur eu sem eget convallis.
+                    Praesent eu molestie velit. Nullam posuere quam non quam blandit convallis. Nulla consectetur volutpat accumsan. Sed eleif
+                </p>
             </div>
         </div>
     </div>
