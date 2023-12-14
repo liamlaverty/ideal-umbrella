@@ -2,9 +2,12 @@
 
 ## Build Status
 
-_Main branch_
+_Main branch_:
+
 [![Test Docker Compose (Main branch)](https://github.com/liamlaverty/ideal-umbrella/actions/workflows/docker-all-apps-run.yml/badge.svg?branch=main)](https://github.com/liamlaverty/ideal-umbrella/actions/workflows/docker-all-apps-run.yml)
-_Dev Branch_
+
+_Dev Branch_:
+
 [![Test Docker Compose (Dev branch)](https://github.com/liamlaverty/ideal-umbrella/actions/workflows/docker-all-apps-run.yml/badge.svg?branch=dev)](https://github.com/liamlaverty/ideal-umbrella/actions/workflows/docker-all-apps-run.yml)
 
 ## What is this?
