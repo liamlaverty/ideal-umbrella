@@ -1,5 +1,10 @@
 # Ideal Umbrella 🌂
 
+## Build Status
+
+[![Test Docker Compose (Main branch)](https://github.com/liamlaverty/ideal-umbrella/actions/workflows/docker-all-apps-run.yml/badge.svg?branch=main)](https://github.com/liamlaverty/ideal-umbrella/actions/workflows/docker-all-apps-run.yml)
+[![Test Docker Compose (Dev branch)](https://github.com/liamlaverty/ideal-umbrella/actions/workflows/docker-all-apps-run.yml/badge.svg?branch=dev)](https://github.com/liamlaverty/ideal-umbrella/actions/workflows/docker-all-apps-run.yml)
+
 ## What is this?
 Climate data in Postgres and Umbraco12, hosted in Ubuntu Docker containers. The project can be run from Docker on either Windows, Mac, or Linux machines. 
 
