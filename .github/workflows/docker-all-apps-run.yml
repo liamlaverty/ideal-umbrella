@@ -1,4 +1,4 @@
-name: "Test Docker Compose"
+name: "Docker Compose builds and runs all applications"
 # author: "Ryo Kuroyanagi, Liam Laverty"
 # description: "Checks if the docker app has launched, based on the article: https://dev.to/ku6ryo/script-to-check-if-docker-booted-for-github-actions-138g"
 
