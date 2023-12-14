@@ -2,15 +2,18 @@
 
 <header class="p-3 text-bg-dark sticky-md-top">
     <div class="container">
+        
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             
-
+            <a class="navbar-brand" href="/">
+                <img src="/static/logo/logo-transparent-sm.png" alt="" width="30" height="24">
+            </a>
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 @foreach (var child in Model.Ancestor<Site>().Children)
                 {
                     if (child.Value<bool>("showInMainNavigation"))
                     {
-                    <li><a href="@child.Url()" class="nav-link  px-2 @(child.Name != "Home" ? "text-white" : "text-secondary")">@child.Value("mainNavigationDisplayText")</a></li>
+                        <li><a href="@child.Url()" class="nav-link  px-2 @(child.Name != "Home" ? "text-white" : "text-secondary")">@child.Value("mainNavigationDisplayText")</a></li>
                     }
                 }
             </ul>
