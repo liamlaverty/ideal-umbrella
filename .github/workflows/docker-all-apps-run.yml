@@ -24,7 +24,7 @@ jobs:
         run: docker volume create ideal_umbrella_postgres_data
       
       - name: Docker compose up with custom github actions env file
-        run: docker-compose --env-file .github/workflows/workflow-scripts/.env.github_actions_env up --build
+        run: docker-compose --env-file .github/workflows/workflow-scripts/.env.github_actions_env up --build -d
       
       - name: Test Postgres running and healthy after 60 seconds
         shell: bash
