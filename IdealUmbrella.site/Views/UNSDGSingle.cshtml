@@ -12,10 +12,14 @@
     </div>
     <div class="col-9">
         <h2>Focus: @Model.SDgfocus</h2>
+        <p>ICC Dimension: @Model.SDgtype</p>
         @await Html.GetBlockGridHtmlAsync(Model.BodyContent)
+
         <a class="btn btn-primary" href="@remoteUrl" role="button" target="_blank">View on the UN SDG Website <i class="bi bi-box-arrow-up-right"></i></a>
     </div>    
 </div>
+
+
 
 <nav aria-label="SDG navigation" class="position-relative ">
     <ul class="pagination pagination-sm justify-content-center mt-3 end-0">
@@ -32,7 +36,6 @@
                 @(isActivePage ? "aria-current='page'" : String.Empty)>
                     @await Html.PartialAsync("SustainableTrade/UNSDGSpan", child.SDgnumber)
                     @child.SDgnumber
-
                 </a>
             </li>
         }
