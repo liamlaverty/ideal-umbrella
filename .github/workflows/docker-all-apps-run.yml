@@ -12,6 +12,7 @@ jobs:
   all:
     name: Docker compose test containers are created, running, and healthy
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v3
 
@@ -23,7 +24,7 @@ jobs:
         run: docker volume create ideal_umbrella_postgres_data
       
       - name: Docker compose up with custom github actions env file
-        run: docker-compose --env-file .github/workflows/workflow-scripts/.env.github_actions_env up -d
+        run: docker-compose --env-file .github/workflows/workflow-scripts/.env.github_actions_env up --build -d
       
       - name: Test Postgres running and healthy after 60 seconds
         shell: bash

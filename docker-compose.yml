@@ -93,6 +93,7 @@ services:
     environment:
       ConnectionStrings__umbracoDbDSN: "Server=${UMBRACO_DATABASE_SERVER_AND_CONTAINER_NAME},1433;Database=${UMBRACO_DATABASE_NAME};User Id=${UMBRACO_DATABASE_USERNAME_STRING};Password=${UMBRACO_DATABASE_PASSWORD_STRING};TrustServerCertificate=true;"
       ConnectionStrings__umbracoDbDSN_ProviderName: 'System.Data.SqlClient'
+      uSync__Settings__ImportAtStartup: 'false'
       uSync__Settings__ImportOnFirstBoot: 'true'
       uSync__Settings__ExportOnSave: 'false'
       uSync__Settings__FirstBootGroup: 'all'

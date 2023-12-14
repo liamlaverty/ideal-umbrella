@@ -1,8 +1,120 @@
-﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+﻿@using IdealUmbrella.site.Models.SustainableTradeGenerator;
+@using Umbraco.Cms.Web.Common.PublishedModels;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.SustainableTradeWave2Generator>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 @{
     Layout = "_Master.cshtml";
-
+    List<TradeGeneratorQuestion> questionItems = new List<TradeGeneratorQuestion>
+    {
+        new TradeGeneratorQuestion
+        {
+            Title = "Use of proceeds",
+            Dimension = "Environmental"
+        },
+        new TradeGeneratorQuestion
+        {
+            Title = "Use of proceeds",
+            Dimension = "Socio-economic"
+        },
+        new TradeGeneratorQuestion
+        {
+            Title = "Seller",
+            Dimension = "Environmental"
+        },
+        new TradeGeneratorQuestion
+        {
+            Title = "Seller",
+            Dimension = "Socio-economic"
+        },
+        new TradeGeneratorQuestion
+        {
+            Title = "Buyer",
+            Dimension = "Environmental"
+        },
+        new TradeGeneratorQuestion
+        {
+            Title = "Buyer",
+            Dimension = "Socio-economic"
+        },
+        new TradeGeneratorQuestion
+        {
+            Title = "Distribution",
+            Dimension = "Environmental"
+        },
+        new TradeGeneratorQuestion
+        {
+            Title = "Distribution",
+            Dimension = "Socio-economic"
+        }
+    };
 }
+
+<div class="row">
+
+    <div class="col-12 mb-3">
+        <form>
+            <div class="row ">
+                @foreach (var question in questionItems)
+                {
+                    <div class="col-6 mb-3">
+                        <label for="@question.HtmlID" class="form-label">@question.Label</label>
+                        <select class="form-select" aria-label="select control for @question.Label">
+                            <option selected>Select a grade for @question.Label.ToLower()</option>
+                            <option value="a">A - Sustainable, with a high degree of condidence</option>
+                            <option value="b">B - Sustainable in part</option>
+                            <option value="n">N - Not sustainable</option>
+                            <option value="u">U - Ungraded, given insufficient information</option>
+                        </select>
+                        <div id="@($"{question.HtmlID}")-help-block" class="form-text">
+                            Select a sustainability grade for the trade's @question.Label.ToLower()
+                        </div>
+                    </div>
+                }
+            </div>
+        </form>
+    </div>
+    <div class="col-6 mx-auto">
+        <div class="card sustainable-trade-card mb-3">
+            <div class="card-body">
+                <table class="table icc-grading-table">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Environmental</th>
+                            <th scope="col">Socio-economic</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Use of Proceeds</th>
+                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
+                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Seller</th>
+                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
+                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Buyer</th>
+                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
+                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Distribution</th>
+                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "b")</td>
+                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "u")</td>
+                        </tr>
+                        <tr class="overall-grade">
+                            <th scope="row">Overall</th>
+                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
+                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
 

@@ -12,13 +12,14 @@
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="30.0.1" />
     <PackageReference Include="Umbraco.Cms" Version="13.0.0" />
-    <PackageReference Include="uSync" Version="12.2.2" />
+    <PackageReference Include="uSync" Version="13.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <!-- Opt-in to app-local ICU to ensure consistent globalization APIs across different platforms -->
     <PackageReference Include="Microsoft.ICU.ICU4C.Runtime" Version="68.2.0.9" />
     <ProjectReference Include="..\IdealUmbrella.DataConnector\IdealUmbrella.DataConnector.csproj" />
+    <ProjectReference Include="..\IdealUmbrella.TradeMatrix\IdealUmbrella.TradeMatrix.csproj" />
     <ProjectReference Include="..\IU.ClimateTrace.Downloader\IU.ClimateTrace.Downloader.csproj" />
     <RuntimeHostConfigurationOption Include="System.Globalization.AppLocalIcu" Value="68.2.0.9" Condition="$(RuntimeIdentifier.StartsWith('linux')) or $(RuntimeIdentifier.StartsWith('win')) or ('$(RuntimeIdentifier)' == '' and !$([MSBuild]::IsOSPlatform('osx')))" />
   </ItemGroup>
@@ -30,7 +31,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Controllers\SurfaceControllers\" />
     <Folder Include="wwwroot\static\bs-icons\" />
+    <Folder Include="wwwroot\static\logo\" />
     <Folder Include="wwwroot\static\sdg-icons\png\" />
   </ItemGroup>
 

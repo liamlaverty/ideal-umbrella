@@ -2,6 +2,7 @@ using IdealUmbrella.DataConnector.CountryData;
 using IdealUmbrella.site.Models.Config;
 using IdealUmbrella.site.Services.ContentServices.Impl;
 using IU.ClimateTrace.Downloader.Extensions;
+using IdealUmbrella.TradeMatrix.Extensions;
 
 namespace IdealUmbrella.site
 {
@@ -35,6 +36,7 @@ namespace IdealUmbrella.site
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddClimateTraceDownloaderServices();
+            services.AddTradeMatrixServices();
 
             services.AddUmbraco(_env, _config)
                 .AddBackOffice()
@@ -42,7 +44,6 @@ namespace IdealUmbrella.site
                 .AddDeliveryApi()
                 .AddComposers()
                 .Build();
-
 
             // Add configs
             services.Configure<MapboxConfig>(_config.GetSection(MapboxConfig.ConfigName));
