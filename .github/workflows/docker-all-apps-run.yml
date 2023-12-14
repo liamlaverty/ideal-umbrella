@@ -12,6 +12,7 @@ jobs:
   all:
     name: Docker compose test containers are created, running, and healthy
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v3
 
