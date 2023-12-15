@@ -1,4 +1,6 @@
-﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+﻿@using IdealUmbrella.TradeMatrix.Models.Enums;
+@using IdealUmbrella.site.Models.ViewModels.SustainableTradeGenerator;
+@using Umbraco.Cms.Web.Common.PublishedModels;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.SustainableTrade>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 @{
@@ -30,42 +32,26 @@
                     <div class="card-body">
                         <h5 class="card-title">Example Trade Assessment</h5>
 
-                        <table class="table icc-grading-table">
-                            <thead>
-                                <tr>
-                                    <th scope="col"></th>
-                                    <th scope="col">Environmental</th>
-                                    <th scope="col">Socio-economic</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">Use of Proceeds</th>
-                                    <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "n"))</td>
-                                    <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a"))</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Seller</th>
-                                    <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a"))</td>
-                                    <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "n"))</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Buyer</th>
-                                    <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a"))</td>
-                                    <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "n"))</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Distribution</th>
-                                    <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "b"))</td>
-                                    <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "u"))</td>
-                                </tr>
-                                <tr class="overall-grade">
-                                    <th scope="row">Overall</th>
-                                    <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "n"))</td>
-                                    <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "n"))</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        @(
+                            await Component.InvokeAsync("TradeAssessmentMatrix",
+                            new TradeAssessmentMatrixViewModel(
+                            title: "Glass Bottle Trade",
+                            buyerName: "International Cola Industries",
+                            sellerName: "Glass Bottle Corp",
+                            distributorName: "Big International Shipping Inc.",
+                            goodHsCode: "702000",
+                            useOfProceedsEnvironmental: TradeAssessmentMatrixGrade.N,
+                            useOfProceedsSocioEconomic: TradeAssessmentMatrixGrade.A,
+                            sellerEnvironmental: TradeAssessmentMatrixGrade.A,
+                            sellerSocioEconomic: TradeAssessmentMatrixGrade.N,
+                            buyerEnvironmental: TradeAssessmentMatrixGrade.A,
+                            buyerSocioEconomic: TradeAssessmentMatrixGrade.N,
+                            distributionEnvironmental: TradeAssessmentMatrixGrade.B,
+                            distributionSocioEconomic: TradeAssessmentMatrixGrade.U,
+                            includeSummaryNotes: false
+                            )
+                            )
+                            )
                     </div>
                 </div>
             </div>
@@ -74,23 +60,23 @@
                     <div class="card-body">
                         <h5 class="card-title">ICC Sustainable Trade Grading Definitions</h5>
                         <p class="card-text">
-                            @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a"))
+                            @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", TradeAssessmentMatrixGrade.A))
                             <small class="text-muted">Sustainable, with a high degree of condidence</small>
                         </p>
                         <p class="card-text">
 
 
-                            @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "b"))
+                            @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", TradeAssessmentMatrixGrade.B))
                             <small class="text-muted">Sustainable in part</small>
                         </p>
                         <p class="card-text">
 
-                            @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "n"))
+                            @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", TradeAssessmentMatrixGrade.N))
                             <small class="text-muted">Not sustainable</small>
                         </p>
                         <p class="card-text">
 
-                            @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "u"))
+                            @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", TradeAssessmentMatrixGrade.U))
                             <small class="text-muted">Ungraded, given insufficient information</small>
                         </p>
                     </div>
@@ -332,7 +318,7 @@
         <p class="text">
             'Use of proceeds' grade is prioritised and implies an
 
-            @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "n")) on Environmental
+            @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", TradeAssessmentMatrixGrade.N)) on Environmental
         </p>
         <p>
             Donec lacus nisl, fringilla quis turpis eu, congue bibendum nibh. Maecenas egestas eget eros eu venenatis. Fusce nibh lectus, euismod sagittis velit in, consectetur tempor mi. Vestibulum consectetur eu sem eget convallis. Praesent eu molestie velit. Nullam posuere quam non quam blandit convallis. Nulla consectetur volutpat accumsan. Sed eleifend volutpat purus, mollis interdum sapien dapibus eget. Quisque volutpat sodales augue ac semper. Integer aliquam libero et sapien pretium, rutrum dictum nulla finibus. Donec sodales erat sit amet nibh consequat, sed molestie enim euismod.
@@ -342,42 +328,26 @@
     <div class="@sectorExampleBoxClass">
         <div class="card sustainable-trade-card mb-3">
             <div class="card-body">
-                <table class="table icc-grading-table">
-                    <thead>
-                        <tr>
-                            <th scope="col"></th>
-                            <th scope="col">Environmental</th>
-                            <th scope="col">Socio-economic</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">Use of Proceeds</th>
-                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "n"))</td>
-                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a"))</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Seller</th>
-                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a"))</td>
-                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "n"))</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Buyer</th>
-                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a"))</td>
-                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "n"))</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Distribution</th>
-                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "b"))</td>
-                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "u"))</td>
-                        </tr>
-                        <tr class="overall-grade">
-                            <th scope="row">Overall</th>
-                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "n"))</td>
-                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "n"))</td>
-                        </tr>
-                    </tbody>
-                </table>
+                @(
+                    await Component.InvokeAsync("TradeAssessmentMatrix",
+                    new TradeAssessmentMatrixViewModel(
+                    title: "Cotton textiles trade",
+                    buyerName: "Big Box Retail, Inc.",
+                    sellerName: "Artisan Cotton Distributors",
+                    distributorName: "Multinational Shipping Industries",
+                    goodHsCode: "520400",
+                    useOfProceedsEnvironmental: TradeAssessmentMatrixGrade.N,
+                    useOfProceedsSocioEconomic: TradeAssessmentMatrixGrade.A,
+                    sellerEnvironmental: TradeAssessmentMatrixGrade.A,
+                    sellerSocioEconomic: TradeAssessmentMatrixGrade.N,
+                    buyerEnvironmental: TradeAssessmentMatrixGrade.A,
+                    buyerSocioEconomic: TradeAssessmentMatrixGrade.N,
+                    distributionEnvironmental: TradeAssessmentMatrixGrade.B,
+                    distributionSocioEconomic: TradeAssessmentMatrixGrade.U,
+                    includeSummaryNotes: false
+                    )
+                    )
+                    )
             </div>
         </div>
     </div>
@@ -390,7 +360,7 @@
         <p class="text">
             Insufficient information on the
             seller, buyer and distribution
-            method implies a @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "u")) on
+            method implies a @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", TradeAssessmentMatrixGrade.U)) on
             Environmental
         </p>
         <p>
@@ -400,42 +370,26 @@
     <div class="@sectorExampleBoxClass order-md-2">
         <div class="card sustainable-trade-card mb-3">
             <div class="card-body">
-                <table class="table icc-grading-table">
-                    <thead>
-                        <tr>
-                            <th scope="col"></th>
-                            <th scope="col">Environmental</th>
-                            <th scope="col">Socio-economic</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">Use of Proceeds</th>
-                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a"))</td>
-                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a"))</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Seller</th>
-                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "u"))</td>
-                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a"))</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Buyer</th>
-                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "u"))</td>
-                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "n"))</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Distribution</th>
-                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "u"))</td>
-                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "u"))</td>
-                        </tr>
-                        <tr class="overall-grade">
-                            <th scope="row">Overall</th>
-                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "u"))</td>
-                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a"))</td>
-                        </tr>
-                    </tbody>
-                </table>
+                @(
+                    await Component.InvokeAsync("TradeAssessmentMatrix",
+                    new TradeAssessmentMatrixViewModel(
+                    title: "Tomatoes trade",
+                    buyerName: "Big Box Retail, Inc.",
+                    sellerName: "Tomato Farmers of America, inc.",
+                    distributorName: "Shipping Co",
+                    goodHsCode: "070200",
+                    useOfProceedsEnvironmental: TradeAssessmentMatrixGrade.A,
+                    useOfProceedsSocioEconomic: TradeAssessmentMatrixGrade.A,
+                    sellerEnvironmental: TradeAssessmentMatrixGrade.U,
+                    sellerSocioEconomic: TradeAssessmentMatrixGrade.A,
+                    buyerEnvironmental: TradeAssessmentMatrixGrade.U,
+                    buyerSocioEconomic: TradeAssessmentMatrixGrade.N,
+                    distributionEnvironmental: TradeAssessmentMatrixGrade.U,
+                    distributionSocioEconomic: TradeAssessmentMatrixGrade.U,
+                    includeSummaryNotes: false
+                    )
+                    )
+                    )
             </div>
         </div>
 
@@ -445,42 +399,26 @@
     <div class="@sectorExampleBoxClass">
         <div class="card sustainable-trade-card mb-3">
             <div class="card-body">
-                <table class="table icc-grading-table">
-                    <thead>
-                        <tr>
-                            <th scope="col"></th>
-                            <th scope="col">Environmental</th>
-                            <th scope="col">Socio-economic</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">Use of Proceeds</th>
-                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a"))</td>
-                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "u"))</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Seller</th>
-                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a"))</td>
-                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a"))</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Buyer</th>
-                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a"))</td>
-                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a"))</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Distribution</th>
-                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "b"))</td>
-                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "u"))</td>
-                        </tr>
-                        <tr class="overall-grade">
-                            <th scope="row">Overall</th>
-                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a"))</td>
-                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "u"))</td>
-                        </tr>
-                    </tbody>
-                </table>
+                @(
+                    await Component.InvokeAsync("TradeAssessmentMatrix",
+                    new TradeAssessmentMatrixViewModel(
+                    title: "Wind turbines",
+                    buyerName: "UK Electricity PLC",
+                    sellerName: "Windy Turbines Ltd.",
+                    distributorName: "Shipping Co",
+                    goodHsCode: "850231",
+                    useOfProceedsEnvironmental: TradeAssessmentMatrixGrade.A,
+                    useOfProceedsSocioEconomic: TradeAssessmentMatrixGrade.U,
+                    sellerEnvironmental: TradeAssessmentMatrixGrade.A,
+                    sellerSocioEconomic: TradeAssessmentMatrixGrade.A,
+                    buyerEnvironmental: TradeAssessmentMatrixGrade.A,
+                    buyerSocioEconomic: TradeAssessmentMatrixGrade.A,
+                    distributionEnvironmental: TradeAssessmentMatrixGrade.B,
+                    distributionSocioEconomic: TradeAssessmentMatrixGrade.U,
+                    includeSummaryNotes: false
+                    )
+                    )
+                    )
             </div>
         </div>
     </div>
@@ -489,7 +427,7 @@
         <p class="text">
             The use of proceeds is
             sustainable which implies
-            an @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a")) on Environmental
+            an @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", TradeAssessmentMatrixGrade.A)) on Environmental
         </p>
         <p>
             Donec lacus nisl, fringilla quis turpis eu, congue bibendum nibh. Maecenas egestas eget eros eu venenatis. Fusce nibh lectus, euismod sagittis velit in, consectetur tempor mi. Vestibulum consectetur eu sem eget convallis. Praesent eu molestie velit. Nullam posuere quam non quam blandit convallis. Nulla consectetur volutpat accumsan. Sed eleifend volutpat purus, mollis interdum sapien dapibus eget. Quisque volutpat sodales augue ac semper. Integer aliquam libero et sapien pretium, rutrum dictum nulla finibus. Donec sodales erat sit amet nibh consequat, sed molestie enim euismod.
