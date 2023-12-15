@@ -1,0 +1,42 @@
+﻿@model string
+
+<h1>Model was @Model</h1>
+
+
+<table class="table icc-grading-table">
+    <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">Environmental</th>
+            <th scope="col">Socio-economic</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">Use of Proceeds</th>
+            <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "n"))</td>
+            <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a"))</td>
+        </tr>
+        <tr>
+            <th scope="row">Seller</th>
+            <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a"))</td>
+            <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "n"))</td>
+        </tr>
+        <tr>
+            <th scope="row">Buyer</th>
+            <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "n"))</td>
+            <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a"))</td>
+        </tr>
+        <tr>
+            <th scope="row">Distribution</th>
+            <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "b"))</td>
+            <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "u"))</td>
+        </tr>
+        <tr class="overall-grade">
+            <th scope="row">Overall</th>
+            <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "n"))</td>
+            <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "n"))</td>
+        </tr>
+    </tbody>
+</table>
+ 

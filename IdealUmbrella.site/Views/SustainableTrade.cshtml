@@ -12,9 +12,7 @@
 }
 
 <div class="row @rowMarginPaddingBorderClass align-content-sm-center d-flex justify-content-around">
-  
-
-    <div class="col-12 col-lg-8">
+     <div class="col-12 col-lg-8">
         <p>
             Donec lacus nisl, fringilla quis turpis eu, congue bibendum nibh. Maecenas egestas eget eros eu venenatis. Fusce nibh lectus, euismod sagittis velit in, consectetur tempor mi. Vestibulum consectetur eu sem eget convallis.
             Praesent eu molestie velit. Nullam posuere quam non quam blandit convallis. Nulla consectetur volutpat accumsan.
@@ -43,28 +41,28 @@
                             <tbody>
                                 <tr>
                                     <th scope="row">Use of Proceeds</th>
-                                    <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
-                                    <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
+                                    <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "n"))</td>
+                                    <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a"))</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Seller</th>
-                                    <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
-                                    <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
+                                    <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a"))</td>
+                                    <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "n"))</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Buyer</th>
-                                    <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
-                                    <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
+                                    <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a"))</td>
+                                    <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "n"))</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Distribution</th>
-                                    <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "b")</td>
-                                    <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "u")</td>
+                                    <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "b"))</td>
+                                    <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "u"))</td>
                                 </tr>
                                 <tr class="overall-grade">
                                     <th scope="row">Overall</th>
-                                    <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
-                                    <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
+                                    <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "n"))</td>
+                                    <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "n"))</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -115,7 +113,7 @@
 
 
 </div>
-
+ 
 <div class="row @rowMarginPaddingBorderClass" id="dimensions-of-trade">
     <h3>Two Dimensions of Trade</h3>
     <div class="col-12 col-md-6">
@@ -333,6 +331,7 @@
         <h3 class="title">Textiles: Cotton Example</h3>
         <p class="text">
             'Use of proceeds' grade is prioritised and implies an
+
             @await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n") on Environmental
         </p>
         <p>
@@ -384,6 +383,7 @@
     </div>
 
 </div>
+
 <div class="row @rowMarginPaddingBorderClass">
     <div class="@sectorExamplesDescriptionClass order-md-1">
         <h3 class="title">Agriculture: Tomatoes Example</h3>
@@ -496,4 +496,3 @@
         </p>
     </div>
 </div>
-

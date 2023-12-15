@@ -76,42 +76,7 @@
     <div class="col-6 mx-auto">
         <div class="card sustainable-trade-card mb-3">
             <div class="card-body">
-                <table class="table icc-grading-table">
-                    <thead>
-                        <tr>
-                            <th scope="col"></th>
-                            <th scope="col">Environmental</th>
-                            <th scope="col">Socio-economic</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">Use of Proceeds</th>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Seller</th>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Buyer</th>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Distribution</th>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "b")</td>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "u")</td>
-                        </tr>
-                        <tr class="overall-grade">
-                            <th scope="row">Overall</th>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
-                        </tr>
-                    </tbody>
-                </table>
+                @(await Component.InvokeAsync("TradeAssessmentMatrix", "n"))
             </div>
         </div>
     </div>
