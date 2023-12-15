@@ -1,6 +1,7 @@
-﻿@model string
+﻿@using IdealUmbrella.TradeMatrix.Models.Enums;
+@using IdealUmbrella.site.Models.ViewModels.SustainableTradeGenerator;
+@model TradeAssessmentMatrixViewModel
 
-<h1>Model was @Model</h1>
 
 
 <table class="table icc-grading-table">
@@ -14,29 +15,77 @@
     <tbody>
         <tr>
             <th scope="row">Use of Proceeds</th>
-            <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "n"))</td>
-            <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a"))</td>
+            <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", Model.UseOfProceedsEnvironmental))</td>
+            <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", Model.UseOfProceedsSocioEconomic))</td>
         </tr>
         <tr>
             <th scope="row">Seller</th>
-            <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a"))</td>
-            <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "n"))</td>
+            <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", Model.SellerEnvironmental))</td>
+            <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", Model.SellerSocioEconomic))</td>
         </tr>
         <tr>
             <th scope="row">Buyer</th>
-            <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "n"))</td>
-            <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a"))</td>
+            <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", Model.BuyerEnvironmental))</td>
+            <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", Model.BuyerSocioEconomic))</td>
         </tr>
         <tr>
             <th scope="row">Distribution</th>
-            <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "b"))</td>
-            <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "u"))</td>
+            <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", Model.DistributionEnvironmental))</td>
+            <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", Model.DistributionSocioEconomic))</td>
         </tr>
         <tr class="overall-grade">
             <th scope="row">Overall</th>
-            <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "n"))</td>
-            <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "n"))</td>
+            <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", TradeAssessmentMatrixGrade.N))</td>
+            <td> @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", TradeAssessmentMatrixGrade.N))</td>
         </tr>
     </tbody>
 </table>
- 
+@if (Model.IncludeSummaryNotes)
+{
+    <table class="table icc-grading-table">
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Trade Name</th>
+                <td> @Model.Title</td>
+            </tr>
+            <tr>
+                <th scope="row">Trade Description</th>
+                <td>Trade of <i>HS @Model.GoodHsCode</i> between <i>@Model.SellerName</i> and <i>@Model.BuyerName</i></td>
+            </tr>
+            <tr>
+                <th scope="row">Seller Details</th>
+                <td> @Model.SellerName</td>
+            </tr>
+            <tr>
+                <th scope="row">Buyer Details</th>
+                <td> @Model.BuyerName</td>
+            </tr>
+            <tr>
+                <th scope="row">Distribution</th>
+                <td> @Model.DistributorNames</td>
+            </tr>
+            <tr>
+                <th scope="row">Item HS Code</th>
+                <td> @Model.GoodHsCode</td>
+            </tr>
+            <tr>
+                <th scope="row">Item HS Description</th>
+                <td> @Model.HsCodeDescription</td>
+            </tr>
+            <tr>
+                <th scope="row">Assessment ID</th>
+                <td> @Model.AssessmentID</td>
+            </tr>
+            <tr>
+                <th scope="row">Assessment Date</th>
+                <td> @Model.AssessmentDate</td>
+            </tr>
+        </tbody>
+    </table>
+}

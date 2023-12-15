@@ -2,9 +2,10 @@
 {
     public enum TradeAssessmentMatrixGrade
     {
-        A = 3,
-        B = 2,
-        N = 1,
-        U = 0
+        A = 4,
+        B = 3,
+        N = 2,
+        U = 1, 
+        ERR =0
     }
 }

@@ -1,4 +1,6 @@
-﻿@using IdealUmbrella.site.Models.SustainableTradeGenerator;
+﻿@using IdealUmbrella.TradeMatrix.Models.Enums;
+@using IdealUmbrella.site.Models.SustainableTradeGenerator;
+@using IdealUmbrella.site.Models.ViewModels.SustainableTradeGenerator;
 @using Umbraco.Cms.Web.Common.PublishedModels;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.SustainableTradeWave2Generator>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
@@ -76,7 +78,26 @@
     <div class="col-6 mx-auto">
         <div class="card sustainable-trade-card mb-3">
             <div class="card-body">
-                @(await Component.InvokeAsync("TradeAssessmentMatrix", "n"))
+                @(
+                    await Component.InvokeAsync("TradeAssessmentMatrix", 
+                        new TradeAssessmentMatrixViewModel(
+                    title: "Glass Bottle Trade",
+                    buyerName: "International Cola Industries",
+                    sellerName: "Glass Bottle Corp",
+                    distributorName: "Big International Shipping Inc.",
+                    goodHsCode: "702000",
+                            useOfProceedsEnvironmental: TradeAssessmentMatrixGrade.N,
+                            useOfProceedsSocioEconomic: TradeAssessmentMatrixGrade.A,
+                            sellerEnvironmental: TradeAssessmentMatrixGrade.A,
+                            sellerSocioEconomic: TradeAssessmentMatrixGrade.N,
+                            buyerEnvironmental: TradeAssessmentMatrixGrade.N,
+                            buyerSocioEconomic: TradeAssessmentMatrixGrade.A,
+                            distributionEnvironmental: TradeAssessmentMatrixGrade.B,
+                            distributionSocioEconomic: TradeAssessmentMatrixGrade.U,
+                            includeSummaryNotes: true
+                        )   
+                    )
+                )
             </div>
         </div>
     </div>

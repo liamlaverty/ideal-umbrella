@@ -1,27 +1,33 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using IdealUmbrella.site.Models.ViewModels.SustainableTradeGenerator;
+using IdealUmbrella.TradeMatrix.Models.Enums;
+using Microsoft.AspNetCore.Mvc;
 
 namespace IdealUmbrella.site.ViewComponents.TradeAssessmentMatrixComponents
 {
-
-    /// <summary>
-    /// Renders a full TradeMatrix
-    /// </summary>
     public class TradeAssessmentMatrixViewComponent : ViewComponent
     {
-        public IViewComponentResult Invoke(string grade)
+        /// <summary>
+        ///  Renders a full TradeAssessment matrix based on a TradeAssessmentMtxViewModel
+        /// </summary>
+        /// <param name="mtxViewModel"></param>
+        /// <returns></returns>
+        public IViewComponentResult Invoke(TradeAssessmentMatrixViewModel mtxViewModel)
         {
-            return View("TradeGradeMatrix", grade);
+            return View("TradeGradeMatrix", mtxViewModel);
         }
     }
 
-    /// <summary>
-    ///  Renders a TradeMatrix branded A/B/N/U
-    /// </summary>
+
     public class TradeAssessmentMatrixGradeViewComponent : ViewComponent
     {
-        public IViewComponentResult Invoke(string grade)
+        /// <summary>
+        /// Renders a single TradeMatrix branded A/B/N/U
+        /// </summary>
+        /// <param name="grade"></param>
+        /// <returns></returns>
+        public IViewComponentResult Invoke(TradeAssessmentMatrixGrade grade)
         {
-            return View("TradeGradeSpan", grade);
+            return View("TradeGradeSpan", grade.ToString());
         }
     }
 
