@@ -12,7 +12,7 @@
 }
 
 <div class="row @rowMarginPaddingBorderClass align-content-sm-center d-flex justify-content-around">
-     <div class="col-12 col-lg-8">
+    <div class="col-12 col-lg-8">
         <p>
             Donec lacus nisl, fringilla quis turpis eu, congue bibendum nibh. Maecenas egestas eget eros eu venenatis. Fusce nibh lectus, euismod sagittis velit in, consectetur tempor mi. Vestibulum consectetur eu sem eget convallis.
             Praesent eu molestie velit. Nullam posuere quam non quam blandit convallis. Nulla consectetur volutpat accumsan.
@@ -74,23 +74,23 @@
                     <div class="card-body">
                         <h5 class="card-title">ICC Sustainable Trade Grading Definitions</h5>
                         <p class="card-text">
-                            @await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")
+                            @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a"))
                             <small class="text-muted">Sustainable, with a high degree of condidence</small>
                         </p>
                         <p class="card-text">
 
 
-                            @await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "b")
+                            @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "b"))
                             <small class="text-muted">Sustainable in part</small>
                         </p>
                         <p class="card-text">
 
-                            @await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")
+                            @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "n"))
                             <small class="text-muted">Not sustainable</small>
                         </p>
                         <p class="card-text">
 
-                            @await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "u")
+                            @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "u"))
                             <small class="text-muted">Ungraded, given insufficient information</small>
                         </p>
                     </div>
@@ -113,7 +113,7 @@
 
 
 </div>
- 
+
 <div class="row @rowMarginPaddingBorderClass" id="dimensions-of-trade">
     <h3>Two Dimensions of Trade</h3>
     <div class="col-12 col-md-6">
@@ -332,7 +332,7 @@
         <p class="text">
             'Use of proceeds' grade is prioritised and implies an
 
-            @await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n") on Environmental
+            @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "n")) on Environmental
         </p>
         <p>
             Donec lacus nisl, fringilla quis turpis eu, congue bibendum nibh. Maecenas egestas eget eros eu venenatis. Fusce nibh lectus, euismod sagittis velit in, consectetur tempor mi. Vestibulum consectetur eu sem eget convallis. Praesent eu molestie velit. Nullam posuere quam non quam blandit convallis. Nulla consectetur volutpat accumsan. Sed eleifend volutpat purus, mollis interdum sapien dapibus eget. Quisque volutpat sodales augue ac semper. Integer aliquam libero et sapien pretium, rutrum dictum nulla finibus. Donec sodales erat sit amet nibh consequat, sed molestie enim euismod.
@@ -353,28 +353,28 @@
                     <tbody>
                         <tr>
                             <th scope="row">Use of Proceeds</th>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
+                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "n"))</td>
+                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a"))</td>
                         </tr>
                         <tr>
                             <th scope="row">Seller</th>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
+                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a"))</td>
+                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "n"))</td>
                         </tr>
                         <tr>
                             <th scope="row">Buyer</th>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
+                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a"))</td>
+                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "n"))</td>
                         </tr>
                         <tr>
                             <th scope="row">Distribution</th>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "b")</td>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "u")</td>
+                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "b"))</td>
+                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "u"))</td>
                         </tr>
                         <tr class="overall-grade">
                             <th scope="row">Overall</th>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
+                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "n"))</td>
+                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "n"))</td>
                         </tr>
                     </tbody>
                 </table>
@@ -390,7 +390,7 @@
         <p class="text">
             Insufficient information on the
             seller, buyer and distribution
-            method implies a @await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "u") on
+            method implies a @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "u")) on
             Environmental
         </p>
         <p>
@@ -411,28 +411,28 @@
                     <tbody>
                         <tr>
                             <th scope="row">Use of Proceeds</th>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
+                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a"))</td>
+                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a"))</td>
                         </tr>
                         <tr>
                             <th scope="row">Seller</th>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "u")</td>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
+                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "u"))</td>
+                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a"))</td>
                         </tr>
                         <tr>
                             <th scope="row">Buyer</th>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "u")</td>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
+                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "u"))</td>
+                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "n"))</td>
                         </tr>
                         <tr>
                             <th scope="row">Distribution</th>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "u")</td>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "u")</td>
+                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "u"))</td>
+                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "u"))</td>
                         </tr>
                         <tr class="overall-grade">
                             <th scope="row">Overall</th>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "u")</td>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
+                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "u"))</td>
+                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a"))</td>
                         </tr>
                     </tbody>
                 </table>
@@ -456,28 +456,28 @@
                     <tbody>
                         <tr>
                             <th scope="row">Use of Proceeds</th>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "u")</td>
+                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a"))</td>
+                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "u"))</td>
                         </tr>
                         <tr>
                             <th scope="row">Seller</th>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
+                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a"))</td>
+                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a"))</td>
                         </tr>
                         <tr>
                             <th scope="row">Buyer</th>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
+                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a"))</td>
+                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a"))</td>
                         </tr>
                         <tr>
                             <th scope="row">Distribution</th>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "b")</td>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "u")</td>
+                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "b"))</td>
+                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "u"))</td>
                         </tr>
                         <tr class="overall-grade">
                             <th scope="row">Overall</th>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "u")</td>
+                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a"))</td>
+                            <td>@(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "u"))</td>
                         </tr>
                     </tbody>
                 </table>
@@ -489,7 +489,7 @@
         <p class="text">
             The use of proceeds is
             sustainable which implies
-            an @await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a") on Environmental
+            an @(await Component.InvokeAsync("TradeAssessmentMatrixGrade", "a")) on Environmental
         </p>
         <p>
             Donec lacus nisl, fringilla quis turpis eu, congue bibendum nibh. Maecenas egestas eget eros eu venenatis. Fusce nibh lectus, euismod sagittis velit in, consectetur tempor mi. Vestibulum consectetur eu sem eget convallis. Praesent eu molestie velit. Nullam posuere quam non quam blandit convallis. Nulla consectetur volutpat accumsan. Sed eleifend volutpat purus, mollis interdum sapien dapibus eget. Quisque volutpat sodales augue ac semper. Integer aliquam libero et sapien pretium, rutrum dictum nulla finibus. Donec sodales erat sit amet nibh consequat, sed molestie enim euismod.
