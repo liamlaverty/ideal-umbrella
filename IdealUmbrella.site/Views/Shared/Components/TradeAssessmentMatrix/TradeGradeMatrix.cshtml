@@ -1,10 +1,12 @@
 ﻿@using IdealUmbrella.TradeMatrix.Models.Enums;
 @using IdealUmbrella.site.Models.ViewModels.SustainableTradeGenerator;
 @model TradeAssessmentMatrixViewModel
+@{
+    var htmlId = Guid.NewGuid();
+}
 
 
-
-<table class="table icc-grading-table">
+<table class="table icc-grading-table" id="mtx-@htmlId">
     <thead>
         <tr>
             <th scope="col"></th>
@@ -40,52 +42,55 @@
         </tr>
     </tbody>
 </table>
-@if (Model.IncludeSummaryNotes)
+@if (Model.IncludeSummaryNotes == false)
 {
-    <table class="table icc-grading-table">
-        <thead>
-            <tr>
-                <th scope="col"></th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">Trade Name</th>
-                <td> @Model.Title</td>
-            </tr>
-            <tr>
-                <th scope="row">Trade Description</th>
-                <td>Trade of <i>HS @Model.GoodHsCode</i> between <i>@Model.SellerName</i> and <i>@Model.BuyerName</i></td>
-            </tr>
-            <tr>
-                <th scope="row">Seller Details</th>
-                <td> @Model.SellerName</td>
-            </tr>
-            <tr>
-                <th scope="row">Buyer Details</th>
-                <td> @Model.BuyerName</td>
-            </tr>
-            <tr>
-                <th scope="row">Distribution</th>
-                <td> @Model.DistributorNames</td>
-            </tr>
-            <tr>
-                <th scope="row">Item HS Code</th>
-                <td> @Model.GoodHsCode</td>
-            </tr>
-            <tr>
-                <th scope="row">Item HS Description</th>
-                <td> @Model.HsCodeDescription</td>
-            </tr>
-            <tr>
-                <th scope="row">Assessment ID</th>
-                <td> @Model.AssessmentID</td>
-            </tr>
-            <tr>
-                <th scope="row">Assessment Date</th>
-                <td> @Model.AssessmentDate</td>
-            </tr>
-        </tbody>
-    </table>
+    <a class="btn btn-secondary" data-bs-toggle="collapse" href="#mtx-desc-@htmlId" role="button" aria-expanded="false" aria-controls="mtx-desc-@htmlId">
+        Show trade assessment details
+    </a>
 }
+<table class="table icc-grading-table @(Model.IncludeSummaryNotes ? String.Empty : "collapse")" id="mtx-desc-@htmlId">
+    <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">Trade Name</th>
+            <td> @Model.Title</td>
+        </tr>
+        <tr>
+            <th scope="row">Trade Description</th>
+            <td>Trade of <i>HS @Model.GoodHsCode</i> between <i>@Model.SellerName</i> and <i>@Model.BuyerName</i></td>
+        </tr>
+        <tr>
+            <th scope="row">Seller Details</th>
+            <td> @Model.SellerName</td>
+        </tr>
+        <tr>
+            <th scope="row">Buyer Details</th>
+            <td> @Model.BuyerName</td>
+        </tr>
+        <tr>
+            <th scope="row">Distribution</th>
+            <td> @Model.DistributorNames</td>
+        </tr>
+        <tr>
+            <th scope="row">Item HS Code</th>
+            <td> @Model.GoodHsCode</td>
+        </tr>
+        <tr>
+            <th scope="row">Item HS Description</th>
+            <td> @Model.HsCodeDescription</td>
+        </tr>
+        <tr>
+            <th scope="row">Assessment ID</th>
+            <td> @Model.AssessmentID</td>
+        </tr>
+        <tr>
+            <th scope="row">Assessment Date</th>
+            <td> @Model.AssessmentDate</td>
+        </tr>
+    </tbody>
+</table>
