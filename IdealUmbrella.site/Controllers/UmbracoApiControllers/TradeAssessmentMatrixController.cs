@@ -2,7 +2,14 @@
 using IdealUmbrella.TradeMatrix.Services.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Umbraco.Cms.Core.Cache;
+using Umbraco.Cms.Core.Logging;
+using Umbraco.Cms.Core.Routing;
+using Umbraco.Cms.Core.Services;
+using Umbraco.Cms.Core.Web;
+using Umbraco.Cms.Infrastructure.Persistence;
 using Umbraco.Cms.Web.Common.Controllers;
+using Umbraco.Cms.Web.Website.Controllers;
 
 namespace IdealUmbrella.site.Controllers.UmbracoApiControllers
 {

@@ -1,4 +1,6 @@
-﻿@using IdealUmbrella.site.Models.SustainableTradeGenerator;
+﻿@using IdealUmbrella.TradeMatrix.Models.Enums;
+@using IdealUmbrella.site.Models.SustainableTradeGenerator;
+@using IdealUmbrella.site.Models.ViewModels.SustainableTradeGenerator;
 @using Umbraco.Cms.Web.Common.PublishedModels;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.SustainableTradeWave2Generator>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
@@ -51,13 +53,60 @@
 
 <div class="row">
 
-    <div class="col-12 mb-3">
+    <div class="col-7 mb-3">
+        <h3>Trade Details</h3>
+        <p>
+            Fill out the form below to generate a trade assessment
+        </p>
         <form>
             <div class="row ">
+                <div class="col-12 mb-3">
+                    <div class="form-group">
+                        <label for="hsCodeControlInput">HS Goods Code</label>
+                        <select class="form-select" aria-label="HS Code Select control">
+                            <option selected>Select HS Code</option>
+                            <option value="1">702000 - Glass bottles</option>
+                            <option value="2">520400 - Cotton</option>
+                            <option value="2">070200 - Tomatoes</option>
+                            <option value="3">850231 - Wind Turbines</option>
+                        </select>
+                        <div id="hsCodeControlInput-help-block" class="form-text">
+                            Enter the company name of the purchasing party
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 mb-3">
+                    <div class="form-group">
+                        <label for="sellerNameControlInput">Seller name</label>
+                        <input type="text" class="form-control" id="sellerNameControlInput" placeholder="Widgets, Inc">
+                        <div id="sellerNameControlInput-help-block" class="form-text">
+                            Enter the company name of the selling party
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 mb-3">
+                    <div class="form-group">
+                        <label for="buyerNameControlInput">Buyer name</label>
+                        <input type="text" class="form-control" id="buyerNameControlInput" placeholder="Widgets, Inc">
+                        <div id="buyerNameControlInput-help-block" class="form-text">
+                            Enter the company name of the purchasing party
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 mb-3">
+                    <div class="form-group">
+                        <label for="distributorNameControlInput">Distributor name</label>
+                        <input type="text" class="form-control" id="distributorNameControlInput" placeholder="Big Shipments Ltd">
+                        <div id="distributorNameControlInput-help-block" class="form-text">
+                            Enter the company name of the purchasing party
+                        </div>
+                    </div>
+                </div>
+                
                 @foreach (var question in questionItems)
                 {
-                    <div class="col-6 mb-3">
-                        <label for="@question.HtmlID" class="form-label">@question.Label</label>
+                    <div class="col-12 mb-3">
+                        <label for="@question.HtmlID" class="form-label">@question.Label grade</label>
                         <select class="form-select" aria-label="select control for @question.Label">
                             <option selected>Select a grade for @question.Label.ToLower()</option>
                             <option value="a">A - Sustainable, with a high degree of condidence</option>
@@ -71,47 +120,35 @@
                     </div>
                 }
             </div>
+            <button type="submit" class="btn btn-primary">Generate</button>
         </form>
     </div>
-    <div class="col-6 mx-auto">
+    <div class="col-5 mx-auto">
+        <h3>Sample assessment</h3>
+        <p>A sample of the trade. Fill in the form to see updates. Click the generate button to create
+            a validated assessment</p>
         <div class="card sustainable-trade-card mb-3">
             <div class="card-body">
-                <table class="table icc-grading-table">
-                    <thead>
-                        <tr>
-                            <th scope="col"></th>
-                            <th scope="col">Environmental</th>
-                            <th scope="col">Socio-economic</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">Use of Proceeds</th>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Seller</th>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Buyer</th>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "a")</td>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Distribution</th>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "b")</td>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "u")</td>
-                        </tr>
-                        <tr class="overall-grade">
-                            <th scope="row">Overall</th>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
-                            <td>@await Html.PartialAsync("SustainableTrade/TradeGradeSpan", "n")</td>
-                        </tr>
-                    </tbody>
-                </table>
+                @(
+                    await Component.InvokeAsync("TradeAssessmentMatrix", 
+                        new TradeAssessmentMatrixViewModel(
+                    title: "Glass Bottle Trade",
+                    buyerName: "International Cola Industries",
+                    sellerName: "Glass Bottle Corp",
+                    distributorName: "Big International Shipping Inc.",
+                    goodHsCode: "702000",
+                            useOfProceedsEnvironmental: TradeAssessmentMatrixGrade.N,
+                            useOfProceedsSocioEconomic: TradeAssessmentMatrixGrade.A,
+                            sellerEnvironmental: TradeAssessmentMatrixGrade.A,
+                            sellerSocioEconomic: TradeAssessmentMatrixGrade.N,
+                            buyerEnvironmental: TradeAssessmentMatrixGrade.N,
+                            buyerSocioEconomic: TradeAssessmentMatrixGrade.A,
+                            distributionEnvironmental: TradeAssessmentMatrixGrade.B,
+                            distributionSocioEconomic: TradeAssessmentMatrixGrade.U,
+                            includeSummaryNotes: true
+                        )   
+                    )
+                )
             </div>
         </div>
     </div>

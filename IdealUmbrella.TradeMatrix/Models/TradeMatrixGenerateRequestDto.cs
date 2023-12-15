@@ -52,7 +52,7 @@ namespace IdealUmbrella.TradeMatrix.Models
 
         [JsonProperty(PropertyName = "sellerEnvironmental")]
         public TradeAssessmentMatrixGrade SellerEnvironmental { get; set; }
-        [JsonProperty(PropertyName = "SellerSocioEconomic")]
+        [JsonProperty(PropertyName = "sellerSocioEconomic")]
         public TradeAssessmentMatrixGrade SellerSocioEconomic { get; set; }
 
         [JsonProperty(PropertyName = "buyerEnvironmental")]
