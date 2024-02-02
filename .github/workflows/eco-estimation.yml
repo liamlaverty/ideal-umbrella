@@ -3,7 +3,7 @@ run-name: Scheduled - Main Branch
 
 on:
   pull_request:
-    branches: [ "main", "dev" ]
+    branches: [ "eco-estimate" ]
   schedule:
     - cron: '7 7 * * *'
 
